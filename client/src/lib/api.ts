@@ -5,6 +5,7 @@
 // ============================================================
 
 import type { FoodItem, FoodSearchResult, NutrientData } from "./nutrients";
+import { intelligentSearch, buildFuseIndex, type SearchEngineResult } from "./searchEngine";
 
 // CDN-hosted bundled data (scraped from HPB SG FoodID)
 const CDN_INDEX_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663374102189/gFdMLjqiUpDnmt4U3dovdX/foods_index_full_39caef8a.json";
@@ -70,63 +71,27 @@ async function getFullData(): Promise<Record<string, FoodItem>> {
 
 // ── Search ──────────────────────────────────────────────────
 
+export type SmartSearchResult = SearchEngineResult & { source: "engine" | "local" | "live" };
+
+// Re-export for use in UI components
+export type { SearchEngineResult, ParsedQuery, SearchResult, QueryType } from "./searchEngine";
+
 export async function searchFoods(
   query: string,
   page = 1,
   _productType = "Generic"
-): Promise<{ items: FoodSearchResult[]; total: number; source: "local" | "live" }> {
-  const q = query.trim().toLowerCase();
-
-  // 1. Search bundled index first (fast, offline)
+): Promise<SmartSearchResult> {
+  // Load the index (cached after first fetch)
   const index = await getIndex();
+
+  // Build Fuse index if not already built
   if (index.length > 0) {
-    const filtered = q
-      ? index.filter(f =>
-          f.name.toLowerCase().includes(q) ||
-          f.description?.toLowerCase().includes(q) ||
-          f.l1Category?.toLowerCase().includes(q) ||
-          f.l2Category?.toLowerCase().includes(q)
-        )
-      : index;
-
-    const PAGE_SIZE = 25;
-    const start = (page - 1) * PAGE_SIZE;
-    const paged = filtered.slice(start, start + PAGE_SIZE);
-
-    if (paged.length > 0 || !q) {
-      return { items: paged, total: filtered.length, source: "local" };
-    }
+    buildFuseIndex(index);
   }
 
-  // 2. Fall back to live API via CORS proxy
-  try {
-    const params = new URLSearchParams({
-      pageNumber: String(page),
-      productType: "Generic",
-      ...(query ? { searchText: query } : {}),
-    });
-    const url = `${CORS_PROXY}${encodeURIComponent(`${API_BASE}/foods?${params}`)}`;
-    const res = await fetch(url);
-    if (!res.ok) throw new Error(`API error: ${res.status}`);
-    const data = await res.json();
-    const items: FoodSearchResult[] = (Array.isArray(data) ? data : []).map((r: Record<string, unknown>) => ({
-      id: r.crId as string,
-      crId: r.crId as string,
-      name: r.name as string,
-      description: r.description as string | undefined,
-      l1Category: r.l1Category as string | undefined,
-      l2Category: r.l2Category as string | undefined,
-      type: r.productType as string | undefined,
-      totalCount: r.totalCount as number | undefined,
-    }));
-    return {
-      items,
-      total: items[0]?.totalCount ?? items.length,
-      source: "live",
-    };
-  } catch {
-    return { items: [], total: 0, source: "live" };
-  }
+  // Run intelligent search engine
+  const result = await intelligentSearch(query, index, page, 25);
+  return { ...result, source: "engine" };
 }
 
 // ── Food Detail ─────────────────────────────────────────────
