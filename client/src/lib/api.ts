@@ -31,6 +31,9 @@ async function getIndex(): Promise<FoodSearchResult[]> {
     const raw: Array<{
       crId: string; name: string; description?: string;
       foodGroup?: string; foodSubgroup?: string; productType?: string;
+      // Nutrient summary fields for intelligent search filtering
+      energy?: number; protein?: number; fat?: number;
+      carbohydrate?: number; sodium?: number;
     }> = await res.json();
     _indexCache = raw.map(r => ({
       id: r.crId,
@@ -40,6 +43,12 @@ async function getIndex(): Promise<FoodSearchResult[]> {
       l1Category: r.foodGroup,
       l2Category: r.foodSubgroup,
       type: r.productType,
+      // Preserve nutrient summary fields for search engine filtering
+      energy: r.energy,
+      protein: r.protein,
+      fat: r.fat,
+      carbohydrate: r.carbohydrate,
+      sodium: r.sodium,
     }));
     return _indexCache;
   } catch {

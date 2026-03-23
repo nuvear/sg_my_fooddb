@@ -117,6 +117,19 @@ export interface FoodSearchResult {
   l2Category?: string;
   type?: string;
   totalCount?: number;
+  // Nutrient summary fields (from index) — used by intelligent search engine for filtering
+  energy?: number | null;
+  protein?: number | null;
+  fat?: number | null;
+  carbohydrate?: number | null;
+  sodium?: number | null;
+  sugar?: number | null;
+  saturatedFat?: number | null;
+  dietaryFibre?: number | null;
+  cholesterol?: number | null;
+  potassium?: number | null;
+  calcium?: number | null;
+  iron?: number | null;
 }
 
 /** Scale nutrient values from per-100g to a custom weight */
