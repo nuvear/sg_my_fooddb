@@ -344,32 +344,38 @@ export function applyCulturalFilters(
   if (!hasAny) return items.map(item => ({ item, culturalScore: 0 }));
 
   return items.map(item => {
-    const profile = getCulturalProfile(item.name, item.l1Category);
-    if (!profile) return { item, culturalScore: 0 };
+    // Prefer cultural data from the enriched index (Agent 3), fall back to hardcoded profiles
+    const indexCultural = item.cultural;
+    const profile = indexCultural ? null : getCulturalProfile(item.name, item.l1Category);
+
+    const ethnicList: string[] = indexCultural?.ethnicAll ?? profile?.ethnic ?? [];
+    const occasionList: string[] = indexCultural?.occasions ?? profile?.occasions ?? [];
+    const generationList: string[] = indexCultural?.generations ?? profile?.generations ?? [];
+    const regionList: string[] = indexCultural?.regions ?? profile?.regions ?? [];
+    const dietaryList: string[] = indexCultural?.dietary ?? profile?.dietary ?? [];
 
     let score = 0;
     let checks = 0;
 
     if (intent.ethnicFilters.length > 0) {
       checks++;
-      if (profile.ethnic?.some(e => intent.ethnicFilters.includes(e))) score++;
+      if (ethnicList.some(e => (intent.ethnicFilters as string[]).includes(e))) score++;
     }
     if (intent.occasionFilters.length > 0) {
       checks++;
-      if (profile.occasions?.some(o => intent.occasionFilters.includes(o))) score++;
+      if (occasionList.some(o => (intent.occasionFilters as string[]).includes(o))) score++;
     }
     if (intent.generationFilters.length > 0) {
       checks++;
-      const gen = profile.generations ?? [];
-      if (gen.includes("all") || gen.some(g => intent.generationFilters.includes(g))) score++;
+      if (generationList.includes("all") || generationList.some(g => (intent.generationFilters as string[]).includes(g))) score++;
     }
     if (intent.regionFilters.length > 0) {
       checks++;
-      if (profile.regions?.some(r => intent.regionFilters.includes(r))) score++;
+      if (regionList.some(r => (intent.regionFilters as string[]).includes(r))) score++;
     }
     if (intent.dietaryFilters.length > 0) {
       checks++;
-      if (profile.dietary?.some(d => intent.dietaryFilters.includes(d))) score++;
+      if (dietaryList.some(d => (intent.dietaryFilters as string[]).includes(d))) score++;
     }
 
     return { item, culturalScore: checks > 0 ? score / checks : 0 };

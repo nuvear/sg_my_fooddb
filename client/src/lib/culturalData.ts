@@ -550,19 +550,8 @@ export function getGIData(foodName: string, foodGroup?: string): GIData {
     }
   }
 
-  // Heuristic fallback based on food group
-  if (group.includes("fruit")) return { level: "medium", value: undefined, label: "Med GI", color: "#92400e", bgColor: "#fef3c7" };
-  if (group.includes("vegetable")) return { level: "low", value: undefined, label: "Low GI", color: "#166534", bgColor: "#dcfce7" };
-  if (group.includes("grain") || group.includes("cereal") || group.includes("rice") || group.includes("noodle") || group.includes("bread")) {
-    return { level: "high", value: undefined, label: "High GI", color: "#991b1b", bgColor: "#fee2e2" };
-  }
-  if (group.includes("meat") || group.includes("fish") || group.includes("seafood") || group.includes("egg") || group.includes("legume")) {
-    return { level: "low", value: undefined, label: "Low GI", color: "#166534", bgColor: "#dcfce7" };
-  }
-  if (group.includes("beverage") || group.includes("drink")) {
-    return { level: "medium", value: undefined, label: "Med GI", color: "#92400e", bgColor: "#fef3c7" };
-  }
-
+  // No heuristic fallback — only show GI when we have a confirmed value from literature.
+  // Displaying a guessed GI level without a measured value is misleading and potentially harmful.
   return { level: "unknown", label: "GI N/A", color: "#6b7280", bgColor: "#f3f4f6" };
 }
 

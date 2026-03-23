@@ -95,27 +95,58 @@ function MiniNutrientChip({ label, value, unit, highlight = "neutral" }: MiniNut
   );
 }
 
-// ── GI Badge ─────────────────────────────────────────────────
+// ── GI Badge — only shown when confirmed GI data exists ──────
 
-function GIBadge({ foodName, foodGroup }: { foodName: string; foodGroup?: string }) {
-  const gi = getGIData(foodName, foodGroup);
-  if (gi.level === "unknown") return null;
+interface GIBadgeProps {
+  // Accept either direct gi object from index or fallback to name lookup
+  gi?: { value: number; level: string } | null;
+  foodName?: string;
+  foodGroup?: string;
+}
+
+function GIBadge({ gi, foodName, foodGroup }: GIBadgeProps) {
+  // Use direct GI data from index if available
+  let giData = gi;
+  // Fallback to name-based lookup only if no direct data
+  if (!giData && foodName) {
+    const looked = getGIData(foodName, foodGroup);
+    if (looked.level !== "unknown" && looked.value != null && looked.value > 0) {
+      giData = { value: looked.value, level: looked.level };
+    }
+  }
+  if (!giData || giData.value == null || giData.value <= 0) return null;
+
+  const levelConfig: Record<string, { bg: string; color: string; label: string }> = {
+    low:        { bg: "#dcfce7", color: "#166534", label: `Low GI (${giData.value})` },
+    medium:     { bg: "#fef9c3", color: "#854d0e", label: `Med GI (${giData.value})` },
+    high:       { bg: "#fee2e2", color: "#991b1b", label: `High GI (${giData.value})` },
+    negligible: { bg: "#f1f5f9", color: "#475569", label: `GI ~0` },
+  };
+  const cfg = levelConfig[giData.level] ?? levelConfig.low;
   return (
     <span
       className="text-[9px] font-bold px-1.5 py-0.5 rounded-full"
-      style={{ background: gi.bgColor, color: gi.color, border: `1px solid ${gi.color}30` }}
+      style={{ background: cfg.bg, color: cfg.color, border: `1px solid ${cfg.color}30` }}
     >
-      {gi.label}
+      {cfg.label}
     </span>
   );
 }
 
 // ── Cultural badge ────────────────────────────────────────────
 
-function CulturalBadge({ foodName, foodGroup }: { foodName: string; foodGroup?: string }) {
-  const profile = getCulturalProfile(foodName, foodGroup);
-  if (!profile?.ethnic?.length) return null;
-  const tradition = ETHNIC_TRADITIONS[profile.ethnic[0]];
+interface CulturalBadgeProps {
+  // Accept direct cultural object from index or fallback to name lookup
+  cultural?: { ethnic?: string | null; ethnicAll?: string[] } | null;
+  foodName?: string;
+  foodGroup?: string;
+}
+
+function CulturalBadge({ cultural, foodName, foodGroup }: CulturalBadgeProps) {
+  // Use direct cultural data from index if available
+  const ethnicKey = cultural?.ethnic ?? (foodName ? getCulturalProfile(foodName, foodGroup)?.ethnic?.[0] : null);
+  if (!ethnicKey) return null;
+  const tradition = ETHNIC_TRADITIONS[ethnicKey as keyof typeof ETHNIC_TRADITIONS];
   if (!tradition) return null;
   return (
     <span
@@ -130,8 +161,12 @@ function CulturalBadge({ foodName, foodGroup }: { foodName: string; foodGroup?: 
 // ── Food Card ─────────────────────────────────────────────────
 
 function FoodCard({ food }: { food: SearchResult }) {
+  // Use cultural data from index first, fall back to hardcoded profile for stories
   const profile = getCulturalProfile(food.name, food.l1Category);
   const hasStory = !!profile?.story;
+  // Use occasions/regions from index cultural data if available, else from profile
+  const occasions = food.cultural?.occasions?.length ? food.cultural.occasions : (profile?.occasions ?? []);
+  const regions = food.cultural?.regions?.length ? food.cultural.regions : (profile?.regions ?? []);
 
   // Determine highlight levels for nutrients
   const sodiumHighlight: "warn" | "good" | "neutral" =
@@ -157,8 +192,8 @@ function FoodCard({ food }: { food: SearchResult }) {
                 {food.l1Category}
               </span>
             )}
-            <CulturalBadge foodName={food.name} foodGroup={food.l1Category} />
-            <GIBadge foodName={food.name} foodGroup={food.l1Category} />
+            <CulturalBadge cultural={food.cultural} foodName={food.name} foodGroup={food.l1Category} />
+            <GIBadge gi={food.gi} foodName={food.name} foodGroup={food.l1Category} />
             <ChevronRight
               size={14}
               className="opacity-0 group-hover:opacity-100 transition-opacity ml-auto flex-shrink-0 mt-0.5"
@@ -192,16 +227,16 @@ function FoodCard({ food }: { food: SearchResult }) {
           ) : null}
 
           {/* Meal occasion icons */}
-          {profile?.occasions && profile.occasions.length > 0 && (
+          {occasions.length > 0 && (
             <div className="flex gap-1 mb-2">
-              {profile.occasions.slice(0, 3).map(occ => (
-                <span key={occ} className="text-xs" title={MEAL_OCCASIONS[occ]?.label}>
-                  {MEAL_OCCASIONS[occ]?.icon}
+              {occasions.slice(0, 3).map(occ => (
+                <span key={occ} className="text-xs" title={MEAL_OCCASIONS[occ as keyof typeof MEAL_OCCASIONS]?.label}>
+                  {MEAL_OCCASIONS[occ as keyof typeof MEAL_OCCASIONS]?.icon}
                 </span>
               ))}
-              {profile.regions && profile.regions.slice(0, 2).map(reg => (
-                <span key={reg} className="text-xs" title={REGIONS[reg]?.label}>
-                  {REGIONS[reg]?.flag}
+              {regions.slice(0, 2).map(reg => (
+                <span key={reg} className="text-xs" title={REGIONS[reg as keyof typeof REGIONS]?.label}>
+                  {REGIONS[reg as keyof typeof REGIONS]?.flag}
                 </span>
               ))}
             </div>

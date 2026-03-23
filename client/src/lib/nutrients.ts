@@ -130,6 +130,24 @@ export interface FoodSearchResult {
   potassium?: number | null;
   calcium?: number | null;
   iron?: number | null;
+  magnesium?: number | null;
+  // GI data — only present when confirmed from literature
+  gi?: {
+    value: number;
+    level: string; // "low" | "medium" | "high" | "negligible"
+    gl?: number | null;
+    source?: string;
+    confidence?: number;
+  } | null;
+  // Cultural metadata from Agent 3
+  cultural?: {
+    ethnic?: string | null;      // primary ethnic tradition
+    ethnicAll?: string[];         // all matched traditions
+    occasions?: string[];         // meal occasions
+    generations?: string[];       // target generations
+    regions?: string[];           // geographic regions
+    dietary?: string[];           // dietary profile tags
+  } | null;
 }
 
 /** Scale nutrient values from per-100g to a custom weight */
