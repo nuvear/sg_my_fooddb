@@ -1,42 +1,43 @@
+// FoodDB — Tropical Bauhaus design system
+// Routes: / (home/search), /food/:crId (detail), /analyse (photo upload), /import (paste import), /db (local records)
+
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import Layout from "./components/Layout";
 import Home from "./pages/Home";
-
+import FoodDetail from "./pages/FoodDetail";
+import Analyse from "./pages/Analyse";
+import ImportPaste from "./pages/ImportPaste";
+import LocalDB from "./pages/LocalDB";
+import NotFound from "./pages/NotFound";
 
 function Router() {
   return (
-    <Switch>
-      <Route path={"/"} component={Home} />
-      <Route path={"/404"} component={NotFound} />
-      {/* Final fallback route */}
-      <Route component={NotFound} />
-    </Switch>
+    <Layout>
+      <Switch>
+        <Route path="/" component={Home} />
+        <Route path="/food/:crId" component={FoodDetail} />
+        <Route path="/analyse" component={Analyse} />
+        <Route path="/import" component={ImportPaste} />
+        <Route path="/db" component={LocalDB} />
+        <Route component={NotFound} />
+      </Switch>
+    </Layout>
   );
 }
 
-// NOTE: About Theme
-// - First choose a default theme according to your design style (dark or light bg), than change color palette in index.css
-//   to keep consistent foreground/background color across components
-// - If you want to make theme switchable, pass `switchable` ThemeProvider and use `useTheme` hook
-
-function App() {
+export default function App() {
   return (
     <ErrorBoundary>
-      <ThemeProvider
-        defaultTheme="light"
-        // switchable
-      >
+      <ThemeProvider defaultTheme="light">
         <TooltipProvider>
-          <Toaster />
+          <Toaster richColors position="top-right" />
           <Router />
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>
   );
 }
-
-export default App;
