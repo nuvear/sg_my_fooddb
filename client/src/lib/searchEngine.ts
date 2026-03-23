@@ -11,6 +11,7 @@
 
 import Fuse from "fuse.js";
 import type { FoodSearchResult } from "./nutrients";
+import { parseCulturalQuery, getCulturalProfile, type CulturalQueryIntent } from "./culturalData";
 
 // ── Types ────────────────────────────────────────────────────
 
@@ -31,12 +32,14 @@ export interface ParsedQuery {
   confidence: number;     // 0–1, how confident the rule parser is
   rawQuery: string;
   llmInterpretation?: string;  // Set by Layer 3 if triggered
+  culturalIntent?: CulturalQueryIntent; // Cultural dimension filters
 }
 
 export interface SearchResult extends FoodSearchResult {
   score: number;          // 0–1, higher = better match
   fuseScore: number;      // Layer 1 contribution
   nutritionScore: number; // Layer 2 contribution
+  culturalScore: number;  // Cultural dimension contribution
   matchedFilters: string[]; // Which nutrition filters matched
   queryType: QueryType;
 }
@@ -132,11 +135,14 @@ export function detectQueryType(query: string): QueryType {
   if (q.length < 3) return "simple";
 
   const hasNutritionKeyword = /\b(low|high|under|less|more|rich|free|keto|light|heavy|protein|sodium|sugar|fat|calorie|kcal|fibre|fiber|carb|cholesterol|vitamin|mineral)\b/i.test(q);
+  const hasCulturalKeyword = /\b(malay|chinese|indian|peranakan|nyonya|mamak|eurasian|halal|kopitiam|hawker|breakfast|lunch|dinner|supper|snack|festive|hari raya|deepavali|penang|singapore|malacca|johor|kl|kuala lumpur|senior|elderly|youth|children|kids|vegetarian|vegan|wholegrain)\b/i.test(q);
   const hasNaturalLanguage = /\b(something|want|need|looking for|after|without|not too|good for|healthy|diet|workout|dinner|lunch|breakfast|snack|quick|easy|spicy|mild)\b/i.test(q);
   const wordCount = q.split(/\s+/).length;
 
   if (hasNaturalLanguage && wordCount > 4) return "natural";
+  if (hasNutritionKeyword && hasCulturalKeyword) return "mixed";
   if (hasNutritionKeyword) return wordCount > 3 ? "mixed" : "nutrition";
+  if (hasCulturalKeyword) return wordCount > 2 ? "mixed" : "simple";
   return "simple";
 }
 
@@ -203,10 +209,23 @@ export function parseQuery(query: string): ParsedQuery {
   const type = detectQueryType(query);
   const filters = parseNutritionFilters(query);
   const categoryHints = parseCategoryHints(query);
-  const keywords = extractKeywords(query);
-  const confidence = filters.length > 0 ? 0.9 : type === "simple" ? 1.0 : 0.4;
+  const culturalIntent = parseCulturalQuery(query);
 
-  return { type, keywords, filters, categoryHints, confidence, rawQuery: query };
+  // Use cultural remaining keywords for Fuse if cultural terms were extracted
+  const hasCulturalDimensions =
+    culturalIntent.ethnicFilters.length > 0 ||
+    culturalIntent.occasionFilters.length > 0 ||
+    culturalIntent.generationFilters.length > 0 ||
+    culturalIntent.regionFilters.length > 0 ||
+    culturalIntent.dietaryFilters.length > 0;
+
+  const rawKeywords = hasCulturalDimensions
+    ? extractKeywords(culturalIntent.remainingKeywords)
+    : extractKeywords(query);
+
+  const confidence = filters.length > 0 ? 0.9 : hasCulturalDimensions ? 0.85 : type === "simple" ? 1.0 : 0.4;
+
+  return { type, keywords: rawKeywords, filters, categoryHints, confidence, rawQuery: query, culturalIntent };
 }
 
 // ── Layer 3: LLM Fallback ────────────────────────────────────
@@ -220,9 +239,11 @@ export async function parseLLMQuery(query: string): Promise<ParsedQuery> {
   if (!LLM_API_URL || !LLM_API_KEY) return base;
 
   try {
-    const systemPrompt = `You are a food nutrition search assistant for Singapore and Malaysia foods.
+    const systemPrompt = `You are a cultural food explorer assistant for Singapore and Malaysia foods.
 Parse the user's natural language food query into structured search parameters.
+Cultural context: Singapore and Malaysia share a rich multicultural food heritage spanning Malay, Chinese (Hokkien, Cantonese, Teochew, Hainanese), Indian (Tamil), Peranakan/Nyonya, Mamak, and Eurasian traditions.
 Available food groups: Grains and staples, Beverages, Meat and alternatives, Snacks, Vegetables, Fish and seafood, Poultry, Mixed, Nuts and legumes, Dairy and eggs, Fruit, Desserts, Oils seasonings and condiments, Miscellaneous, Sugar and confectionery.
+Cultural dimensions: ethnic (malay/chinese/indian/peranakan/mamak/eurasian), occasion (breakfast/lunch/dinner/snack/late-night/festive/school-canteen), generation (seniors/middle-aged/youth/children), region (singapore/penang/kl/malacca/johor/malaysia), dietary (halal/vegetarian/plant-based/low-sodium/low-sugar/high-protein/soft-foods/wholegrain/nutri-grade/high-fibre/low-calorie/keto).
 Available nutrient keys: energy (kcal), protein (g), fat (g), saturatedFat (g), transFat (g), carbohydrate (g), sugar (g), addedSugar (g), dietaryFibre (g), sodium (mg), potassium (mg), calcium (mg), iron (mg), cholesterol (mg).
 
 Respond ONLY with valid JSON in this exact format:
@@ -306,7 +327,56 @@ export function fuseSearch(query: string, limit = 200): Array<{ item: FoodSearch
   }));
 }
 
-// ── Layer 2: Nutrition Filter Application ───────────────────
+// ── Layer 2a: Cultural Profile Filter ───────────────────────
+
+// Filter items by cultural dimensions (ethnic, occasion, generation, region, dietary)
+export function applyCulturalFilters(
+  items: FoodSearchResult[],
+  intent: CulturalQueryIntent
+): { item: FoodSearchResult; culturalScore: number }[] {
+  const hasAny =
+    intent.ethnicFilters.length > 0 ||
+    intent.occasionFilters.length > 0 ||
+    intent.generationFilters.length > 0 ||
+    intent.regionFilters.length > 0 ||
+    intent.dietaryFilters.length > 0;
+
+  if (!hasAny) return items.map(item => ({ item, culturalScore: 0 }));
+
+  return items.map(item => {
+    const profile = getCulturalProfile(item.name, item.l1Category);
+    if (!profile) return { item, culturalScore: 0 };
+
+    let score = 0;
+    let checks = 0;
+
+    if (intent.ethnicFilters.length > 0) {
+      checks++;
+      if (profile.ethnic?.some(e => intent.ethnicFilters.includes(e))) score++;
+    }
+    if (intent.occasionFilters.length > 0) {
+      checks++;
+      if (profile.occasions?.some(o => intent.occasionFilters.includes(o))) score++;
+    }
+    if (intent.generationFilters.length > 0) {
+      checks++;
+      const gen = profile.generations ?? [];
+      if (gen.includes("all") || gen.some(g => intent.generationFilters.includes(g))) score++;
+    }
+    if (intent.regionFilters.length > 0) {
+      checks++;
+      if (profile.regions?.some(r => intent.regionFilters.includes(r))) score++;
+    }
+    if (intent.dietaryFilters.length > 0) {
+      checks++;
+      if (profile.dietary?.some(d => intent.dietaryFilters.includes(d))) score++;
+    }
+
+    return { item, culturalScore: checks > 0 ? score / checks : 0 };
+  });
+}
+
+// ── Layer 2b: Nutrition Filter Application ───────────────────
 
 // The index only has macro summaries; full nutrient data is in the detail cache
 // We use the index's energy/protein/fat/carbs/sodium fields for filtering
@@ -353,9 +423,10 @@ export function applyNutritionFilters(
 // ── Layer 4: Composite Ranking ───────────────────────────────
 
 const WEIGHTS = {
-  fuse:      0.5,
-  nutrition: 0.3,
-  category:  0.2,
+  fuse:      0.40,
+  nutrition: 0.25,
+  cultural:  0.25,
+  category:  0.10,
 };
 
 export function rankResults(
@@ -366,16 +437,22 @@ export function rankResults(
   page = 1,
   pageSize = 25
 ): { results: SearchResult[]; total: number } {
-  const nutritionMap = new Map(nutritionResults.map(r => [r.item.crId, r]));
   const fuseMap = new Map(fuseResults.map(r => [r.item.crId, r]));
+
+  const culturalIntent = parsedQuery.culturalIntent;
+  const hasCultural = culturalIntent && (
+    culturalIntent.ethnicFilters.length > 0 ||
+    culturalIntent.occasionFilters.length > 0 ||
+    culturalIntent.generationFilters.length > 0 ||
+    culturalIntent.regionFilters.length > 0 ||
+    culturalIntent.dietaryFilters.length > 0
+  );
 
   // Determine which items to rank
   let candidates: IndexedFood[];
   if (fuseResults.length > 0 && parsedQuery.keywords.length > 0) {
-    // Use Fuse results as primary candidates
     candidates = fuseResults.map(r => r.item as IndexedFood);
-  } else if (parsedQuery.filters.length > 0) {
-    // No keywords — filter all items by nutrition
+  } else if (parsedQuery.filters.length > 0 || hasCultural) {
     candidates = allItems;
   } else {
     candidates = allItems;
@@ -384,10 +461,20 @@ export function rankResults(
   // Apply nutrition filters to candidates
   const withNutrition = applyNutritionFilters(candidates, parsedQuery.filters);
 
+  // Apply cultural filters to candidates
+  const culturalMap = new Map<string, number>();
+  if (hasCultural && culturalIntent) {
+    const culturalResults = applyCulturalFilters(candidates, culturalIntent);
+    for (const { item, culturalScore } of culturalResults) {
+      culturalMap.set(item.crId, culturalScore);
+    }
+  }
+
   // Score each candidate
   const scored: SearchResult[] = withNutrition.map(({ item, nutritionScore, matchedFilters }) => {
     const fuseEntry = fuseMap.get(item.crId);
     const fuseScore = fuseEntry?.score ?? (parsedQuery.keywords.length === 0 ? 0.5 : 0);
+    const culturalScore = culturalMap.get(item.crId) ?? 0;
 
     // Category bonus
     const categoryScore = parsedQuery.categoryHints.some(h =>
@@ -397,6 +484,7 @@ export function rankResults(
     const finalScore =
       (WEIGHTS.fuse * fuseScore) +
       (WEIGHTS.nutrition * nutritionScore) +
+      (WEIGHTS.cultural * culturalScore) +
       (WEIGHTS.category * categoryScore);
 
     return {
@@ -404,30 +492,25 @@ export function rankResults(
       score: finalScore,
       fuseScore,
       nutritionScore,
+      culturalScore,
       matchedFilters,
       queryType: parsedQuery.type,
     };
   });
 
-  // Filter logic:
-  // - If BOTH keywords and nutrition filters exist (mixed): keep items that match
-  //   EITHER the food name (fuseScore > 0) OR pass the nutrition filter.
-  //   This handles missing nutrient data gracefully.
-  // - If ONLY nutrition filters (no keywords): require at least one filter match.
-  // - If ONLY keywords (simple/fuzzy): no nutrition filter required.
   const hasKeywords = parsedQuery.keywords.length > 0;
   const hasFilters = parsedQuery.filters.length > 0;
 
   const filtered = (() => {
-    if (hasFilters && hasKeywords) {
-      // Mixed: item must match the food name (came from Fuse) AND ideally the filter,
-      // but if nutrient data is missing, still show the food with a lower score.
+    if (hasCultural && !hasKeywords && !hasFilters) {
+      // Pure cultural query: show items with cultural score > 0, then fallback to all
+      const culturalMatches = scored.filter(r => r.culturalScore > 0);
+      return culturalMatches.length > 0 ? culturalMatches : scored;
+    } else if (hasFilters && hasKeywords) {
       return scored.filter(r => r.fuseScore > 0);
     } else if (hasFilters && !hasKeywords) {
-      // Pure nutrition: require at least one filter to match
       return scored.filter(r => r.matchedFilters.length > 0);
     } else {
-      // Pure keyword or empty: no nutrition filter required
       return scored;
     }
   })();
@@ -477,6 +560,7 @@ export async function intelligentSearch(
         score: 1,
         fuseScore: 1,
         nutritionScore: 0,
+        culturalScore: 0,
         matchedFilters: [],
         queryType: "simple" as QueryType,
       })),

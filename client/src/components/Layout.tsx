@@ -6,11 +6,11 @@ import { Search, Camera, ClipboardPaste, Database, Leaf, UploadCloud } from "luc
 import { cn } from "@/lib/utils";
 
 const NAV_ITEMS = [
-  { href: "/",        label: "Search",  icon: Search,         desc: "Find foods" },
-  { href: "/analyse", label: "Analyse", icon: Camera,         desc: "Photo analysis" },
-  { href: "/upload",  label: "Upload",  icon: UploadCloud,    desc: "CSV / ZIP import" },
-  { href: "/import",  label: "Paste",   icon: ClipboardPaste, desc: "Paste & import" },
-  { href: "/db",      label: "My DB",   icon: Database,       desc: "Local records" },
+  { href: "/",        label: "Explore",  icon: Search,         desc: "Food culture search" },
+  { href: "/analyse", label: "Analyse",  icon: Camera,         desc: "Photo recognition" },
+  { href: "/upload",  label: "Import",   icon: UploadCloud,    desc: "CSV / ZIP upload" },
+  { href: "/import",  label: "Paste",    icon: ClipboardPaste, desc: "Paste HPB entry" },
+  { href: "/db",      label: "My Foods", icon: Database,       desc: "Saved records" },
 ];
 
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -37,7 +37,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 FoodDB
               </div>
               <div className="text-xs leading-tight" style={{ color: "oklch(0.65 0.06 162)" }}>
-                SG & MY
+                Cultural Explorer
               </div>
             </div>
           </Link>
@@ -74,8 +74,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
         {/* Footer */}
         <div className="px-5 py-4 border-t text-xs" style={{ borderColor: "oklch(0.28 0.09 162)", color: "oklch(0.50 0.05 162)" }}>
-          <div>Data: HPB SG FoodID</div>
-          <div>© 2025 FoodDB</div>
+          <div>2,557 foods · 41 nutrients</div>
+          <div>Data: HPB SG FoodID · MY MOH</div>
         </div>
       </aside>
 
@@ -97,7 +97,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               FoodDB
             </span>
           </Link>
-          <span className="text-xs ml-auto" style={{ color: "oklch(0.65 0.06 162)" }}>SG & MY Nutritional Database</span>
+          <span className="text-xs ml-auto" style={{ color: "oklch(0.65 0.06 162)" }}>The Transnational Plate</span>
         </header>
 
         <div className="flex-1">

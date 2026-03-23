@@ -8,7 +8,7 @@ import type { FoodItem, FoodSearchResult, NutrientData } from "./nutrients";
 import { intelligentSearch, buildFuseIndex, type SearchEngineResult } from "./searchEngine";
 
 // CDN-hosted bundled data (scraped from HPB SG FoodID)
-const CDN_INDEX_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663374102189/gFdMLjqiUpDnmt4U3dovdX/foods_index_full_39caef8a.json";
+const CDN_INDEX_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663374102189/gFdMLjqiUpDnmt4U3dovdX/foods_index_full_2e881a76.json";
 const CDN_DATA_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663374102189/gFdMLjqiUpDnmt4U3dovdX/sgfoodid_generic_full_a52e9b3f.json";
 
 // CORS proxy for live HPB API queries
@@ -29,11 +29,15 @@ async function getIndex(): Promise<FoodSearchResult[]> {
     const res = await fetch(CDN_INDEX_URL);
     if (!res.ok) throw new Error("CDN index fetch failed");
     const raw: Array<{
-      crId: string; name: string; description?: string;
+      crId: string; id?: string; name: string; description?: string;
       foodGroup?: string; foodSubgroup?: string; productType?: string;
-      // Nutrient summary fields for intelligent search filtering
-      energy?: number; protein?: number; fat?: number;
-      carbohydrate?: number; sodium?: number;
+      defaultServingSize?: string;
+      energy?: number | null; protein?: number | null; fat?: number | null;
+      saturatedFat?: number | null; carbohydrate?: number | null;
+      sugar?: number | null; addedSugar?: number | null;
+      dietaryFibre?: number | null; sodium?: number | null;
+      potassium?: number | null; calcium?: number | null;
+      iron?: number | null; cholesterol?: number | null;
     }> = await res.json();
     _indexCache = raw.map(r => ({
       id: r.crId,
@@ -43,12 +47,20 @@ async function getIndex(): Promise<FoodSearchResult[]> {
       l1Category: r.foodGroup,
       l2Category: r.foodSubgroup,
       type: r.productType,
-      // Preserve nutrient summary fields for search engine filtering
+      // Extended nutrient summary fields for search filtering and card display
       energy: r.energy,
       protein: r.protein,
       fat: r.fat,
+      saturatedFat: r.saturatedFat,
       carbohydrate: r.carbohydrate,
+      sugar: r.sugar,
+      addedSugar: r.addedSugar,
+      dietaryFibre: r.dietaryFibre,
       sodium: r.sodium,
+      potassium: r.potassium,
+      calcium: r.calcium,
+      iron: r.iron,
+      cholesterol: r.cholesterol,
     }));
     return _indexCache;
   } catch {

@@ -1,7 +1,7 @@
 {
-  "name": "FoodDB — SG & MY Nutritional Database",
+  "name": "FoodDB — The Transnational Plate",
   "short_name": "FoodDB",
-  "description": "Singapore & Malaysia food nutritional analysis with 41 nutrient fields",
+  "description": "Explore Singapore & Malaysia's living food heritage — 2,557 foods, 41 nutrients, cultural stories across ethnic traditions, meal occasions, and generations",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#FAFAF5",
@@ -11,6 +11,6 @@
     { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
     { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
   ],
-  "categories": ["health", "food", "medical"],
+  "categories": ["health", "food", "lifestyle"],
   "lang": "en"
 }
