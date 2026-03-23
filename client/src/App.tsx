@@ -12,6 +12,7 @@ import FoodDetail from "./pages/FoodDetail";
 import Analyse from "./pages/Analyse";
 import ImportPaste from "./pages/ImportPaste";
 import LocalDB from "./pages/LocalDB";
+import UploadCSV from "./pages/UploadCSV";
 import NotFound from "./pages/NotFound";
 
 function Router() {
@@ -22,6 +23,7 @@ function Router() {
         <Route path="/food/:crId" component={FoodDetail} />
         <Route path="/analyse" component={Analyse} />
         <Route path="/import" component={ImportPaste} />
+        <Route path="/upload" component={UploadCSV} />
         <Route path="/db" component={LocalDB} />
         <Route component={NotFound} />
       </Switch>
