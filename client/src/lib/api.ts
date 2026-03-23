@@ -1,66 +1,178 @@
 // ============================================================
-// FoodDB — SG FoodID API client + LocalStorage DB
+// FoodDB — API client
+// Primary: Bundled CDN data (420 foods, offline-capable)
+// Secondary: HPB SG FoodID live API via CORS proxy
 // ============================================================
 
 import type { FoodItem, FoodSearchResult, NutrientData } from "./nutrients";
 
+// CDN-hosted bundled data (scraped from HPB SG FoodID)
+const CDN_INDEX_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663374102189/gFdMLjqiUpDnmt4U3dovdX/foods_index_4af8eb1e.json";
+const CDN_DATA_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663374102189/gFdMLjqiUpDnmt4U3dovdX/foods_data_f42a5723.json";
+
+// CORS proxy for live HPB API queries
+const CORS_PROXY = "https://corsproxy.io/?url=";
 const API_BASE = "https://pphtpc.hpb.gov.sg/bff/v1/food-portal";
+
 const LOCAL_DB_KEY = "fooddb_local_records";
 const CACHE_KEY = "fooddb_detail_cache";
 
-// ── SG FoodID Live API ──────────────────────────────────────
+// ── Bundled data cache ──────────────────────────────────────
+
+let _indexCache: FoodSearchResult[] | null = null;
+let _dataCache: Record<string, FoodItem> | null = null;
+
+async function getIndex(): Promise<FoodSearchResult[]> {
+  if (_indexCache) return _indexCache;
+  try {
+    const res = await fetch(CDN_INDEX_URL);
+    if (!res.ok) throw new Error("CDN index fetch failed");
+    const raw: Array<{
+      crId: string; name: string; description?: string;
+      foodGroup?: string; foodSubgroup?: string; productType?: string;
+    }> = await res.json();
+    _indexCache = raw.map(r => ({
+      id: r.crId,
+      crId: r.crId,
+      name: r.name,
+      description: r.description,
+      l1Category: r.foodGroup,
+      l2Category: r.foodSubgroup,
+      type: r.productType,
+    }));
+    return _indexCache;
+  } catch {
+    return [];
+  }
+}
+
+async function getFullData(): Promise<Record<string, FoodItem>> {
+  if (_dataCache) return _dataCache;
+  try {
+    const res = await fetch(CDN_DATA_URL);
+    if (!res.ok) throw new Error("CDN data fetch failed");
+    _dataCache = await res.json();
+    return _dataCache!;
+  } catch {
+    return {};
+  }
+}
+
+// ── Search ──────────────────────────────────────────────────
 
 export async function searchFoods(
   query: string,
   page = 1,
-  productType = "Generic"
-): Promise<{ items: FoodSearchResult[]; total: number }> {
-  const params = new URLSearchParams({
-    pageNumber: String(page),
-    productType,
-    ...(query ? { searchText: query } : {}),
-  });
-  const res = await fetch(`${API_BASE}/foods?${params}`);
-  if (!res.ok) throw new Error(`API error: ${res.status}`);
-  const data: FoodSearchResult[] = await res.json();
-  return {
-    items: data,
-    total: data[0]?.totalCount ?? data.length,
-  };
+  _productType = "Generic"
+): Promise<{ items: FoodSearchResult[]; total: number; source: "local" | "live" }> {
+  const q = query.trim().toLowerCase();
+
+  // 1. Search bundled index first (fast, offline)
+  const index = await getIndex();
+  if (index.length > 0) {
+    const filtered = q
+      ? index.filter(f =>
+          f.name.toLowerCase().includes(q) ||
+          f.description?.toLowerCase().includes(q) ||
+          f.l1Category?.toLowerCase().includes(q) ||
+          f.l2Category?.toLowerCase().includes(q)
+        )
+      : index;
+
+    const PAGE_SIZE = 25;
+    const start = (page - 1) * PAGE_SIZE;
+    const paged = filtered.slice(start, start + PAGE_SIZE);
+
+    if (paged.length > 0 || !q) {
+      return { items: paged, total: filtered.length, source: "local" };
+    }
+  }
+
+  // 2. Fall back to live API via CORS proxy
+  try {
+    const params = new URLSearchParams({
+      pageNumber: String(page),
+      productType: "Generic",
+      ...(query ? { searchText: query } : {}),
+    });
+    const url = `${CORS_PROXY}${encodeURIComponent(`${API_BASE}/foods?${params}`)}`;
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`API error: ${res.status}`);
+    const data = await res.json();
+    const items: FoodSearchResult[] = (Array.isArray(data) ? data : []).map((r: Record<string, unknown>) => ({
+      id: r.crId as string,
+      crId: r.crId as string,
+      name: r.name as string,
+      description: r.description as string | undefined,
+      l1Category: r.l1Category as string | undefined,
+      l2Category: r.l2Category as string | undefined,
+      type: r.productType as string | undefined,
+      totalCount: r.totalCount as number | undefined,
+    }));
+    return {
+      items,
+      total: items[0]?.totalCount ?? items.length,
+      source: "live",
+    };
+  } catch {
+    return { items: [], total: 0, source: "live" };
+  }
 }
 
+// ── Food Detail ─────────────────────────────────────────────
+
 export async function getFoodDetail(crId: string): Promise<FoodItem | null> {
-  // Check cache first
+  // Check detail cache first
   const cache = getDetailCache();
   if (cache[crId]) return cache[crId];
 
-  const res = await fetch(`${API_BASE}/foods/details/${crId}`);
-  if (!res.ok) return null;
-  const raw = await res.json();
+  // 1. Check bundled full data
+  const fullData = await getFullData();
+  if (fullData[crId]) {
+    const food = fullData[crId];
+    cache[crId] = food;
+    saveDetailCache(cache);
+    return food;
+  }
 
-  const food: FoodItem = {
-    crId: raw.crId,
-    name: raw.name,
-    description: raw.description,
-    foodGroup: raw.l1Category,
-    foodSubgroup: raw.l2Category,
-    category: raw.category,
-    ediblePortion: raw.ediblePortion,
-    defaultServingSize: raw.defaultPortion,
-    defaultWeight_g: raw.defaultWeight,
-    alternativeServingSizes: raw.alternativePortions,
-    sourceOfData: raw.sourceOfData,
-    yearOfData: raw.yearOfData,
-    nutrientsPer100g: raw.baseFoodNutrients ?? {},
-    nutrientsPerServing: raw.calculatedFoodNutrients ?? {},
-    _source: "api",
-  };
+  // 2. Check local DB
+  const local = getLocalRecords().find(r => r.crId === crId);
+  if (local) return local;
 
-  // Cache it
-  cache[crId] = food;
-  saveDetailCache(cache);
-  return food;
+  // 3. Live API via CORS proxy
+  try {
+    const url = `${CORS_PROXY}${encodeURIComponent(`${API_BASE}/foods/details/${crId}`)}`;
+    const res = await fetch(url);
+    if (!res.ok) return null;
+    const raw = await res.json();
+
+    const food: FoodItem = {
+      crId: raw.crId,
+      name: raw.name,
+      description: raw.description,
+      foodGroup: raw.l1Category,
+      foodSubgroup: raw.l2Category,
+      category: raw.category,
+      ediblePortion: raw.ediblePortion,
+      defaultServingSize: raw.defaultPortion,
+      defaultWeight_g: raw.defaultWeight,
+      alternativeServingSizes: raw.alternativePortions,
+      sourceOfData: raw.sourceOfData,
+      yearOfData: raw.yearOfData,
+      nutrientsPer100g: raw.baseFoodNutrients ?? {},
+      nutrientsPerServing: raw.calculatedFoodNutrients ?? {},
+      _source: "api",
+    };
+
+    cache[crId] = food;
+    saveDetailCache(cache);
+    return food;
+  } catch {
+    return null;
+  }
 }
+
+// ── Detail cache ─────────────────────────────────────────────
 
 function getDetailCache(): Record<string, FoodItem> {
   try {
@@ -69,10 +181,9 @@ function getDetailCache(): Record<string, FoodItem> {
 }
 function saveDetailCache(cache: Record<string, FoodItem>) {
   try {
-    // Keep max 200 entries to avoid storage overflow
     const keys = Object.keys(cache);
-    if (keys.length > 200) {
-      const toDelete = keys.slice(0, keys.length - 200);
+    if (keys.length > 300) {
+      const toDelete = keys.slice(0, keys.length - 300);
       toDelete.forEach(k => delete cache[k]);
     }
     localStorage.setItem(CACHE_KEY, JSON.stringify(cache));
@@ -121,7 +232,7 @@ export function importLocalDB(jsonStr: string): number {
 
 /**
  * Parses the HPB SG FoodID copy-paste format into a FoodItem.
- * 
+ *
  * Expected format (as copied from the HPB website):
  * <Food Name>
  * <Description>
@@ -148,14 +259,12 @@ export function parsePasteEntry(text: string): FoodItem | null {
 
     const food: Partial<FoodItem> = { _source: "paste" };
 
-    // Extract metadata fields
     const getField = (label: string): string | undefined => {
       const idx = lines.findIndex(l => l.toLowerCase().startsWith(label.toLowerCase()));
       if (idx >= 0 && idx + 1 < lines.length) return lines[idx + 1];
       return undefined;
     };
 
-    // First non-metadata line is the food name
     food.name = lines[0];
     food.description = lines[1];
     food.foodGroup = getField("Food Group:");
@@ -170,10 +279,8 @@ export function parsePasteEntry(text: string): FoodItem | null {
     const yearStr = getField("Last Updated:");
     if (yearStr) food.yearOfData = yearStr;
 
-    // Generate a crId from the name if not present
-    food.crId = `PASTE_${food.name.replace(/[^a-zA-Z0-9]/g, "_").toUpperCase().slice(0, 30)}_${Date.now()}`;
+    food.crId = `PASTE_${food.name!.replace(/[^a-zA-Z0-9]/g, "_").toUpperCase().slice(0, 30)}_${Date.now()}`;
 
-    // Find the nutrient labels section
     const nutrientLabels = [
       "Energy (kcal)", "Protein (g)", "Total Fat (g)", "Saturated Fat (g)",
       "Trans Fat (g)", "Carbohydrate (g)", "Sugar (g)", "Added Sugar (g)",
@@ -188,7 +295,6 @@ export function parsePasteEntry(text: string): FoodItem | null {
       "Vitamin K (μg)", "Phosphorus (mg)", "Selenium (μg)", "Zinc (mg)"
     ];
 
-    // Map labels to API keys
     const labelToKey: Record<string, string> = {
       "Energy (kcal)": "energy",
       "Protein (g)": "protein",
@@ -233,26 +339,20 @@ export function parsePasteEntry(text: string): FoodItem | null {
       "Zinc (mg)": "zinc",
     };
 
-    // Find where nutrient values start — look for "Per 100" line
     const per100Idx = lines.findIndex(l => l.startsWith("Per 100"));
     if (per100Idx < 0) {
-      // Try to find values by looking for the numeric block after the labels
       food.nutrientsPer100g = {};
       food.nutrientsPerServing = {};
       return food as FoodItem;
     }
 
-    // Values come after the "Per 100" line(s) — they alternate per100 / perServing
-    // Find the line after "Per <weight>" (second column header)
     const perServingIdx = lines.findIndex((l, i) => i > per100Idx && l.startsWith("Per "));
     const valuesStartIdx = (perServingIdx > 0 ? perServingIdx : per100Idx) + 1;
 
-    // Extract serving weight from "Per 325 ml" style
     const servingLine = perServingIdx > 0 ? lines[perServingIdx] : "";
     const servingMatch = servingLine.match(/Per\s+([\d.]+)/);
     if (servingMatch) food.defaultWeight_g = parseFloat(servingMatch[1]);
 
-    // Values alternate: per100, perServing, per100, perServing, ...
     const per100Values: NutrientData = {};
     const perServingValues: NutrientData = {};
 

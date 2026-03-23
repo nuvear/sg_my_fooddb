@@ -36,8 +36,9 @@ export default function Home() {
       setTotal(t);
       setPage(p);
       setHasSearched(true);
-    } catch (e: any) {
-      setError("Unable to reach the SG FoodID database. Please check your connection.");
+    } catch (e: unknown) {
+      console.error(e);
+      setError("Unable to load food data. Please check your connection.");
     } finally {
       setLoading(false);
     }
