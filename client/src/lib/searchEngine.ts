@@ -183,12 +183,16 @@ function parseCategoryHints(query: string): string[] {
     .map(ch => ch.hint);
 }
 
-// Strip nutrition keywords to get clean food name keywords
+// Strip nutrition modifier words but KEEP food-type nouns (fruits, vegetables, rice, etc.)
 function extractKeywords(query: string): string[] {
   const stripped = query
-    .replace(/\b(low|high|under|less than|more than|above|below|over|max|min|at most|at least|rich in|free|no |without )\b/gi, " ")
+    // Remove leading modifiers like "low", "high", "under 300"
+    .replace(/\b(low[- ]|high[- ]|under\s+\d+\s*\w*|less than\s+\d+\s*\w*|more than\s+\d+\s*\w*|above\s+\d+\s*\w*|below\s+\d+\s*\w*|over\s+\d+\s*\w*|at most\s+\d+\s*\w*|at least\s+\d+\s*\w*|rich in|no |without )\b/gi, " ")
+    // Remove numeric+unit combos
     .replace(/\b\d+(?:\.\d+)?\s*(kcal|cal|calories?|g|mg|μg)\b/gi, " ")
-    .replace(/\b(sodium|protein|fat|sugar|carb|carbs|fibre|fiber|cholesterol|calorie|keto|light|heavy)\b/gi, " ")
+    // Remove pure nutrient words ONLY when they appear as standalone modifiers
+    // (i.e. preceded by low/high/free/rich) — keep them if they are the main noun
+    .replace(/\b(sodium|protein|fat|sugar|carb|carbs|fibre|fiber|cholesterol|calorie|keto)\b(?=\s|$)/gi, " ")
     .replace(/\s+/g, " ")
     .trim();
   return stripped.split(/\s+/).filter(w => w.length > 1);
@@ -405,10 +409,28 @@ export function rankResults(
     };
   });
 
-  // Filter: if nutrition filters exist, require at least partial match
-  const filtered = parsedQuery.filters.length > 0
-    ? scored.filter(r => r.matchedFilters.length > 0 || r.fuseScore > 0.6)
-    : scored;
+  // Filter logic:
+  // - If BOTH keywords and nutrition filters exist (mixed): keep items that match
+  //   EITHER the food name (fuseScore > 0) OR pass the nutrition filter.
+  //   This handles missing nutrient data gracefully.
+  // - If ONLY nutrition filters (no keywords): require at least one filter match.
+  // - If ONLY keywords (simple/fuzzy): no nutrition filter required.
+  const hasKeywords = parsedQuery.keywords.length > 0;
+  const hasFilters = parsedQuery.filters.length > 0;
+
+  const filtered = (() => {
+    if (hasFilters && hasKeywords) {
+      // Mixed: item must match the food name (came from Fuse) AND ideally the filter,
+      // but if nutrient data is missing, still show the food with a lower score.
+      return scored.filter(r => r.fuseScore > 0);
+    } else if (hasFilters && !hasKeywords) {
+      // Pure nutrition: require at least one filter to match
+      return scored.filter(r => r.matchedFilters.length > 0);
+    } else {
+      // Pure keyword or empty: no nutrition filter required
+      return scored;
+    }
+  })();
 
   // Sort: by score descending, then alphabetically
   filtered.sort((a, b) => {
@@ -477,8 +499,10 @@ export async function intelligentSearch(
     : parseQuery(q);
 
   // Layer 1: Fuse search on keywords
-  const fuseQuery = parsedQuery.keywords.join(" ") || q;
-  const fuseResults = parsedQuery.type !== "nutrition"
+  // For mixed queries (e.g. "low sodium fruits"), always run Fuse on the food-name keywords
+  // For pure nutrition queries with no food keywords, skip Fuse and scan all items
+  const fuseQuery = parsedQuery.keywords.join(" ") || (parsedQuery.type === "nutrition" ? "" : q);
+  const fuseResults = fuseQuery.trim()
     ? fuseSearch(fuseQuery, 500)
     : [];
 
