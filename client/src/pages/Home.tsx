@@ -81,7 +81,7 @@ export default function Home() {
             SG & MY Food Database
           </h1>
           <p className="text-sm md:text-base" style={{ color: "oklch(0.85 0.04 162)" }}>
-            2,500+ foods · 41 nutrient fields · HPB SG FoodID data
+            2,557 foods · 41 nutrient fields · HPB SG FoodID data
           </p>
         </div>
       </div>

@@ -1,14 +1,14 @@
 // ============================================================
 // FoodDB — API client
-// Primary: Bundled CDN data (420 foods, offline-capable)
+// Primary: Bundled CDN data (2,557 foods, offline-capable)
 // Secondary: HPB SG FoodID live API via CORS proxy
 // ============================================================
 
 import type { FoodItem, FoodSearchResult, NutrientData } from "./nutrients";
 
 // CDN-hosted bundled data (scraped from HPB SG FoodID)
-const CDN_INDEX_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663374102189/gFdMLjqiUpDnmt4U3dovdX/foods_index_4af8eb1e.json";
-const CDN_DATA_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663374102189/gFdMLjqiUpDnmt4U3dovdX/foods_data_f42a5723.json";
+const CDN_INDEX_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663374102189/gFdMLjqiUpDnmt4U3dovdX/foods_index_full_39caef8a.json";
+const CDN_DATA_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663374102189/gFdMLjqiUpDnmt4U3dovdX/sgfoodid_generic_full_a52e9b3f.json";
 
 // CORS proxy for live HPB API queries
 const CORS_PROXY = "https://corsproxy.io/?url=";
@@ -51,7 +51,17 @@ async function getFullData(): Promise<Record<string, FoodItem>> {
   try {
     const res = await fetch(CDN_DATA_URL);
     if (!res.ok) throw new Error("CDN data fetch failed");
-    _dataCache = await res.json();
+    const raw = await res.json();
+    // Handle both array format (new full dataset) and object format (legacy)
+    if (Array.isArray(raw)) {
+      const map: Record<string, FoodItem> = {};
+      for (const food of raw as FoodItem[]) {
+        if (food.crId) map[food.crId] = food;
+      }
+      _dataCache = map;
+    } else {
+      _dataCache = raw as Record<string, FoodItem>;
+    }
     return _dataCache!;
   } catch {
     return {};
