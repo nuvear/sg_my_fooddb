@@ -127,3 +127,61 @@ export const aiSuggestions = mysqlTable("ai_suggestions", {
 
 export type AiSuggestion = typeof aiSuggestions.$inferSelect;
 export type InsertAiSuggestion = typeof aiSuggestions.$inferInsert;
+/**
+ * Restaurants — admin-curated venue database with approval workflow.
+ */
+export const restaurants = mysqlTable("restaurants", {
+  id: int("id").autoincrement().primaryKey(),
+  slug: varchar("slug", { length: 128 }).notNull().unique(),
+  name: varchar("name", { length: 256 }).notNull(),
+  shortName: varchar("shortName", { length: 64 }),
+  description: text("description"),
+  culturalNote: text("culturalNote"),
+  operatingSince: varchar("operatingSince", { length: 32 }),
+  tier: mysqlEnum("tier", ["hawker-legend","premium-local","fine-dining","chain","mamak","kopitiam"]).notNull().default("hawker-legend"),
+  awards: json("awards").$type<string[]>().default([]),
+  region: mysqlEnum("region", ["singapore","penang","kl","malacca","johor","malaysia"]).notNull().default("singapore"),
+  area: varchar("area", { length: 256 }),
+  ethnic: json("ethnic").$type<string[]>().default([]),
+  occasions: json("occasions").$type<string[]>().default([]),
+  dietary: json("dietary").$type<string[]>().default([]),
+  website: varchar("website", { length: 512 }),
+  michelinNote: text("michelinNote"),
+  coverImageUrl: varchar("coverImageUrl", { length: 512 }),
+  iconUrl: varchar("iconUrl", { length: 512 }),
+  status: mysqlEnum("status", ["pending","approved","rejected","draft"]).notNull().default("pending"),
+  submittedBy: int("submittedBy"),
+  reviewedBy: int("reviewedBy"),
+  reviewNote: text("reviewNote"),
+  submittedAt: timestamp("submittedAt").defaultNow(),
+  reviewedAt: timestamp("reviewedAt"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+export type RestaurantRecord = typeof restaurants.$inferSelect;
+export type InsertRestaurantRecord = typeof restaurants.$inferInsert;
+
+/**
+ * Restaurant dishes — per-dish records with image and approval tracking.
+ */
+export const restaurantDishes = mysqlTable("restaurant_dishes", {
+  id: int("id").autoincrement().primaryKey(),
+  restaurantId: int("restaurantId").notNull(),
+  name: varchar("name", { length: 256 }).notNull(),
+  description: text("description"),
+  estimatedKcal: float("estimatedKcal"),
+  proteinG: float("proteinG"),
+  carbG: float("carbG"),
+  fatG: float("fatG"),
+  sodiumMg: float("sodiumMg"),
+  healthFlags: json("healthFlags").$type<string[]>().default([]),
+  iconUrl: varchar("iconUrl", { length: 512 }),
+  imageUrl: varchar("imageUrl", { length: 512 }),
+  imageStatus: mysqlEnum("imageStatus", ["pending","generated","approved","rejected"]).default("pending"),
+  foodDbId: varchar("foodDbId", { length: 64 }),
+  status: mysqlEnum("status", ["pending","approved","rejected"]).notNull().default("pending"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+export type RestaurantDishRecord = typeof restaurantDishes.$inferSelect;
+export type InsertRestaurantDishRecord = typeof restaurantDishes.$inferInsert;

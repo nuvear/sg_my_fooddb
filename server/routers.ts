@@ -10,6 +10,7 @@ import {
   getMealLogsForDate, getMealLogsForRange, addMealLog, deleteMealLog,
   getDailySummary, getDailySummariesForRange,
   getAiSuggestionsForDate, saveAiSuggestion, updateAiSuggestionAccepted,
+  getAdminStats, getRestaurantsForAdmin, updateRestaurantStatus, getAgentRunHistory,
 } from "./db";
 
 export const appRouter = router({
@@ -196,6 +197,47 @@ export const appRouter = router({
       .mutation(async ({ ctx, input }) => {
         await updateAiSuggestionAccepted(input.id, ctx.user.id, input.accepted);
         return { success: true };
+      }),
+  }),
+
+  admin: router({
+    // Admin-only: get dashboard stats
+    stats: protectedProcedure.query(async ({ ctx }) => {
+      if (ctx.user.role !== "admin") throw new TRPCError({ code: "FORBIDDEN" });
+      return getAdminStats();
+    }),
+
+    // Admin-only: list restaurants with optional status filter
+    listRestaurants: protectedProcedure
+      .input(z.object({
+        status: z.enum(["pending","approved","rejected","draft","all"]).default("all"),
+        limit: z.number().default(50),
+        offset: z.number().default(0),
+      }))
+      .query(async ({ ctx, input }) => {
+        if (ctx.user.role !== "admin") throw new TRPCError({ code: "FORBIDDEN" });
+        return getRestaurantsForAdmin(input.status, input.limit, input.offset);
+      }),
+
+    // Admin-only: approve / reject a restaurant
+    reviewRestaurant: protectedProcedure
+      .input(z.object({
+        id: z.number(),
+        status: z.enum(["approved","rejected","pending","draft"]),
+        reviewNote: z.string().optional(),
+      }))
+      .mutation(async ({ ctx, input }) => {
+        if (ctx.user.role !== "admin") throw new TRPCError({ code: "FORBIDDEN" });
+        await updateRestaurantStatus(input.id, input.status, ctx.user.id, input.reviewNote);
+        return { success: true };
+      }),
+
+    // Admin-only: get agent run history
+    agentHistory: protectedProcedure
+      .input(z.object({ limit: z.number().default(20) }))
+      .query(async ({ ctx, input }) => {
+        if (ctx.user.role !== "admin") throw new TRPCError({ code: "FORBIDDEN" });
+        return getAgentRunHistory(input.limit);
       }),
   }),
 });

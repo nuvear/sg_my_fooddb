@@ -3,6 +3,7 @@ import { drizzle } from "drizzle-orm/mysql2";
 import {
   InsertUser, InsertUserProfile, InsertMealLog, InsertDailySummary, InsertAiSuggestion,
   aiSuggestions, dailySummaries, mealLogs, userProfiles, users,
+  restaurants, restaurantDishes,
 } from "../drizzle/schema";
 import { ENV } from "./_core/env";
 
@@ -193,4 +194,82 @@ export async function updateAiSuggestionAccepted(id: number, userId: number, acc
   await db.update(aiSuggestions)
     .set({ accepted: accepted ? 1 : 0 })
     .where(and(eq(aiSuggestions.id, id), eq(aiSuggestions.userId, userId)));
+}
+
+// ── Admin helpers ─────────────────────────────────────────────
+
+export async function getAdminStats() {
+  const db = await getDb();
+  if (!db) return { totalUsers: 0, totalRestaurants: 0, pendingRestaurants: 0, approvedRestaurants: 0, totalDishes: 0, totalMealLogs: 0 };
+  const [userCount] = await db.select({ count: sql<number>`COUNT(*)` }).from(users);
+  const [restCount] = await db.select({ count: sql<number>`COUNT(*)` }).from(restaurants);
+  const [pendingCount] = await db.select({ count: sql<number>`COUNT(*)` }).from(restaurants).where(eq(restaurants.status, "pending"));
+  const [approvedCount] = await db.select({ count: sql<number>`COUNT(*)` }).from(restaurants).where(eq(restaurants.status, "approved"));
+  const [dishCount] = await db.select({ count: sql<number>`COUNT(*)` }).from(restaurantDishes);
+  const [mealCount] = await db.select({ count: sql<number>`COUNT(*)` }).from(mealLogs);
+  return {
+    totalUsers: Number(userCount?.count ?? 0),
+    totalRestaurants: Number(restCount?.count ?? 0),
+    pendingRestaurants: Number(pendingCount?.count ?? 0),
+    approvedRestaurants: Number(approvedCount?.count ?? 0),
+    totalDishes: Number(dishCount?.count ?? 0),
+    totalMealLogs: Number(mealCount?.count ?? 0),
+  };
+}
+
+export async function getRestaurantsForAdmin(status: string, limit: number, offset: number) {
+  const db = await getDb();
+  if (!db) return [];
+  const query = db.select().from(restaurants);
+  if (status !== "all") {
+    const validStatus = status as "pending" | "approved" | "rejected" | "draft";
+    return query.where(eq(restaurants.status, validStatus)).limit(limit).offset(offset).orderBy(restaurants.createdAt);
+  }
+  return query.limit(limit).offset(offset).orderBy(restaurants.createdAt);
+}
+
+export async function updateRestaurantStatus(id: number, status: "pending" | "approved" | "rejected" | "draft", reviewedBy: number, reviewNote?: string) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  await db.update(restaurants)
+    .set({ status, reviewedBy, reviewNote: reviewNote ?? null, reviewedAt: new Date() })
+    .where(eq(restaurants.id, id));
+}
+
+export async function getAgentRunHistory(limit: number) {
+  // Read from the agent log files on disk and return parsed run summaries
+  const fs = await import("fs/promises");
+  const path = await import("path");
+  const logsDir = path.join(process.cwd(), "..", "fooddb-agents", "logs");
+  try {
+    const files = await fs.readdir(logsDir);
+    const logFiles = files
+      .filter(f => f.startsWith("pipeline_") && f.endsWith(".log"))
+      .sort()
+      .reverse()
+      .slice(0, limit);
+    const runs = await Promise.all(logFiles.map(async (file) => {
+      const content = await fs.readFile(path.join(logsDir, file), "utf-8");
+      const lines = content.split("\n").filter(Boolean);
+      const firstLine = lines[0] ?? "";
+      const lastLine = lines[lines.length - 1] ?? "";
+      const dateMatch = file.match(/pipeline_(\d{8}_\d{6})/);
+      const dateStr = dateMatch ? dateMatch[1] : "unknown";
+      const dishesMatch = content.match(/(\d+) dishes/i);
+      const errorCount = lines.filter(l => l.includes("ERROR")).length;
+      return {
+        file,
+        date: dateStr,
+        status: errorCount > 0 ? "partial" : "success",
+        dishesFound: dishesMatch ? parseInt(dishesMatch[1]) : 0,
+        errorCount,
+        firstLine: firstLine.slice(0, 120),
+        lastLine: lastLine.slice(0, 120),
+        lineCount: lines.length,
+      };
+    }));
+    return runs;
+  } catch {
+    return [];
+  }
 }

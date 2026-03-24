@@ -1,5 +1,7 @@
 // FoodDB — Tropical Bauhaus design system
-// Routes: / (home/search), /food/:crId (detail), /analyse (photo upload), /import (paste import), /db (local records), /restaurants (hawker & restaurant discovery)
+// Routes: / (home/search), /food/:crId (detail), /analyse, /import, /db, /agents
+//         /profile, /calendar, /calculator, /credits, /help, /api-docs
+//         /admin (admin only), /admin/restaurants (admin only)
 
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -18,24 +20,41 @@ import Agents from "./pages/Agents";
 import Profile from "./pages/Profile";
 import Calendar from "./pages/Calendar";
 import Calculator from "./pages/Calculator";
+import Credits from "./pages/Credits";
+import Help from "./pages/Help";
+import McpApi from "./pages/McpApi";
+import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
+
 function Router() {
-  // make sure to consider if you need authentication for certain routes
   return (
     <Layout>
       <Switch>
+        {/* ── Public routes ── */}
         <Route path="/" component={Home} />
         <Route path="/food/:crId" component={FoodDetail} />
         <Route path="/analyse" component={Analyse} />
         <Route path="/import" component={ImportPaste} />
         <Route path="/upload" component={UploadCSV} />
         <Route path="/db" component={LocalDB} />
-        <Route path="/restaurants" component={Restaurants} />
-        <Route path="/restaurants/:id" component={Restaurants} />
         <Route path="/agents" component={Agents} />
+
+        {/* ── Personal planner routes ── */}
         <Route path="/profile" component={Profile} />
         <Route path="/calendar" component={Calendar} />
         <Route path="/calculator" component={Calculator} />
+
+        {/* ── Info pages ── */}
+        <Route path="/help" component={Help} />
+        <Route path="/credits" component={Credits} />
+        <Route path="/api-docs" component={McpApi} />
+
+        {/* ── Admin routes (role check inside each page) ── */}
+        <Route path="/admin" component={Admin} />
+        <Route path="/admin/restaurants" component={Restaurants} />
+        <Route path="/admin/restaurants/:id" component={Restaurants} />
+
+        {/* ── Fallback ── */}
         <Route component={NotFound} />
       </Switch>
     </Layout>

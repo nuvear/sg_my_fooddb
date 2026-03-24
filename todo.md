@@ -36,3 +36,22 @@
 - [ ] Dish detail modal with radar chart
 - [ ] Map view for hawker centre discovery
 - [ ] "Last enriched" timestamp badge on restaurant cards
+
+## Phase 3 Features (Completed)
+- [x] Regenerate higher-quality dish icons (photorealistic flat-art style)
+- [x] Admin section: dashboard, restaurant approval workflow, agent monitoring
+- [x] Move Restaurants page under admin-only view (/admin/restaurants)
+- [x] Credits & Disclaimer page (/credits)
+- [x] Help & Data Interpretation guide (/help)
+- [x] MCP API page (/api-docs)
+- [x] Admin role-based access control for admin routes
+- [x] Nav restructured: Database / Personal / Info / Admin collapsible sections
+
+## Phase 4 — Pending
+- [ ] Wire REST endpoints for /api/foods/search and /api/foods/:crId (for MCP/external apps)
+- [ ] Wire /api/mcp/call server endpoint
+- [ ] Restaurant public view shows only admin-approved venues
+- [ ] Dish icon CDN URLs updated in restaurantData.ts with new photorealistic images
+- [ ] Hotel venue data layer (next phase)
+- [ ] Dish detail modal with radar chart
+- [ ] Map view for hawker centre discovery

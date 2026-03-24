@@ -1,0 +1,9 @@
+{
+  "query": "CREATE TABLE IF NOT EXISTS restaurant_dishes (\n  id INT AUTO_INCREMENT PRIMARY KEY,\n  restaurantId INT NOT NULL,\n  name VARCHAR(256) NOT NULL,\n  description TEXT,\n  estimatedKcal FLOAT,\n  proteinG FLOAT,\n  carbG FLOAT,\n  fatG FLOAT,\n  sodiumMg FLOAT,\n  healthFlags JSON,\n  iconUrl VARCHAR(512),\n  imageUrl VARCHAR(512),\n  imageStatus ENUM('pending','generated','approved','rejected') DEFAULT 'pending',\n  foodDbId VARCHAR(64),\n  status ENUM('pending','approved','rejected') NOT NULL DEFAULT 'pending',\n  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n  updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\n  FOREIGN KEY (restaurantId) REFERENCES restaurants(id) ON DELETE CASCADE\n)",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway04.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 21nkBtngibav2Py.6348adea40d3 --database gFdMLjqiUpDnmt4U3dovdX --execute CREATE TABLE IF NOT EXISTS restaurant_dishes (\n  id INT AUTO_INCREMENT PRIMARY KEY,\n  restaurantId INT NOT NULL,\n  name VARCHAR(256) NOT NULL,\n  description TEXT,\n  estimatedKcal FLOAT,\n  proteinG FLOAT,\n  carbG FLOAT,\n  fatG FLOAT,\n  sodiumMg FLOAT,\n  healthFlags JSON,\n  iconUrl VARCHAR(512),\n  imageUrl VARCHAR(512),\n  imageStatus ENUM('pending','generated','approved','rejected') DEFAULT 'pending',\n  foodDbId VARCHAR(64),\n  status ENUM('pending','approved','rejected') NOT NULL DEFAULT 'pending',\n  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n  updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\n  FOREIGN KEY (restaurantId) REFERENCES restaurants(id) ON DELETE CASCADE\n)",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 2091
+}
