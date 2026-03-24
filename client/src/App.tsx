@@ -15,9 +15,12 @@ import LocalDB from "./pages/LocalDB";
 import UploadCSV from "./pages/UploadCSV";
 import Restaurants from "./pages/Restaurants";
 import Agents from "./pages/Agents";
+import Profile from "./pages/Profile";
+import Calendar from "./pages/Calendar";
+import Calculator from "./pages/Calculator";
 import NotFound from "./pages/NotFound";
-
 function Router() {
+  // make sure to consider if you need authentication for certain routes
   return (
     <Layout>
       <Switch>
@@ -30,6 +33,9 @@ function Router() {
         <Route path="/restaurants" component={Restaurants} />
         <Route path="/restaurants/:id" component={Restaurants} />
         <Route path="/agents" component={Agents} />
+        <Route path="/profile" component={Profile} />
+        <Route path="/calendar" component={Calendar} />
+        <Route path="/calculator" component={Calculator} />
         <Route component={NotFound} />
       </Switch>
     </Layout>

@@ -1,0 +1,9 @@
+{
+  "query": "CREATE TABLE IF NOT EXISTS user_profiles (id int AUTO_INCREMENT NOT NULL, userId int NOT NULL, age int, gender enum('male','female','other'), heightCm float, weightKg float, activityLevel enum('sedentary','light','moderate','active','very_active'), objectives json, dailyCalorieTarget int, dailySodiumTargetMg int DEFAULT 2000, dailyProteinTargetG float, dailyCarbTargetG float, dailyFatTargetG float, dailyFibreTargetG float DEFAULT 25, dietaryPreferences json, onboardingCompleted tinyint DEFAULT 0, createdAt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, updatedAt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, PRIMARY KEY (id), UNIQUE KEY user_profiles_userId_unique (userId))",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway04.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 21nkBtngibav2Py.6348adea40d3 --database gFdMLjqiUpDnmt4U3dovdX --execute CREATE TABLE IF NOT EXISTS user_profiles (id int AUTO_INCREMENT NOT NULL, userId int NOT NULL, age int, gender enum('male','female','other'), heightCm float, weightKg float, activityLevel enum('sedentary','light','moderate','active','very_active'), objectives json, dailyCalorieTarget int, dailySodiumTargetMg int DEFAULT 2000, dailyProteinTargetG float, dailyCarbTargetG float, dailyFatTargetG float, dailyFibreTargetG float DEFAULT 25, dietaryPreferences json, onboardingCompleted tinyint DEFAULT 0, createdAt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, updatedAt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, PRIMARY KEY (id), UNIQUE KEY user_profiles_userId_unique (userId))",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 1698
+}

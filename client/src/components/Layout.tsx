@@ -2,7 +2,7 @@
 // Sidebar nav for desktop, bottom nav for mobile
 
 import { Link, useLocation } from "wouter";
-import { Search, Camera, ClipboardPaste, Database, Leaf, UploadCloud, UtensilsCrossed, Activity } from "lucide-react";
+import { Search, Camera, ClipboardPaste, Database, Leaf, UploadCloud, UtensilsCrossed, Activity, CalendarDays, Calculator, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const NAV_ITEMS = [
@@ -12,7 +12,10 @@ const NAV_ITEMS = [
   { href: "/import",  label: "Paste",    icon: ClipboardPaste, desc: "Paste HPB entry" },
   { href: "/db",      label: "My Foods",    icon: Database,         desc: "Saved records" },
   { href: "/restaurants", label: "Restaurants", icon: UtensilsCrossed, desc: "Hawker & dining" },
-  { href: "/agents", label: "Agents", icon: Activity, desc: "Enrichment pipeline" },
+  { href: "/agents",     label: "Agents",     icon: Activity,     desc: "Enrichment pipeline" },
+  { href: "/profile",    label: "My Profile",  icon: User,         desc: "Goals & targets" },
+  { href: "/calendar",   label: "Food Plan",   icon: CalendarDays, desc: "Meal calendar" },
+  { href: "/calculator", label: "Calculator",  icon: Calculator,   desc: "Calorie & sodium" },
 ];
 
 export default function Layout({ children }: { children: React.ReactNode }) {

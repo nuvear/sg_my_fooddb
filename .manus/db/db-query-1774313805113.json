@@ -1,0 +1,9 @@
+{
+  "query": "UPDATE `__drizzle_migrations` SET `hash` = 'c97412be6bf09204232f16e73b241e65f86e03b0969c54637efba62ee621c708' WHERE `hash` = '0001_handy_epoch';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway04.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 21nkBtngibav2Py.6348adea40d3 --database gFdMLjqiUpDnmt4U3dovdX --execute UPDATE `__drizzle_migrations` SET `hash` = 'c97412be6bf09204232f16e73b241e65f86e03b0969c54637efba62ee621c708' WHERE `hash` = '0001_handy_epoch';",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 1571
+}

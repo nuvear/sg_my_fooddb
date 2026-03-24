@@ -1,0 +1,9 @@
+{
+  "query": "CREATE TABLE IF NOT EXISTS daily_summaries (id int AUTO_INCREMENT NOT NULL, userId int NOT NULL, summaryDate date NOT NULL, totalKcal float DEFAULT 0, totalProteinG float DEFAULT 0, totalCarbG float DEFAULT 0, totalFatG float DEFAULT 0, totalSodiumMg float DEFAULT 0, totalFibreG float DEFAULT 0, totalSugarG float DEFAULT 0, mealCount int DEFAULT 0, goalAdherenceScore float, updatedAt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, PRIMARY KEY (id))",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway04.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 21nkBtngibav2Py.6348adea40d3 --database gFdMLjqiUpDnmt4U3dovdX --execute CREATE TABLE IF NOT EXISTS daily_summaries (id int AUTO_INCREMENT NOT NULL, userId int NOT NULL, summaryDate date NOT NULL, totalKcal float DEFAULT 0, totalProteinG float DEFAULT 0, totalCarbG float DEFAULT 0, totalFatG float DEFAULT 0, totalSodiumMg float DEFAULT 0, totalFibreG float DEFAULT 0, totalSugarG float DEFAULT 0, mealCount int DEFAULT 0, goalAdherenceScore float, updatedAt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, PRIMARY KEY (id))",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 1718
+}

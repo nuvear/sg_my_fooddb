@@ -1,0 +1,12 @@
+{
+  "query": "CREATE TABLE IF NOT EXISTS `ai_suggestions` (\n\t`id` int AUTO_INCREMENT NOT NULL,\n\t`userId` int NOT NULL,\n\t`suggestionDate` date NOT NULL,\n\t`mealType` enum('breakfast','lunch','dinner','snack','supper') NOT NULL,\n\t`suggestionText` text NOT NULL,\n\t`foodIds` json DEFAULT ('[]'),\n\t`rationale` text,\n\t`accepted` tinyint,\n\t`createdAt` timestamp NOT NULL DEFAULT (now()),\n\tCONSTRAINT `ai_suggestions_id` PRIMARY KEY(`id`))",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway04.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 21nkBtngibav2Py.6348adea40d3 --database gFdMLjqiUpDnmt4U3dovdX --execute CREATE TABLE IF NOT EXISTS `ai_suggestions` (\n\t`id` int AUTO_INCREMENT NOT NULL,\n\t`userId` int NOT NULL,\n\t`suggestionDate` date NOT NULL,\n\t`mealType` enum('breakfast','lunch','dinner','snack','supper') NOT NULL,\n\t`suggestionText` text NOT NULL,\n\t`foodIds` json DEFAULT ('[]'),\n\t`rationale` text,\n\t`accepted` tinyint,\n\t`createdAt` timestamp NOT NULL DEFAULT (now()),\n\tCONSTRAINT `ai_suggestions_id` PRIMARY KEY(`id`))",
+  "returncode": 1,
+  "logs": [
+    "ERROR 1064 (42000) at line 1: You have an error in your SQL syntax; check the manual that corresponds to your TiDB version for the right syntax to use line 7 column 30 near \"'[]'),",
+    "\t`rationale` text,",
+    "\t`accepted` tinyint,",
+    "\t`createdAt` timestamp NOT NULL DEFAULT (now()),",
+    "\tCONSTRAINT `ai_suggestions_id` PRIMARY KEY(`id`))\""
+  ]
+}

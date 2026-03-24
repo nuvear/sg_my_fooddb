@@ -1,0 +1,9 @@
+{
+  "query": "CREATE TABLE IF NOT EXISTS meal_logs (id int AUTO_INCREMENT NOT NULL, userId int NOT NULL, logDate date NOT NULL, mealType enum('breakfast','lunch','dinner','snack','supper') NOT NULL, loggedAt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, foodId varchar(64), foodName varchar(256) NOT NULL, portionDescription varchar(128), portionGrams float, servings float DEFAULT 1, kcal float, proteinG float, carbG float, fatG float, sodiumMg float, fibreG float, sugarG float, source enum('search','restaurant','manual','ai_suggestion') DEFAULT 'search', notes text, createdAt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, updatedAt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, PRIMARY KEY (id))",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway04.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 21nkBtngibav2Py.6348adea40d3 --database gFdMLjqiUpDnmt4U3dovdX --execute CREATE TABLE IF NOT EXISTS meal_logs (id int AUTO_INCREMENT NOT NULL, userId int NOT NULL, logDate date NOT NULL, mealType enum('breakfast','lunch','dinner','snack','supper') NOT NULL, loggedAt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, foodId varchar(64), foodName varchar(256) NOT NULL, portionDescription varchar(128), portionGrams float, servings float DEFAULT 1, kcal float, proteinG float, carbG float, fatG float, sodiumMg float, fibreG float, sugarG float, source enum('search','restaurant','manual','ai_suggestion') DEFAULT 'search', notes text, createdAt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, updatedAt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, PRIMARY KEY (id))",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 1660
+}

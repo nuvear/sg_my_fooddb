@@ -1,0 +1,20 @@
+{
+  "query": "SELECT * FROM `__drizzle_migrations`;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway04.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 21nkBtngibav2Py.6348adea40d3 --database gFdMLjqiUpDnmt4U3dovdX --execute SELECT * FROM `__drizzle_migrations`;",
+  "rows": [
+    {
+      "id": "1",
+      "hash": "814a08e40d7fc2bcfd458759d18319198ca8ae394f2fa15617a78678e9c9c93b",
+      "created_at": "1774313477799"
+    },
+    {
+      "id": "2",
+      "hash": "0001_handy_epoch",
+      "created_at": "1774313780000"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\thash\tcreated_at\n1\t814a08e40d7fc2bcfd458759d18319198ca8ae394f2fa15617a78678e9c9c93b\t1774313477799\n2\t0001_handy_epoch\t1774313780000\n",
+  "stderr": "",
+  "execution_time_ms": 1506
+}

@@ -1,0 +1,9 @@
+{
+  "query": "CREATE TABLE IF NOT EXISTS ai_suggestions (id int AUTO_INCREMENT NOT NULL, userId int NOT NULL, suggestionDate date NOT NULL, mealType enum('breakfast','lunch','dinner','snack','supper') NOT NULL, suggestionText text NOT NULL, foodIds json, rationale text, accepted tinyint, createdAt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY (id))",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway04.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 21nkBtngibav2Py.6348adea40d3 --database gFdMLjqiUpDnmt4U3dovdX --execute CREATE TABLE IF NOT EXISTS ai_suggestions (id int AUTO_INCREMENT NOT NULL, userId int NOT NULL, suggestionDate date NOT NULL, mealType enum('breakfast','lunch','dinner','snack','supper') NOT NULL, suggestionText text NOT NULL, foodIds json, rationale text, accepted tinyint, createdAt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY (id))",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 1714
+}
