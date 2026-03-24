@@ -121,7 +121,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               src={INNUIR_LOGO_CDN}
               alt="Innuir"
               className="h-8 w-auto object-contain"
-              style={{ filter: "brightness(0) invert(1)" }}
             />
           </Link>
           <div className="mt-1.5 text-xs" style={{ color: SB.text, fontFamily: "Inter, sans-serif" }}>
@@ -161,7 +160,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               src={INNUIR_LOGO_CDN}
               alt="Innuir"
               className="h-7 w-auto object-contain"
-              style={{ filter: "brightness(0) invert(1)" }}
             />
           </Link>
           <span className="text-xs ml-auto" style={{ color: SB.text, fontFamily: "Inter, sans-serif" }}>
