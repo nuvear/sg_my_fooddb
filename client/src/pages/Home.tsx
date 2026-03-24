@@ -312,7 +312,14 @@ function PresetPill({ preset, active, onClick }: {
 // ── Main Component ────────────────────────────────────────────
 
 export default function Home() {
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState(() => {
+    // Read ?q= from URL on initial load (e.g. from Restaurants page dish click)
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      return params.get("q") || "";
+    }
+    return "";
+  });
   const [results, setResults] = useState<SearchResult[]>([]);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
@@ -345,8 +352,8 @@ export default function Home() {
     }
   }, []);
 
-  // Initial load
-  useEffect(() => { doSearch("", 1); }, []);
+  // Initial load — use initial query from URL if present
+  useEffect(() => { doSearch(query || "", 1); }, []);
 
   // Debounced search on query change
   useEffect(() => {

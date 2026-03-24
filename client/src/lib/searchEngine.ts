@@ -233,25 +233,63 @@ export function parseQuery(query: string): ParsedQuery {
 const LLM_API_URL = import.meta.env.VITE_FRONTEND_FORGE_API_URL || "";
 const LLM_API_KEY = import.meta.env.VITE_FRONTEND_FORGE_API_KEY || "";
 
+// Structured Intent Extractor — the LLM only steers, never recommends food directly.
+// Privacy by Design: clinical symptoms ("sore throat", "high BP") are translated into
+// generic dietary tags ("soft-foods", "low-sodium") before any database lookup.
+// The database never sees the user's medical condition.
 export async function parseLLMQuery(query: string): Promise<ParsedQuery> {
   const base = parseQuery(query);
 
   if (!LLM_API_URL || !LLM_API_KEY) return base;
 
   try {
-    const systemPrompt = `You are a cultural food explorer assistant for Singapore and Malaysia foods.
-Parse the user's natural language food query into structured search parameters.
-Cultural context: Singapore and Malaysia share a rich multicultural food heritage spanning Malay, Chinese (Hokkien, Cantonese, Teochew, Hainanese), Indian (Tamil), Peranakan/Nyonya, Mamak, and Eurasian traditions.
-Available food groups: Grains and staples, Beverages, Meat and alternatives, Snacks, Vegetables, Fish and seafood, Poultry, Mixed, Nuts and legumes, Dairy and eggs, Fruit, Desserts, Oils seasonings and condiments, Miscellaneous, Sugar and confectionery.
-Cultural dimensions: ethnic (malay/chinese/indian/peranakan/mamak/eurasian), occasion (breakfast/lunch/dinner/snack/late-night/festive/school-canteen), generation (seniors/middle-aged/youth/children), region (singapore/penang/kl/malacca/johor/malaysia), dietary (halal/vegetarian/plant-based/low-sodium/low-sugar/high-protein/soft-foods/wholegrain/nutri-grade/high-fibre/low-calorie/keto).
-Available nutrient keys: energy (kcal), protein (g), fat (g), saturatedFat (g), transFat (g), carbohydrate (g), sugar (g), addedSugar (g), dietaryFibre (g), sodium (mg), potassium (mg), calcium (mg), iron (mg), cholesterol (mg).
+    // Structured Output system prompt — forces strict JSON taxonomy, no food hallucination
+    const systemPrompt = `You are the query router for Innuir, a health-aware food intelligence graph for Singapore and Malaysia.
+Your ONLY job is to translate the user's natural language into a strict JSON taxonomy. You NEVER recommend food directly.
+You NEVER invent nutritional values. You ONLY extract intent and map it to the taxonomy below.
 
-Respond ONLY with valid JSON in this exact format:
+MAPPING RULES (apply ALL that match):
+- Clinical symptoms: sore throat/toothache/jaw pain → required_dietary_tags: ["soft-foods"], excluded_dietary_tags: ["spicy"]
+- Hypertension/high BP/heart disease → required_dietary_tags: ["low-sodium"], excluded_dietary_tags: ["high-sodium"]
+- Diabetes/blood sugar → required_dietary_tags: ["low-sugar", "low-gi"], excluded_dietary_tags: ["high-sugar"]
+- Weight loss/diet/slimming → required_dietary_tags: ["low-calorie"]
+- Muscle/gym/workout → required_dietary_tags: ["high-protein"]
+- Elderly/grandpa/grandma/seniors/老人 → generations: ["seniors"]
+- Kids/children/school → generations: ["children"]
+- Youth/young/students → generations: ["youth"]
+- Tonight/dinner/supper → occasions: ["dinner"]
+- Morning/breakfast/早餐 → occasions: ["breakfast"]
+- Lunch/midday → occasions: ["lunch"]
+- Hawker/kopitiam/mamak → occasions: ["hawker-dinner", "hawker-lunch"]
+- Festive/CNY/Hari Raya/Deepavali → occasions: ["festive"]
+- Malay/Melayu/halal → ethnic: ["malay"], required_dietary_tags: ["halal"]
+- Chinese/Cina/Hokkien/Cantonese/Teochew/Hainanese → ethnic: ["chinese"]
+- Indian/Tamil/Mamak → ethnic: ["indian"]
+- Peranakan/Nyonya/Baba → ethnic: ["peranakan"]
+- Singapore/SG/Lion City → regions: ["singapore"]
+- Penang/Pulau Pinang → regions: ["penang"]
+- KL/Kuala Lumpur/Malaysia/MY → regions: ["malaysia"]
+- Vegetarian/vegan/plant-based → required_dietary_tags: ["vegetarian"]
+- Keto/low carb → required_dietary_tags: ["keto"]
+
+AVAILABLE FOOD GROUPS (use for category_hints only):
+Grains and staples, Beverages, Meat and alternatives, Snacks, Vegetables, Fish and seafood, Poultry, Fruit, Desserts, Dairy and eggs, Nuts and legumes
+
+AVAILABLE NUTRIENT KEYS (use for filters only):
+energy (kcal), protein (g), fat (g), saturatedFat (g), carbohydrate (g), sugar (g), dietaryFibre (g), sodium (mg), potassium (mg), calcium (mg), iron (mg), cholesterol (mg)
+
+Respond ONLY with valid JSON matching this exact schema (no extra text, no markdown):
 {
-  "keywords": ["word1", "word2"],
+  "keywords": ["food name words only, not health terms"],
   "filters": [{"nutrient": "sodium", "operator": "max", "value": 200}],
-  "categoryHints": ["Vegetables"],
-  "interpretation": "one sentence describing what you understood"
+  "category_hints": ["Vegetables"],
+  "ethnic": ["malay"],
+  "occasions": ["hawker-dinner"],
+  "generations": ["seniors"],
+  "regions": ["singapore"],
+  "required_dietary_tags": ["soft-foods", "low-sodium"],
+  "excluded_dietary_tags": ["spicy", "high-sodium"],
+  "interpretation": "one sentence: what health/cultural context was detected"
 }`;
 
     const res = await fetch(`${LLM_API_URL}/chat/completions`, {
@@ -266,13 +304,14 @@ Respond ONLY with valid JSON in this exact format:
           { role: "system", content: systemPrompt },
           { role: "user", content: query },
         ],
-        temperature: 0.1,
-        max_tokens: 300,
+        temperature: 0.0,   // Deterministic — no creativity in health routing
+        max_tokens: 400,
+        response_format: { type: "json_object" },  // Force JSON mode
       }),
-      signal: AbortSignal.timeout(5000),
+      signal: AbortSignal.timeout(6000),
     });
 
-    if (!res.ok) return base;
+    if (!res.ok) return base;  // Graceful degradation: fall back to rule-based
     const data = await res.json();
     const content = data.choices?.[0]?.message?.content ?? "";
 
@@ -281,17 +320,46 @@ Respond ONLY with valid JSON in this exact format:
     if (!jsonMatch) return base;
 
     const parsed = JSON.parse(jsonMatch[0]);
+
+    // Merge LLM cultural dimensions into the cultural intent
+    const mergedCulturalIntent: CulturalQueryIntent = {
+      ...base.culturalIntent!,
+      ethnicFilters: [
+        ...(base.culturalIntent?.ethnicFilters ?? []),
+        ...(parsed.ethnic ?? []),
+      ].filter((v, i, a) => a.indexOf(v) === i),
+      occasionFilters: [
+        ...(base.culturalIntent?.occasionFilters ?? []),
+        ...(parsed.occasions ?? []),
+      ].filter((v, i, a) => a.indexOf(v) === i),
+      generationFilters: [
+        ...(base.culturalIntent?.generationFilters ?? []),
+        ...(parsed.generations ?? []),
+      ].filter((v, i, a) => a.indexOf(v) === i),
+      regionFilters: [
+        ...(base.culturalIntent?.regionFilters ?? []),
+        ...(parsed.regions ?? []),
+      ].filter((v, i, a) => a.indexOf(v) === i),
+      dietaryFilters: [
+        ...(base.culturalIntent?.dietaryFilters ?? []),
+        ...(parsed.required_dietary_tags ?? []),
+      ].filter((v, i, a) => a.indexOf(v) === i),
+      remainingKeywords: (parsed.keywords ?? base.keywords).join(" "),
+    };
+
     return {
       ...base,
       keywords: parsed.keywords ?? base.keywords,
       filters: [...base.filters, ...(parsed.filters ?? [])].filter(
         (f, i, arr) => arr.findIndex(x => x.nutrient === f.nutrient) === i
       ),
-      categoryHints: [...base.categoryHints, ...(parsed.categoryHints ?? [])],
-      confidence: 0.95,
+      categoryHints: [...base.categoryHints, ...(parsed.category_hints ?? [])],
+      confidence: 0.97,
       llmInterpretation: parsed.interpretation,
+      culturalIntent: mergedCulturalIntent,
     };
   } catch {
+    // Graceful degradation: if LLM fails or times out, use rule-based parser
     return base;
   }
 }
