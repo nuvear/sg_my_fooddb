@@ -14,6 +14,7 @@ import ImportPaste from "./pages/ImportPaste";
 import LocalDB from "./pages/LocalDB";
 import UploadCSV from "./pages/UploadCSV";
 import Restaurants from "./pages/Restaurants";
+import Agents from "./pages/Agents";
 import NotFound from "./pages/NotFound";
 
 function Router() {
@@ -28,6 +29,7 @@ function Router() {
         <Route path="/db" component={LocalDB} />
         <Route path="/restaurants" component={Restaurants} />
         <Route path="/restaurants/:id" component={Restaurants} />
+        <Route path="/agents" component={Agents} />
         <Route component={NotFound} />
       </Switch>
     </Layout>
