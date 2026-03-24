@@ -44,7 +44,7 @@ const DIMENSION_TABS: Array<{ id: DimensionTab; label: string; icon: React.React
 const QUERY_TYPE_CONFIG: Record<QueryType, {
   label: string; icon: React.ReactNode; color: string; bg: string; border: string;
 }> = {
-  simple:    { label: "Fuzzy Search",     icon: <Zap size={11} />,      color: "oklch(0.32 0.10 162)", bg: "oklch(0.95 0.04 162)", border: "oklch(0.75 0.08 162)" },
+  simple:    { label: "Fuzzy Search",     icon: <Zap size={11} />,      color: "#6D5BD0", bg: "#EDE9FB", border: "oklch(0.75 0.08 162)" },
   nutrition: { label: "Nutrition Filter", icon: <Filter size={11} />,   color: "oklch(0.40 0.12 60)",  bg: "oklch(0.97 0.04 80)",  border: "oklch(0.80 0.10 60)" },
   mixed:     { label: "Smart Search",     icon: <Brain size={11} />,    color: "oklch(0.35 0.14 280)", bg: "oklch(0.96 0.04 280)", border: "oklch(0.78 0.10 280)" },
   natural:   { label: "AI-Powered",       icon: <Sparkles size={11} />, color: "oklch(0.38 0.16 30)",  bg: "oklch(0.97 0.04 30)",  border: "oklch(0.80 0.12 30)" },
@@ -82,10 +82,10 @@ function MiniNutrientChip({ label, value, unit, highlight = "neutral" }: MiniNut
       className="flex flex-col items-center px-2 py-1 rounded-md min-w-0"
       style={{ background: colors.bg, border: `1px solid ${colors.border}` }}
     >
-      <span className="text-[9px] font-semibold uppercase tracking-wide" style={{ color: colors.text, fontFamily: "Nunito Sans, sans-serif" }}>
+      <span className="text-[9px] font-semibold uppercase tracking-wide" style={{ color: colors.text, fontFamily: "Inter, sans-serif" }}>
         {label}
       </span>
-      <span className="text-xs font-bold leading-tight" style={{ color: colors.text, fontFamily: "Sora, sans-serif" }}>
+      <span className="text-xs font-bold leading-tight" style={{ color: colors.text, fontFamily: "Inter, sans-serif" }}>
         {displayVal}
         {value !== null && value !== undefined && (
           <span className="text-[9px] font-normal ml-0.5">{unit}</span>
@@ -178,7 +178,7 @@ function FoodCard({ food }: { food: SearchResult }) {
     <Link href={`/food/${food.crId}`}>
       <div
         className="group rounded-xl border cursor-pointer transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 overflow-hidden"
-        style={{ borderColor: "oklch(0.90 0.006 162)", background: "white" }}
+        style={{ borderColor: "#DDE3EE", background: "white" }}
       >
         {/* ── Card header ── */}
         <div className="px-4 pt-3 pb-2">
@@ -187,7 +187,7 @@ function FoodCard({ food }: { food: SearchResult }) {
             {food.l1Category && (
               <span
                 className="text-[10px] font-semibold px-2 py-0.5 rounded-full"
-                style={{ color: "oklch(0.32 0.10 162)", background: "oklch(0.93 0.04 162)" }}
+                style={{ color: "#6D5BD0", background: "#EDE9FB" }}
               >
                 {food.l1Category}
               </span>
@@ -197,14 +197,14 @@ function FoodCard({ food }: { food: SearchResult }) {
             <ChevronRight
               size={14}
               className="opacity-0 group-hover:opacity-100 transition-opacity ml-auto flex-shrink-0 mt-0.5"
-              style={{ color: "oklch(0.32 0.10 162)" }}
+              style={{ color: "#6D5BD0" }}
             />
           </div>
 
           {/* Food name */}
           <h3
-            className="font-bold text-sm leading-snug mb-1 group-hover:text-[oklch(0.25_0.10_162)] transition-colors"
-            style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.20 0.015 65)" }}
+            className="font-bold text-sm leading-snug mb-1 group-hover:text-[#5E4EC0] transition-colors"
+            style={{ fontFamily: "Inter, sans-serif", color: "#0A1F44" }}
           >
             {food.name}
           </h3>
@@ -213,14 +213,14 @@ function FoodCard({ food }: { food: SearchResult }) {
           {hasStory ? (
             <p
               className="text-[11px] leading-relaxed line-clamp-2 italic mb-2"
-              style={{ color: "oklch(0.50 0.06 162)", fontFamily: "Nunito Sans, sans-serif" }}
+              style={{ color: "#8B7FD0", fontFamily: "Inter, sans-serif" }}
             >
               {profile!.story}
             </p>
           ) : food.description ? (
             <p
               className="text-[11px] leading-relaxed line-clamp-2 mb-2"
-              style={{ color: "oklch(0.55 0.015 65)", fontFamily: "Nunito Sans, sans-serif" }}
+              style={{ color: "#8B9AB0", fontFamily: "Inter, sans-serif" }}
             >
               {food.description}
             </p>
@@ -246,7 +246,7 @@ function FoodCard({ food }: { food: SearchResult }) {
         {/* ── Nutrient mini-panel ── */}
         <div
           className="px-3 pb-3 pt-1 grid grid-cols-4 gap-1"
-          style={{ borderTop: "1px solid oklch(0.94 0.006 162)" }}
+          style={{ borderTop: "1px solid #DDE3EE" }}
         >
           <MiniNutrientChip
             label="Cal"
@@ -272,7 +272,7 @@ function FoodCard({ food }: { food: SearchResult }) {
               <span
                 key={f}
                 className="text-[9px] px-1.5 py-0.5 rounded-full font-semibold"
-                style={{ color: "oklch(0.32 0.10 162)", background: "oklch(0.93 0.04 162)" }}
+                style={{ color: "#6D5BD0", background: "#EDE9FB" }}
               >
                 ✓ {NUTRIENT_LABELS[f] ?? f}
               </span>
@@ -296,11 +296,11 @@ function PresetPill({ preset, active, onClick }: {
       onClick={onClick}
       className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-xs font-medium transition-all whitespace-nowrap hover:scale-105"
       style={{
-        fontFamily: "Nunito Sans, sans-serif",
-        borderColor: active ? "oklch(0.32 0.10 162)" : "oklch(0.88 0.008 90)",
-        color: active ? "oklch(0.98 0.005 90)" : "oklch(0.40 0.015 65)",
-        background: active ? "oklch(0.32 0.10 162)" : "white",
-        boxShadow: active ? "0 2px 8px oklch(0.32 0.10 162 / 0.3)" : "none",
+        fontFamily: "Inter, sans-serif",
+        borderColor: active ? "#6D5BD0" : "#DDE3EE",
+        color: active ? "#F7F9FC" : "#2F3A4A",
+        background: active ? "#6D5BD0" : "white",
+        boxShadow: active ? "0 2px 8px rgba(109,91,208,0.3)" : "none",
       }}
     >
       <span>{preset.icon}</span>
@@ -384,7 +384,7 @@ export default function Home() {
   const qConfig = parsedQuery ? QUERY_TYPE_CONFIG[parsedQuery.type] : null;
 
   return (
-    <div className="flex flex-col min-h-screen" style={{ background: "oklch(0.98 0.003 90)" }}>
+    <div className="flex flex-col min-h-screen" style={{ background: "#F7F9FC" }}>
 
       {/* ── Hero ──────────────────────────────────────────── */}
       <div className="relative h-56 md:h-72 overflow-hidden">
@@ -395,7 +395,7 @@ export default function Home() {
         />
         <div
           className="absolute inset-0"
-          style={{ background: "linear-gradient(135deg, oklch(0.10 0.09 162 / 0.92) 0%, oklch(0.12 0.09 162 / 0.60) 50%, oklch(0.15 0.06 60 / 0.30) 100%)" }}
+          style={{ background: "linear-gradient(135deg, rgba(28,28,46,0.92) 0%, rgba(109,91,208,0.60) 50%, rgba(168,153,240,0.30) 100%)" }}
         />
         <div className="absolute inset-0 flex flex-col justify-end px-6 md:px-10 pb-6">
           <div className="flex items-center gap-2 mb-2">
@@ -403,20 +403,20 @@ export default function Home() {
             <span className="text-lg">🇲🇾</span>
             <span
               className="text-xs font-semibold px-2 py-0.5 rounded-full"
-              style={{ background: "oklch(0.32 0.10 162 / 0.8)", color: "oklch(0.95 0.04 162)", backdropFilter: "blur(4px)" }}
+              style={{ background: "rgba(109,91,208,0.8)", color: "#EDE9FB", backdropFilter: "blur(4px)" }}
             >
               2,557 Foods · 41 Nutrients · Cultural Explorer
             </span>
           </div>
           <h1
             className="text-2xl md:text-4xl font-extrabold leading-tight mb-1"
-            style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.98 0.005 90)" }}
+            style={{ fontFamily: "Inter, sans-serif", color: "#F7F9FC" }}
           >
             The Transnational Plate
           </h1>
           <p
             className="text-sm md:text-base max-w-lg"
-            style={{ color: "oklch(0.85 0.04 162)", fontFamily: "Nunito Sans, sans-serif" }}
+            style={{ color: "oklch(0.85 0.04 162)", fontFamily: "Inter, sans-serif" }}
           >
             Explore Singapore & Malaysia's living food heritage — from Kopitiam breakfasts to Mamak late nights, Nyonya feasts to Gen Z fusion.
           </p>
@@ -426,7 +426,7 @@ export default function Home() {
       {/* ── Sticky search + cultural dimensions ───────────── */}
       <div
         className="sticky top-0 z-20 border-b"
-        style={{ background: "oklch(0.99 0.002 90)", borderColor: "oklch(0.90 0.006 162)" }}
+        style={{ background: "#FFFFFF", borderColor: "#DDE3EE" }}
       >
         {/* Search bar */}
         <div className="px-4 md:px-8 pt-3 pb-2">
@@ -435,7 +435,7 @@ export default function Home() {
               <Search
                 size={16}
                 className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"
-                style={{ color: "oklch(0.52 0.015 65)" }}
+                style={{ color: "#4A5568" }}
               />
               <Input
                 value={query}
@@ -443,8 +443,8 @@ export default function Home() {
                 placeholder='Try "Malay breakfast", "Penang hawker", "low sodium seniors"...'
                 className="pl-9 pr-9 h-10 text-sm border-2 focus-visible:ring-0"
                 style={{
-                  borderColor: query ? "oklch(0.32 0.10 162)" : "oklch(0.88 0.008 90)",
-                  fontFamily: "Nunito Sans, sans-serif",
+                  borderColor: query ? "#6D5BD0" : "#DDE3EE",
+                  fontFamily: "Inter, sans-serif",
                   transition: "border-color 0.2s",
                   background: "white",
                 }}
@@ -461,7 +461,7 @@ export default function Home() {
                 <Loader2
                   size={14}
                   className="absolute right-3 top-1/2 -translate-y-1/2 animate-spin"
-                  style={{ color: "oklch(0.32 0.10 162)" }}
+                  style={{ color: "#6D5BD0" }}
                 />
               )}
             </div>
@@ -478,10 +478,10 @@ export default function Home() {
                   onClick={() => setActiveTab(tab.id)}
                   className="flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap transition-all"
                   style={{
-                    fontFamily: "Nunito Sans, sans-serif",
-                    background: activeTab === tab.id ? "oklch(0.32 0.10 162)" : "transparent",
-                    color: activeTab === tab.id ? "white" : "oklch(0.50 0.015 65)",
-                    border: `1px solid ${activeTab === tab.id ? "oklch(0.32 0.10 162)" : "oklch(0.88 0.008 90)"}`,
+                    fontFamily: "Inter, sans-serif",
+                    background: activeTab === tab.id ? "#6D5BD0" : "transparent",
+                    color: activeTab === tab.id ? "white" : "#4A5568",
+                    border: `1px solid ${activeTab === tab.id ? "#6D5BD0" : "#DDE3EE"}`,
                   }}
                 >
                   {tab.icon}
@@ -582,11 +582,11 @@ export default function Home() {
           {/* ── Results header ───────────────────────────── */}
           {hasSearched && !loading && (
             <div className="flex items-center justify-between mb-3">
-              <span className="text-sm font-medium" style={{ color: "oklch(0.45 0.015 65)", fontFamily: "Nunito Sans, sans-serif" }}>
+              <span className="text-sm font-medium" style={{ color: "#4A5568", fontFamily: "Inter, sans-serif" }}>
                 {total.toLocaleString()} food{total !== 1 ? "s" : ""}
                 {query ? ` for "${query}"` : " in database"}
               </span>
-              <span className="text-xs flex items-center gap-1" style={{ color: "oklch(0.60 0.015 65)", fontFamily: "Nunito Sans, sans-serif" }}>
+              <span className="text-xs flex items-center gap-1" style={{ color: "#8B9AB0", fontFamily: "Inter, sans-serif" }}>
                 <span>Cal · Na · K · Ca · Sugar · Fibre · Protein · Fat</span>
               </span>
             </div>
@@ -607,20 +607,20 @@ export default function Home() {
                 <div
                   key={i}
                   className="rounded-xl border animate-pulse overflow-hidden"
-                  style={{ borderColor: "oklch(0.92 0.004 286)", background: "white" }}
+                  style={{ borderColor: "#DDE3EE", background: "white" }}
                 >
                   <div className="p-4">
                     <div className="flex gap-1 mb-2">
-                      <div className="h-4 w-16 rounded-full" style={{ background: "oklch(0.90 0.004 286)" }} />
-                      <div className="h-4 w-12 rounded-full" style={{ background: "oklch(0.90 0.004 286)" }} />
+                      <div className="h-4 w-16 rounded-full" style={{ background: "#EDF0F7" }} />
+                      <div className="h-4 w-12 rounded-full" style={{ background: "#EDF0F7" }} />
                     </div>
-                    <div className="h-4 w-3/4 rounded mb-1" style={{ background: "oklch(0.88 0.004 286)" }} />
-                    <div className="h-3 w-full rounded mb-1" style={{ background: "oklch(0.92 0.004 286)" }} />
-                    <div className="h-3 w-2/3 rounded" style={{ background: "oklch(0.92 0.004 286)" }} />
+                    <div className="h-4 w-3/4 rounded mb-1" style={{ background: "#EDF0F7" }} />
+                    <div className="h-3 w-full rounded mb-1" style={{ background: "#DDE3EE" }} />
+                    <div className="h-3 w-2/3 rounded" style={{ background: "#DDE3EE" }} />
                   </div>
-                  <div className="px-3 pb-3 pt-1 grid grid-cols-4 gap-1" style={{ borderTop: "1px solid oklch(0.94 0.006 162)" }}>
+                  <div className="px-3 pb-3 pt-1 grid grid-cols-4 gap-1" style={{ borderTop: "1px solid #DDE3EE" }}>
                     {Array.from({ length: 8 }).map((_, j) => (
-                      <div key={j} className="h-10 rounded-md" style={{ background: "oklch(0.94 0.004 286)" }} />
+                      <div key={j} className="h-10 rounded-md" style={{ background: "#EDF0F7" }} />
                     ))}
                   </div>
                 </div>
@@ -642,17 +642,17 @@ export default function Home() {
             <div className="text-center py-16">
               <div
                 className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4"
-                style={{ background: "oklch(0.93 0.04 162)" }}
+                style={{ background: "#EDE9FB" }}
               >
-                <UtensilsCrossed size={28} style={{ color: "oklch(0.32 0.10 162)" }} />
+                <UtensilsCrossed size={28} style={{ color: "#6D5BD0" }} />
               </div>
               <h3
                 className="text-lg font-bold mb-2"
-                style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.25 0.015 65)" }}
+                style={{ fontFamily: "Inter, sans-serif", color: "#0A1F44" }}
               >
                 No foods found
               </h3>
-              <p className="text-sm mb-6" style={{ color: "oklch(0.55 0.015 65)", fontFamily: "Nunito Sans, sans-serif" }}>
+              <p className="text-sm mb-6" style={{ color: "#8B9AB0", fontFamily: "Inter, sans-serif" }}>
                 Try a cultural dimension — or use one of these:
               </p>
               <div className="flex flex-wrap justify-center gap-2">
@@ -661,7 +661,7 @@ export default function Home() {
                     key={preset.id}
                     onClick={() => handlePreset(preset)}
                     className="flex items-center gap-1.5 text-sm px-3 py-1.5 rounded-full border transition-colors hover:border-[oklch(0.32_0.10_162)] hover:text-[oklch(0.32_0.10_162)]"
-                    style={{ borderColor: "oklch(0.88 0.008 90)", color: "oklch(0.52 0.015 65)", fontFamily: "Nunito Sans, sans-serif" }}
+                    style={{ borderColor: "#DDE3EE", color: "#4A5568", fontFamily: "Inter, sans-serif" }}
                   >
                     <span>{preset.icon}</span>
                     <span>{preset.label}</span>
@@ -679,9 +679,9 @@ export default function Home() {
                 disabled={isLoadingMore}
                 className="px-8 py-3 rounded-full text-sm font-semibold border-2 transition-all hover:shadow-md disabled:opacity-50"
                 style={{
-                  fontFamily: "Nunito Sans, sans-serif",
-                  borderColor: "oklch(0.32 0.10 162)",
-                  color: "oklch(0.32 0.10 162)",
+                  fontFamily: "Inter, sans-serif",
+                  borderColor: "#6D5BD0",
+                  color: "#6D5BD0",
                   background: "white",
                 }}
               >

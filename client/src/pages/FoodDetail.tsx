@@ -35,22 +35,22 @@ function StatCard({
   highlight?: "warn" | "good" | "neutral";
 }) {
   const colors = {
-    warn:    { bg: "oklch(0.28 0.09 60)",  text: "oklch(0.98 0.005 90)", sub: "oklch(0.80 0.08 60)" },
-    good:    { bg: "oklch(0.26 0.09 162)", text: "oklch(0.98 0.005 90)", sub: "oklch(0.80 0.06 162)" },
-    neutral: { bg: "oklch(0.28 0.09 162)", text: "oklch(0.98 0.005 90)", sub: "oklch(0.80 0.04 162)" },
+    warn:    { bg: "oklch(0.28 0.09 60)",  text: "#F7F9FC", sub: "oklch(0.80 0.08 60)" },
+    good:    { bg: "oklch(0.26 0.09 162)", text: "#F7F9FC", sub: "oklch(0.80 0.06 162)" },
+    neutral: { bg: "#25253C", text: "#F7F9FC", sub: "oklch(0.80 0.04 162)" },
   }[highlight ?? "neutral"];
 
   return (
     <div className="rounded-lg px-3 py-2.5 text-center" style={{ background: colors.bg }}>
       <div
         className="text-xl font-extrabold leading-tight"
-        style={{ color: colors.text, fontFamily: "Sora, sans-serif" }}
+        style={{ color: colors.text, fontFamily: "Inter, sans-serif" }}
       >
         {value !== null && value !== undefined ? (
           value < 1 ? value.toFixed(1) : Math.round(value as number)
         ) : "—"}
       </div>
-      <div className="text-[10px] mt-0.5 opacity-80" style={{ color: colors.sub, fontFamily: "Nunito Sans, sans-serif" }}>
+      <div className="text-[10px] mt-0.5 opacity-80" style={{ color: colors.sub, fontFamily: "Inter, sans-serif" }}>
         {label} ({unit})
       </div>
     </div>
@@ -68,7 +68,7 @@ function CulturalStoryCard({ food }: { food: FoodItem }) {
   return (
     <div
       className="mx-4 md:mx-8 my-4 rounded-2xl overflow-hidden border"
-      style={{ borderColor: "oklch(0.88 0.008 90)", background: "white" }}
+      style={{ borderColor: "#DDE3EE", background: "white" }}
     >
       {/* Cultural header */}
       <div
@@ -78,7 +78,7 @@ function CulturalStoryCard({ food }: { food: FoodItem }) {
         <BookOpen size={14} style={{ color: "oklch(0.75 0.10 162)" }} />
         <span
           className="text-xs font-bold uppercase tracking-widest"
-          style={{ color: "oklch(0.75 0.10 162)", fontFamily: "Sora, sans-serif" }}
+          style={{ color: "oklch(0.75 0.10 162)", fontFamily: "Inter, sans-serif" }}
         >
           Food Culture & Heritage
         </span>
@@ -91,7 +91,7 @@ function CulturalStoryCard({ food }: { food: FoodItem }) {
             <div className="mb-4">
               <p
                 className="text-sm leading-relaxed italic"
-                style={{ color: "oklch(0.30 0.08 162)", fontFamily: "Nunito Sans, sans-serif" }}
+                style={{ color: "oklch(0.30 0.08 162)", fontFamily: "Inter, sans-serif" }}
               >
                 "{profile.story}"
               </p>
@@ -101,11 +101,11 @@ function CulturalStoryCard({ food }: { food: FoodItem }) {
           {profile?.heritageNote && (
             <div
               className="rounded-xl p-3 mb-4"
-              style={{ background: "oklch(0.95 0.04 162)", borderLeft: "3px solid oklch(0.32 0.10 162)" }}
+              style={{ background: "#EDE9FB", borderLeft: "3px solid #6D5BD0" }}
             >
               <div className="flex items-start gap-2">
-                <Leaf size={13} className="mt-0.5 flex-shrink-0" style={{ color: "oklch(0.32 0.10 162)" }} />
-                <p className="text-xs leading-relaxed" style={{ color: "oklch(0.32 0.10 162)", fontFamily: "Nunito Sans, sans-serif" }}>
+                <Leaf size={13} className="mt-0.5 flex-shrink-0" style={{ color: "#6D5BD0" }} />
+                <p className="text-xs leading-relaxed" style={{ color: "#6D5BD0", fontFamily: "Inter, sans-serif" }}>
                   {profile.heritageNote}
                 </p>
               </div>
@@ -159,19 +159,19 @@ function CulturalStoryCard({ food }: { food: FoodItem }) {
             >
               <div className="flex items-center gap-2 mb-1">
                 <Flame size={13} style={{ color: gi.color }} />
-                <span className="text-xs font-bold uppercase tracking-wide" style={{ color: gi.color, fontFamily: "Sora, sans-serif" }}>
+                <span className="text-xs font-bold uppercase tracking-wide" style={{ color: gi.color, fontFamily: "Inter, sans-serif" }}>
                   Glycaemic Index
                 </span>
               </div>
               <div className="flex items-baseline gap-2">
-                <span className="text-2xl font-extrabold" style={{ color: gi.color, fontFamily: "Sora, sans-serif" }}>
+                <span className="text-2xl font-extrabold" style={{ color: gi.color, fontFamily: "Inter, sans-serif" }}>
                   {gi.value ?? "~"}
                 </span>
                 <span className="text-sm font-semibold" style={{ color: gi.color }}>
                   {gi.label}
                 </span>
               </div>
-              <p className="text-xs mt-1 opacity-80" style={{ color: gi.color, fontFamily: "Nunito Sans, sans-serif" }}>
+              <p className="text-xs mt-1 opacity-80" style={{ color: gi.color, fontFamily: "Inter, sans-serif" }}>
                 {gi.level === "low" ? "Slow glucose release — suitable for blood sugar management" :
                  gi.level === "medium" ? "Moderate glucose release — consume in balanced portions" :
                  "Rapid glucose release — limit for diabetes management"}
@@ -184,13 +184,13 @@ function CulturalStoryCard({ food }: { food: FoodItem }) {
             <div>
               <div className="flex items-center gap-1.5 mb-2">
                 <MapPin size={12} style={{ color: "oklch(0.45 0.12 280)" }} />
-                <span className="text-xs font-bold uppercase tracking-wide" style={{ color: "oklch(0.45 0.12 280)", fontFamily: "Sora, sans-serif" }}>
+                <span className="text-xs font-bold uppercase tracking-wide" style={{ color: "oklch(0.45 0.12 280)", fontFamily: "Inter, sans-serif" }}>
                   Regional Variants
                 </span>
               </div>
               <div
                 className="rounded-xl p-3 text-xs leading-relaxed"
-                style={{ background: "oklch(0.96 0.04 280)", color: "oklch(0.35 0.12 280)", fontFamily: "Nunito Sans, sans-serif" }}
+                style={{ background: "oklch(0.96 0.04 280)", color: "oklch(0.35 0.12 280)", fontFamily: "Inter, sans-serif" }}
               >
                 {profile.regionalVariants.split(" · ").map((variant, i) => (
                   <div key={i} className="flex items-start gap-1.5 mb-1 last:mb-0">
@@ -207,7 +207,7 @@ function CulturalStoryCard({ food }: { food: FoodItem }) {
             <div>
               <div className="flex items-center gap-1.5 mb-2">
                 <Users size={12} style={{ color: "oklch(0.45 0.12 60)" }} />
-                <span className="text-xs font-bold uppercase tracking-wide" style={{ color: "oklch(0.45 0.12 60)", fontFamily: "Sora, sans-serif" }}>
+                <span className="text-xs font-bold uppercase tracking-wide" style={{ color: "oklch(0.45 0.12 60)", fontFamily: "Inter, sans-serif" }}>
                   Best Enjoyed At
                 </span>
               </div>
@@ -237,7 +237,7 @@ function CulturalStoryCard({ food }: { food: FoodItem }) {
                   <span
                     key={reg}
                     className="text-xs px-2 py-0.5 rounded-full font-medium"
-                    style={{ background: "oklch(0.96 0.004 286)", color: "oklch(0.40 0.015 65)", border: "1px solid oklch(0.88 0.004 286)" }}
+                    style={{ background: "oklch(0.96 0.004 286)", color: "#2F3A4A", border: "1px solid oklch(0.88 0.004 286)" }}
                   >
                     {r.flag} {r.label}
                   </span>
@@ -303,7 +303,7 @@ export default function FoodDetail() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <Loader2 size={28} className="animate-spin" style={{ color: "oklch(0.32 0.10 162)" }} />
+        <Loader2 size={28} className="animate-spin" style={{ color: "#6D5BD0" }} />
       </div>
     );
   }
@@ -330,14 +330,14 @@ export default function FoodDetail() {
   const sugarHighlight = n.sugar != null ? (n.sugar > 15 ? "warn" : n.sugar < 3 ? "good" : "neutral") : "neutral";
 
   return (
-    <div className="flex flex-col min-h-screen" style={{ background: "oklch(0.98 0.003 90)" }}>
+    <div className="flex flex-col min-h-screen" style={{ background: "#F7F9FC" }}>
 
       {/* ── Header ─────────────────────────────────────────── */}
       <div className="jade-block px-4 md:px-8 py-5">
         <Link href="/">
           <button
             className="flex items-center gap-1.5 text-xs mb-3 opacity-70 hover:opacity-100 transition-opacity"
-            style={{ color: "oklch(0.85 0.04 162)", fontFamily: "Nunito Sans, sans-serif" }}
+            style={{ color: "oklch(0.85 0.04 162)", fontFamily: "Inter, sans-serif" }}
           >
             <ArrowLeft size={13} /> Back to Explorer
           </button>
@@ -369,12 +369,12 @@ export default function FoodDetail() {
             </div>
             <h1
               className="text-xl md:text-2xl font-extrabold leading-tight mb-1"
-              style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.98 0.005 90)" }}
+              style={{ fontFamily: "Inter, sans-serif", color: "#F7F9FC" }}
             >
               {food.name}
             </h1>
             {food.description && (
-              <p className="text-sm opacity-75" style={{ color: "oklch(0.85 0.04 162)", fontFamily: "Nunito Sans, sans-serif" }}>
+              <p className="text-sm opacity-75" style={{ color: "oklch(0.85 0.04 162)", fontFamily: "Inter, sans-serif" }}>
                 {food.description}
               </p>
             )}
@@ -385,9 +385,9 @@ export default function FoodDetail() {
             size="sm"
             className="shrink-0 gap-1.5 text-xs font-semibold"
             style={{
-              background: "oklch(0.78 0.16 75)",
-              color: "oklch(0.18 0.015 65)",
-              fontFamily: "Sora, sans-serif",
+              background: "#A899F0",
+              color: "#0A1F44",
+              fontFamily: "Inter, sans-serif",
             }}
           >
             <Download size={13} /> Export CSV
@@ -417,7 +417,7 @@ export default function FoodDetail() {
       {/* ── Metadata strip ─────────────────────────────────── */}
       <div
         className="px-4 md:px-8 py-3 border-b flex flex-wrap gap-x-6 gap-y-1 text-xs"
-        style={{ background: "oklch(0.96 0.01 162)", borderColor: "oklch(0.88 0.008 90)", color: "oklch(0.40 0.08 162)", fontFamily: "Nunito Sans, sans-serif" }}
+        style={{ background: "oklch(0.96 0.01 162)", borderColor: "#DDE3EE", color: "oklch(0.40 0.08 162)", fontFamily: "Inter, sans-serif" }}
       >
         {food.defaultServingSize && <span><strong>Default Serving:</strong> {food.defaultServingSize}</span>}
         {food.alternativeServingSizes && <span><strong>Alt Serving:</strong> {food.alternativeServingSizes}</span>}
@@ -433,9 +433,9 @@ export default function FoodDetail() {
       {/* ── Weight calculator ──────────────────────────────── */}
       <div
         className="px-4 md:px-8 py-3 border-b flex flex-wrap items-center gap-3 mx-4 md:mx-8 rounded-xl mb-2"
-        style={{ background: "white", borderColor: "oklch(0.88 0.008 90)", border: "1px solid oklch(0.88 0.008 90)" }}
+        style={{ background: "white", borderColor: "#DDE3EE", border: "1px solid #DDE3EE" }}
       >
-        <div className="flex items-center gap-1.5 text-sm font-semibold" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.32 0.10 162)" }}>
+        <div className="flex items-center gap-1.5 text-sm font-semibold" style={{ fontFamily: "Inter, sans-serif", color: "#6D5BD0" }}>
           <Info size={14} />
           Calculate for custom weight:
         </div>
@@ -449,10 +449,10 @@ export default function FoodDetail() {
             min={1}
             max={2000}
           />
-          <span className="text-sm" style={{ color: "oklch(0.52 0.015 65)" }}>grams</span>
+          <span className="text-sm" style={{ color: "#4A5568" }}>grams</span>
         </div>
         {customW && (
-          <span className="text-xs px-2 py-1 rounded" style={{ background: "oklch(0.90 0.06 162)", color: "oklch(0.28 0.10 162)", fontFamily: "Nunito Sans, sans-serif" }}>
+          <span className="text-xs px-2 py-1 rounded" style={{ background: "oklch(0.90 0.06 162)", color: "oklch(0.28 0.10 162)", fontFamily: "Inter, sans-serif" }}>
             Showing values for {customW}g portion
           </span>
         )}
@@ -472,7 +472,7 @@ export default function FoodDetail() {
       {/* Footer note */}
       <div
         className="px-4 md:px-8 py-3 text-xs border-t"
-        style={{ borderColor: "oklch(0.88 0.008 90)", color: "oklch(0.65 0.01 90)", fontFamily: "Nunito Sans, sans-serif" }}
+        style={{ borderColor: "#DDE3EE", color: "oklch(0.65 0.01 90)", fontFamily: "Inter, sans-serif" }}
       >
         <strong>—</strong> No data available · <strong>Trace</strong> Present below minimum detection limit · Data from HPB SG FoodID · GI values are approximate estimates from published literature
       </div>

@@ -211,10 +211,10 @@ export default function ImportPaste() {
     <div className="flex flex-col min-h-screen">
       {/* Header */}
       <div className="jade-block px-4 md:px-8 py-5">
-        <h1 className="text-xl font-extrabold mb-1" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.98 0.005 90)" }}>
+        <h1 className="text-xl font-extrabold mb-1" style={{ fontFamily: "Inter, sans-serif", color: "#F7F9FC" }}>
           Paste & Import
         </h1>
-        <p className="text-sm opacity-75" style={{ color: "oklch(0.85 0.04 162)", fontFamily: "Nunito Sans, sans-serif" }}>
+        <p className="text-sm opacity-75" style={{ color: "oklch(0.85 0.04 162)", fontFamily: "Inter, sans-serif" }}>
           Copy a food entry from the HPB SG FoodID website and paste it here to save to your local database
         </p>
       </div>
@@ -225,13 +225,13 @@ export default function ImportPaste() {
           {/* Left: Paste input */}
           <div>
             <div className="flex items-center justify-between mb-2">
-              <label className="text-sm font-bold" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.28 0.015 65)" }}>
+              <label className="text-sm font-bold" style={{ fontFamily: "Inter, sans-serif", color: "#2F3A4A" }}>
                 Paste HPB Food Entry
               </label>
               <button
                 onClick={loadExample}
                 className="text-xs underline"
-                style={{ color: "oklch(0.32 0.10 162)", fontFamily: "Nunito Sans, sans-serif" }}
+                style={{ color: "#6D5BD0", fontFamily: "Inter, sans-serif" }}
               >
                 Load example
               </button>
@@ -243,7 +243,7 @@ export default function ImportPaste() {
               placeholder={`Paste the full food entry from https://pphtpc.hpb.gov.sg/web/sgfoodid/tools/food-search\n\nInclude everything from the food name down to the nutrient values.`}
               className="font-mono text-xs h-80 resize-none border-2"
               style={{
-                borderColor: pasteText ? "oklch(0.32 0.10 162)" : "oklch(0.88 0.008 90)",
+                borderColor: pasteText ? "#6D5BD0" : "#DDE3EE",
                 background: "oklch(0.99 0 0)",
                 lineHeight: "1.6",
               }}
@@ -255,9 +255,9 @@ export default function ImportPaste() {
                 disabled={!pasteText.trim()}
                 className="flex-1 gap-1.5 font-semibold"
                 style={{
-                  background: "oklch(0.32 0.10 162)",
-                  color: "oklch(0.98 0.005 90)",
-                  fontFamily: "Sora, sans-serif",
+                  background: "#6D5BD0",
+                  color: "#F7F9FC",
+                  fontFamily: "Inter, sans-serif",
                 }}
               >
                 <ClipboardPaste size={14} /> Parse Entry
@@ -284,10 +284,10 @@ export default function ImportPaste() {
 
             {/* Instructions */}
             <div className="mt-4 p-3 rounded-lg text-xs space-y-1.5"
-              style={{ background: "oklch(0.94 0.015 162)", color: "oklch(0.40 0.08 162)", fontFamily: "Nunito Sans, sans-serif" }}>
-              <p className="font-semibold" style={{ fontFamily: "Sora, sans-serif" }}>How to copy from HPB:</p>
+              style={{ background: "oklch(0.94 0.015 162)", color: "oklch(0.40 0.08 162)", fontFamily: "Inter, sans-serif" }}>
+              <p className="font-semibold" style={{ fontFamily: "Inter, sans-serif" }}>How to copy from HPB:</p>
               <ol className="list-decimal list-inside space-y-1">
-                <li>Go to <a href="https://pphtpc.hpb.gov.sg/web/sgfoodid/tools/food-search" target="_blank" rel="noopener" className="underline" style={{ color: "oklch(0.32 0.10 162)" }}>HPB SG FoodID</a></li>
+                <li>Go to <a href="https://pphtpc.hpb.gov.sg/web/sgfoodid/tools/food-search" target="_blank" rel="noopener" className="underline" style={{ color: "#6D5BD0" }}>HPB SG FoodID</a></li>
                 <li>Search for a food and open its detail page</li>
                 <li>Select all text on the page (Ctrl+A or Cmd+A)</li>
                 <li>Copy (Ctrl+C or Cmd+C) and paste here</li>
@@ -300,21 +300,21 @@ export default function ImportPaste() {
           <div>
             {!parsed && !parseError && (
               <div className="flex flex-col items-center justify-center h-full min-h-48 rounded-xl border-2 border-dashed"
-                style={{ borderColor: "oklch(0.88 0.008 90)", color: "oklch(0.65 0.01 90)" }}>
+                style={{ borderColor: "#DDE3EE", color: "oklch(0.65 0.01 90)" }}>
                 <ClipboardPaste size={32} className="mb-3 opacity-40" />
-                <p className="text-sm font-medium" style={{ fontFamily: "Sora, sans-serif" }}>
+                <p className="text-sm font-medium" style={{ fontFamily: "Inter, sans-serif" }}>
                   Parsed entry will appear here
                 </p>
               </div>
             )}
 
             {parsed && (
-              <div className="border rounded-xl overflow-hidden" style={{ borderColor: "oklch(0.88 0.008 90)" }}>
+              <div className="border rounded-xl overflow-hidden" style={{ borderColor: "#DDE3EE" }}>
                 {/* Preview header */}
                 <div className="jade-block px-4 py-3 flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <CheckCircle size={16} style={{ color: "oklch(0.78 0.16 75)" }} />
-                    <span className="text-sm font-bold" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.98 0.005 90)" }}>
+                    <CheckCircle size={16} style={{ color: "#A899F0" }} />
+                    <span className="text-sm font-bold" style={{ fontFamily: "Inter, sans-serif", color: "#F7F9FC" }}>
                       Parsed Successfully
                     </span>
                   </div>
@@ -326,20 +326,20 @@ export default function ImportPaste() {
                 <div className="p-4 space-y-3">
                   {/* Editable name */}
                   <div>
-                    <label className="text-xs font-semibold mb-1 block" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.52 0.015 65)" }}>
+                    <label className="text-xs font-semibold mb-1 block" style={{ fontFamily: "Inter, sans-serif", color: "#4A5568" }}>
                       Food Name
                     </label>
                     <Input
                       value={editName}
                       onChange={e => setEditName(e.target.value)}
                       className="h-8 text-sm font-semibold"
-                      style={{ fontFamily: "Sora, sans-serif" }}
+                      style={{ fontFamily: "Inter, sans-serif" }}
                     />
                   </div>
 
                   {/* Editable ID */}
                   <div>
-                    <label className="text-xs font-semibold mb-1 block" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.52 0.015 65)" }}>
+                    <label className="text-xs font-semibold mb-1 block" style={{ fontFamily: "Inter, sans-serif", color: "#4A5568" }}>
                       Record ID (auto-generated, can edit)
                     </label>
                     <Input
@@ -351,7 +351,7 @@ export default function ImportPaste() {
 
                   {/* Metadata */}
                   <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs"
-                    style={{ color: "oklch(0.40 0.08 162)", fontFamily: "Nunito Sans, sans-serif" }}>
+                    style={{ color: "oklch(0.40 0.08 162)", fontFamily: "Inter, sans-serif" }}>
                     {parsed.foodGroup && <div><strong>Group:</strong> {parsed.foodGroup}</div>}
                     {parsed.foodSubgroup && <div><strong>Subgroup:</strong> {parsed.foodSubgroup}</div>}
                     {parsed.defaultServingSize && <div><strong>Serving:</strong> {parsed.defaultServingSize}</div>}
@@ -362,7 +362,7 @@ export default function ImportPaste() {
 
                   {/* Key nutrients preview */}
                   <div>
-                    <p className="text-xs font-semibold mb-2 uppercase tracking-wider" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.52 0.015 65)" }}>
+                    <p className="text-xs font-semibold mb-2 uppercase tracking-wider" style={{ fontFamily: "Inter, sans-serif", color: "#4A5568" }}>
                       Key Nutrients (per 100g)
                     </p>
                     <div className="grid grid-cols-3 gap-1.5">
@@ -371,10 +371,10 @@ export default function ImportPaste() {
                         const val = parsed.nutrientsPer100g?.[key];
                         return (
                           <div key={key} className="text-center p-2 rounded" style={{ background: "oklch(0.94 0.015 162)" }}>
-                            <div className="nutrient-value text-sm font-bold" style={{ color: "oklch(0.22 0.09 162)" }}>
+                            <div className="nutrient-value text-sm font-bold" style={{ color: "#1C1C2E" }}>
                               {val !== null && val !== undefined ? formatNutrientValue(val as number, def?.unit ?? "") : "—"}
                             </div>
-                            <div className="text-[9px]" style={{ color: "oklch(0.52 0.015 65)", fontFamily: "Nunito Sans, sans-serif" }}>
+                            <div className="text-[9px]" style={{ color: "#4A5568", fontFamily: "Inter, sans-serif" }}>
                               {def?.label}
                             </div>
                           </div>
@@ -384,7 +384,7 @@ export default function ImportPaste() {
                   </div>
 
                   {/* Nutrient count */}
-                  <div className="text-xs" style={{ color: "oklch(0.52 0.015 65)", fontFamily: "Nunito Sans, sans-serif" }}>
+                  <div className="text-xs" style={{ color: "#4A5568", fontFamily: "Inter, sans-serif" }}>
                     {Object.values(parsed.nutrientsPer100g ?? {}).filter(v => v !== null).length} of 41 nutrients parsed
                   </div>
 
@@ -394,9 +394,9 @@ export default function ImportPaste() {
                     disabled={saved}
                     className="w-full gap-1.5 font-semibold"
                     style={{
-                      background: saved ? "oklch(0.48 0.10 162)" : "oklch(0.78 0.16 75)",
-                      color: saved ? "oklch(0.98 0.005 90)" : "oklch(0.18 0.015 65)",
-                      fontFamily: "Sora, sans-serif",
+                      background: saved ? "#A899F0" : "#A899F0",
+                      color: saved ? "#F7F9FC" : "#0A1F44",
+                      fontFamily: "Inter, sans-serif",
                     }}
                   >
                     <Database size={14} />
@@ -404,9 +404,9 @@ export default function ImportPaste() {
                   </Button>
 
                   {saved && (
-                    <p className="text-xs text-center" style={{ color: "oklch(0.52 0.015 65)", fontFamily: "Nunito Sans, sans-serif" }}>
+                    <p className="text-xs text-center" style={{ color: "#4A5568", fontFamily: "Inter, sans-serif" }}>
                       View in{" "}
-                      <a href="/db" className="underline" style={{ color: "oklch(0.32 0.10 162)" }}>
+                      <a href="/db" className="underline" style={{ color: "#6D5BD0" }}>
                         My Database <ChevronRight size={10} className="inline" />
                       </a>
                     </p>

@@ -1,15 +1,14 @@
 /* =============================================================
-   FoodDB — Tropical Bauhaus Design System
-   Design Movement: Bauhaus functionalism × Southeast Asian tropical modernism
-   Core: Bold geometry, deep jade, warm amber, ivory, Space Mono numerics
+   Innuir FoodDB — Clinical Design System v2.0
+   Brand: Innuir — "Your life, understood."
+   Primary: Deep purple #6D5BD0 · Background: #F7F9FC · Dark: #0F0F1C
+   Typography: Inter (UI) · Space Mono (clinical data)
    ============================================================= */
-
 @import "tailwindcss";
 @import "tw-animate-css";
-
 @custom-variant dark (&:is(.dark *));
 
-/* Google Fonts loaded in index.html: Sora + Nunito Sans + Space Mono */
+/* Google Fonts: Inter + Space Mono loaded in index.html */
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -49,57 +48,104 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  /* Tropical Bauhaus custom tokens */
-  --color-jade: oklch(0.32 0.10 162);
-  --color-jade-dark: oklch(0.22 0.09 162);
-  --color-jade-light: oklch(0.48 0.10 162);
-  --color-amber: oklch(0.78 0.16 75);
-  --color-amber-dark: oklch(0.62 0.18 65);
-  --color-ivory: oklch(0.98 0.005 90);
-  --color-coral: oklch(0.65 0.18 25);
-  --color-slate-warm: oklch(0.28 0.015 65);
+  /* ── Innuir brand tokens ── */
+  /* Background layers */
+  --color-innuir-bg:    #F7F9FC;
+  --color-innuir-card:  #FFFFFF;
+  --color-innuir-input: #EDF0F7;
+  /* Text */
+  --color-innuir-deep:  #0A1F44;
+  --color-innuir-slate: #2F3A4A;
+  --color-innuir-high:  #0B1A2B;
+  /* Brand & interactive */
+  --color-innuir-accent: #6D5BD0;
+  --color-innuir-accent-light: #A899F0;
+  --color-innuir-accent-bg: #EDE9FB;
+  /* Sidebar */
+  --color-innuir-sidebar: #1C1C2E;
+  --color-innuir-sidebar-hover: #25253C;
+  --color-innuir-sidebar-border: #2D2D45;
+  /* Health state */
+  --color-innuir-success: #0F9D58;
+  --color-innuir-warning: #D97706;
+  --color-innuir-error:   #B00020;
 }
 
 :root {
-  --radius: 0.4rem;
+  --radius: 0.5rem;
 
-  /* Tropical Bauhaus palette */
-  --background: oklch(0.98 0.005 90);        /* warm ivory */
-  --foreground: oklch(0.18 0.015 65);        /* deep warm charcoal */
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.18 0.015 65);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.18 0.015 65);
-  --primary: oklch(0.32 0.10 162);           /* deep jade */
-  --primary-foreground: oklch(0.98 0.005 90);
-  --secondary: oklch(0.94 0.01 90);
-  --secondary-foreground: oklch(0.28 0.015 65);
-  --muted: oklch(0.94 0.008 90);
-  --muted-foreground: oklch(0.52 0.015 65);
-  --accent: oklch(0.78 0.16 75);             /* warm amber */
-  --accent-foreground: oklch(0.18 0.015 65);
-  --destructive: oklch(0.65 0.18 25);        /* coral/red */
-  --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(0.88 0.008 90);
-  --input: oklch(0.92 0.006 90);
-  --ring: oklch(0.32 0.10 162);
+  /* ── Innuir Light Mode ── */
+  --background: #F7F9FC;
+  --foreground: #0A1F44;
+  --card: #FFFFFF;
+  --card-foreground: #0A1F44;
+  --popover: #FFFFFF;
+  --popover-foreground: #0A1F44;
+  --primary: #6D5BD0;
+  --primary-foreground: #FFFFFF;
+  --secondary: #EDF0F7;
+  --secondary-foreground: #2F3A4A;
+  --muted: #EDF0F7;
+  --muted-foreground: #2F3A4A;
+  --accent: #EDE9FB;
+  --accent-foreground: #6D5BD0;
+  --destructive: #B00020;
+  --destructive-foreground: #FFFFFF;
+  --border: #DDE3EE;
+  --input: #EDF0F7;
+  --ring: #6D5BD0;
 
-  /* Charts — jade spectrum */
-  --chart-1: oklch(0.32 0.10 162);
-  --chart-2: oklch(0.48 0.10 162);
-  --chart-3: oklch(0.78 0.16 75);
-  --chart-4: oklch(0.65 0.18 25);
-  --chart-5: oklch(0.22 0.09 162);
+  /* Charts — Innuir clinical palette */
+  --chart-1: #6D5BD0;
+  --chart-2: #0F9D58;
+  --chart-3: #D97706;
+  --chart-4: #B00020;
+  --chart-5: #A899F0;
 
-  /* Sidebar */
-  --sidebar: oklch(0.22 0.09 162);
-  --sidebar-foreground: oklch(0.92 0.008 90);
-  --sidebar-primary: oklch(0.78 0.16 75);
-  --sidebar-primary-foreground: oklch(0.18 0.015 65);
-  --sidebar-accent: oklch(0.28 0.09 162);
-  --sidebar-accent-foreground: oklch(0.92 0.008 90);
-  --sidebar-border: oklch(0.28 0.09 162);
-  --sidebar-ring: oklch(0.78 0.16 75);
+  /* Sidebar — dark navy */
+  --sidebar: #1C1C2E;
+  --sidebar-foreground: #E8EEF8;
+  --sidebar-primary: #6D5BD0;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #25253C;
+  --sidebar-accent-foreground: #E8EEF8;
+  --sidebar-border: #2D2D45;
+  --sidebar-ring: #6D5BD0;
+}
+
+.dark {
+  --background: #0F0F1C;
+  --foreground: #E8EEF8;
+  --card: #1C1C2E;
+  --card-foreground: #E8EEF8;
+  --popover: #1C1C2E;
+  --popover-foreground: #E8EEF8;
+  --primary: #A899F0;
+  --primary-foreground: #0F0F1C;
+  --secondary: #25253C;
+  --secondary-foreground: #8B9AB0;
+  --muted: #25253C;
+  --muted-foreground: #8B9AB0;
+  --accent: #25253C;
+  --accent-foreground: #A899F0;
+  --destructive: #FF6B7A;
+  --destructive-foreground: #0F0F1C;
+  --border: #2D2D45;
+  --input: #25253C;
+  --ring: #A899F0;
+  --chart-1: #A899F0;
+  --chart-2: #2DCB71;
+  --chart-3: #FFB930;
+  --chart-4: #FF6B7A;
+  --chart-5: #6D5BD0;
+  --sidebar: #0F0F1C;
+  --sidebar-foreground: #E8EEF8;
+  --sidebar-primary: #A899F0;
+  --sidebar-primary-foreground: #0F0F1C;
+  --sidebar-accent: #1C1C2E;
+  --sidebar-accent-foreground: #E8EEF8;
+  --sidebar-border: #2D2D45;
+  --sidebar-ring: #A899F0;
 }
 
 @layer base {
@@ -108,10 +154,15 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Nunito Sans', system-ui, sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
   }
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Sora', system-ui, sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-weight: 700;
+    color: #0A1F44;
   }
   .font-mono, .tabular-nums {
     font-family: 'Space Mono', 'Courier New', monospace;
@@ -145,68 +196,138 @@
     .container { padding-left: 2rem; padding-right: 2rem; max-width: 1280px; }
   }
 
-  /* Tropical Bauhaus signature components */
-  .jade-block {
-    background-color: oklch(0.32 0.10 162);
-    color: oklch(0.98 0.005 90);
+  /* ── Innuir component tokens ── */
+  .innuir-card {
+    background: #FFFFFF;
+    border: 1px solid #DDE3EE;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
   }
-  .amber-block {
-    background-color: oklch(0.78 0.16 75);
-    color: oklch(0.18 0.015 65);
+  .innuir-card:hover {
+    box-shadow: 0 4px 12px rgba(109,91,208,0.15);
+    border-color: #A899F0;
+    transform: translateY(-1px);
+    transition: all 0.2s ease;
   }
+
+  /* Clinical data display */
   .nutrient-value {
     font-family: 'Space Mono', monospace;
     font-size: 0.9rem;
     font-weight: 700;
     letter-spacing: -0.02em;
+    color: #0A1F44;
   }
   .nutrient-dash {
-    color: oklch(0.65 0.01 90);
+    color: #8B9AB0;
     font-family: 'Space Mono', monospace;
   }
+
+  /* Innuir accent bar */
   .section-bar {
-    height: 4px;
-    background: linear-gradient(90deg, oklch(0.32 0.10 162), oklch(0.78 0.16 75));
+    height: 3px;
+    background: linear-gradient(90deg, #6D5BD0, #A899F0);
+    border-radius: 2px;
   }
-  .food-card {
-    @apply bg-card border border-border rounded-lg overflow-hidden transition-all duration-200;
-  }
-  .food-card:hover {
-    @apply shadow-lg;
-    transform: translateY(-2px);
-    border-color: oklch(0.48 0.10 162);
-  }
+
+  /* Health state badges — always color + icon + text */
   .pill-badge {
     @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold;
-    font-family: 'Sora', sans-serif;
+    font-family: 'Inter', sans-serif;
+  }
+  .pill-success {
+    background: #DCFCE7;
+    color: #0F9D58;
+    border: 1px solid #BBF7D0;
+  }
+  .pill-warning {
+    background: #FEF3C7;
+    color: #D97706;
+    border: 1px solid #FDE68A;
+  }
+  .pill-error {
+    background: #FEE2E2;
+    color: #B00020;
+    border: 1px solid #FECACA;
+  }
+  .pill-purple {
+    background: #EDE9FB;
+    color: #6D5BD0;
+    border: 1px solid #C4B5FD;
+  }
+
+  /* Legacy aliases for compatibility */
+  .jade-block {
+    background-color: #6D5BD0;
+    color: #FFFFFF;
+  }
+  .amber-block {
+    background-color: #EDE9FB;
+    color: #6D5BD0;
   }
   .pill-green {
-    background: oklch(0.90 0.06 162);
-    color: oklch(0.22 0.09 162);
+    background: #DCFCE7;
+    color: #0F9D58;
+    border: 1px solid #BBF7D0;
   }
   .pill-amber {
-    background: oklch(0.95 0.08 75);
-    color: oklch(0.45 0.14 65);
+    background: #FEF3C7;
+    color: #D97706;
+    border: 1px solid #FDE68A;
   }
   .pill-red {
-    background: oklch(0.94 0.06 25);
-    color: oklch(0.45 0.18 25);
+    background: #FEE2E2;
+    color: #B00020;
+    border: 1px solid #FECACA;
   }
+
+  /* Food card */
+  .food-card {
+    @apply bg-card border border-border rounded-xl overflow-hidden transition-all duration-200;
+  }
+  .food-card:hover {
+    box-shadow: 0 4px 16px rgba(109,91,208,0.15);
+    transform: translateY(-2px);
+    border-color: #A899F0;
+  }
+
+  /* Upload zone */
   .upload-zone {
-    border: 2.5px dashed oklch(0.65 0.07 162);
-    background: oklch(0.96 0.01 162);
+    border: 2px dashed #A899F0;
+    background: #EDE9FB;
     transition: all 0.25s ease;
   }
   .upload-zone:hover, .upload-zone.drag-over {
-    border-color: oklch(0.32 0.10 162);
-    background: oklch(0.92 0.03 162);
+    border-color: #6D5BD0;
+    background: #E0D9F9;
   }
-  .nav-link {
-    @apply text-sm font-semibold transition-colors duration-150;
-    font-family: 'Sora', sans-serif;
-    color: oklch(0.92 0.008 90);
+
+  /* Scrollbar */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
-  .nav-link:hover, .nav-link.active {
-    color: oklch(0.78 0.16 75);
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Innuir primary button */
+  .btn-innuir {
+    background: #6D5BD0;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 10px 20px;
+    min-height: 44px;
+    transition: background 0.15s ease;
+  }
+  .btn-innuir:hover {
+    background: #5E4EC0;
+  }
+  .btn-innuir:active {
+    background: #4F40B0;
   }
 }

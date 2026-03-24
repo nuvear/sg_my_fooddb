@@ -127,8 +127,8 @@ const MOCK_RUN_HISTORY: PipelineRun[] = [
 function StatCard({ label, value, sub, color }: { label: string; value: string; sub?: string; color: string }) {
   return (
     <div className="rounded-xl p-3 border" style={{ background: "white", borderColor: "oklch(0.90 0.005 65)" }}>
-      <div className="text-xl font-black" style={{ fontFamily: "Sora, sans-serif", color: `oklch(0.30 0.12 ${color})` }}>{value}</div>
-      <div className="text-xs font-semibold mt-0.5" style={{ color: "oklch(0.45 0.015 65)" }}>{label}</div>
+      <div className="text-xl font-black" style={{ fontFamily: "Inter, sans-serif", color: `oklch(0.30 0.12 ${color})` }}>{value}</div>
+      <div className="text-xs font-semibold mt-0.5" style={{ color: "#4A5568" }}>{label}</div>
       {sub && <div className="text-[10px] mt-0.5" style={{ color: "oklch(0.60 0.015 65)" }}>{sub}</div>}
     </div>
   );
@@ -138,7 +138,7 @@ function StatCard({ label, value, sub, color }: { label: string; value: string; 
 function AgentCard({ agent, isActive }: { agent: AgentDef; isActive: boolean }) {
   const [expanded, setExpanded] = useState(false);
 
-  const statusColor = isActive ? "oklch(0.35 0.12 162)" : "oklch(0.55 0.015 65)";
+  const statusColor = isActive ? "oklch(0.35 0.12 162)" : "#8B9AB0";
   const statusBg = isActive ? "oklch(0.93 0.06 162)" : "oklch(0.95 0.005 65)";
   const statusLabel = isActive ? "Active" : "Idle";
   const statusIcon = isActive ? <CheckCircle2 size={11} /> : <Clock size={11} />;
@@ -152,7 +152,7 @@ function AgentCard({ agent, isActive }: { agent: AgentDef; isActive: boolean }) 
           </div>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-0.5">
-              <h3 className="font-bold text-sm" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.20 0.015 65)" }}>
+              <h3 className="font-bold text-sm" style={{ fontFamily: "Inter, sans-serif", color: "#0A1F44" }}>
                 {agent.name}
               </h3>
               <span className="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full" style={{ background: statusBg, color: statusColor }}>
@@ -177,16 +177,16 @@ function AgentCard({ agent, isActive }: { agent: AgentDef; isActive: boolean }) 
           <div className="mt-2.5 space-y-2">
             <div className="grid grid-cols-2 gap-2">
               <div className="rounded-lg p-2.5" style={{ background: "oklch(0.97 0.008 65)" }}>
-                <div className="text-[10px] font-bold mb-1" style={{ color: "oklch(0.45 0.015 65)" }}>SCHEDULE</div>
+                <div className="text-[10px] font-bold mb-1" style={{ color: "#4A5568" }}>SCHEDULE</div>
                 <div className="text-xs" style={{ color: "oklch(0.30 0.015 65)" }}>{agent.schedule}</div>
               </div>
               <div className="rounded-lg p-2.5" style={{ background: "oklch(0.97 0.008 65)" }}>
-                <div className="text-[10px] font-bold mb-1" style={{ color: "oklch(0.45 0.015 65)" }}>OUTPUT</div>
+                <div className="text-[10px] font-bold mb-1" style={{ color: "#4A5568" }}>OUTPUT</div>
                 <div className="text-xs font-mono truncate" style={{ color: "oklch(0.30 0.015 65)" }}>{agent.outputTarget}</div>
               </div>
             </div>
             <div className="rounded-lg p-2.5" style={{ background: "oklch(0.97 0.008 65)" }}>
-              <div className="text-[10px] font-bold mb-1" style={{ color: "oklch(0.45 0.015 65)" }}>DATA SOURCES</div>
+              <div className="text-[10px] font-bold mb-1" style={{ color: "#4A5568" }}>DATA SOURCES</div>
               <div className="flex flex-wrap gap-1">
                 {agent.sources.map(s => (
                   <span key={s} className="text-[10px] px-2 py-0.5 rounded-full" style={{ background: `oklch(0.93 0.04 ${agent.color})`, color: `oklch(0.35 0.08 ${agent.color})` }}>
@@ -223,7 +223,7 @@ function RunRow({ run }: { run: PipelineRun }) {
           <span className="text-xs font-semibold" style={{ color: "oklch(0.30 0.015 65)" }}>
             {date.toLocaleDateString("en-SG", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" })}
           </span>
-          <span className="text-[10px]" style={{ color: "oklch(0.55 0.015 65)" }}>
+          <span className="text-[10px]" style={{ color: "#8B9AB0" }}>
             {run.venues_scraped} venues · {run.dishes_found} dishes · {run.duration_s}s
           </span>
         </div>
@@ -270,7 +270,7 @@ export default function Agents() {
                 <Activity size={18} style={{ color: "oklch(0.20 0.10 200)" }} />
               </div>
               <div>
-                <h1 className="text-xl font-black" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.97 0.02 65)" }}>
+                <h1 className="text-xl font-black" style={{ fontFamily: "Inter, sans-serif", color: "oklch(0.97 0.02 65)" }}>
                   Background Agents
                 </h1>
                 <p className="text-xs" style={{ color: "oklch(0.75 0.04 65)" }}>
@@ -291,19 +291,19 @@ export default function Agents() {
           {/* Stats */}
           <div className="grid grid-cols-4 gap-2">
             <div className="rounded-xl p-2.5 text-center" style={{ background: "oklch(0.22 0.04 65 / 0.5)" }}>
-              <div className="text-lg font-black" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.90 0.10 200)" }}>6</div>
+              <div className="text-lg font-black" style={{ fontFamily: "Inter, sans-serif", color: "oklch(0.90 0.10 200)" }}>6</div>
               <div className="text-[10px] font-semibold" style={{ color: "oklch(0.70 0.04 65)" }}>Agents</div>
             </div>
             <div className="rounded-xl p-2.5 text-center" style={{ background: "oklch(0.22 0.04 65 / 0.5)" }}>
-              <div className="text-lg font-black" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.90 0.10 162)" }}>2</div>
+              <div className="text-lg font-black" style={{ fontFamily: "Inter, sans-serif", color: "oklch(0.90 0.10 162)" }}>2</div>
               <div className="text-[10px] font-semibold" style={{ color: "oklch(0.70 0.04 65)" }}>Active Now</div>
             </div>
             <div className="rounded-xl p-2.5 text-center" style={{ background: "oklch(0.22 0.04 65 / 0.5)" }}>
-              <div className="text-lg font-black" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.90 0.10 55)" }}>20</div>
+              <div className="text-lg font-black" style={{ fontFamily: "Inter, sans-serif", color: "oklch(0.90 0.10 55)" }}>20</div>
               <div className="text-[10px] font-semibold" style={{ color: "oklch(0.70 0.04 65)" }}>Venues</div>
             </div>
             <div className="rounded-xl p-2.5 text-center" style={{ background: "oklch(0.22 0.04 65 / 0.5)" }}>
-              <div className="text-lg font-black" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.90 0.10 280)" }}>Daily</div>
+              <div className="text-lg font-black" style={{ fontFamily: "Inter, sans-serif", color: "oklch(0.90 0.10 280)" }}>Daily</div>
               <div className="text-[10px] font-semibold" style={{ color: "oklch(0.70 0.04 65)" }}>Cadence</div>
             </div>
           </div>
@@ -314,7 +314,7 @@ export default function Agents() {
 
         {/* Pipeline Architecture */}
         <div className="rounded-2xl border p-4" style={{ background: "white", borderColor: "oklch(0.90 0.005 65)" }}>
-          <h2 className="text-sm font-bold mb-3" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.22 0.015 65)" }}>
+          <h2 className="text-sm font-bold mb-3" style={{ fontFamily: "Inter, sans-serif", color: "oklch(0.22 0.015 65)" }}>
             Enrichment Pipeline
           </h2>
           <div className="flex items-center gap-1 overflow-x-auto pb-1">
@@ -331,7 +331,7 @@ export default function Agents() {
                 <div key={i} className="text-lg flex-shrink-0" style={{ color: "oklch(0.70 0.015 65)" }}>→</div>
               ) : (
                 <div key={i} className="rounded-xl p-2.5 text-center flex-shrink-0 min-w-[80px]" style={{ background: `oklch(0.93 0.04 ${s.color})` }}>
-                  <div className="text-base font-black" style={{ color: `oklch(0.30 0.12 ${s.color})`, fontFamily: "Sora, sans-serif" }}>{s.step}</div>
+                  <div className="text-base font-black" style={{ color: `oklch(0.30 0.12 ${s.color})`, fontFamily: "Inter, sans-serif" }}>{s.step}</div>
                   <div className="text-[11px] font-bold" style={{ color: `oklch(0.30 0.10 ${s.color})` }}>{s.label}</div>
                   <div className="text-[9px]" style={{ color: `oklch(0.45 0.08 ${s.color})` }}>{s.sub}</div>
                 </div>
@@ -345,7 +345,7 @@ export default function Agents() {
 
         {/* Agent Cards */}
         <div>
-          <h2 className="text-sm font-bold mb-2.5" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.22 0.015 65)" }}>
+          <h2 className="text-sm font-bold mb-2.5" style={{ fontFamily: "Inter, sans-serif", color: "oklch(0.22 0.015 65)" }}>
             Agent Registry
           </h2>
           <div className="space-y-2.5">
@@ -358,7 +358,7 @@ export default function Agents() {
         {/* Run History */}
         <div className="rounded-2xl border p-4" style={{ background: "white", borderColor: "oklch(0.90 0.005 65)" }}>
           <div className="flex items-center justify-between mb-3">
-            <h2 className="text-sm font-bold" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.22 0.015 65)" }}>
+            <h2 className="text-sm font-bold" style={{ fontFamily: "Inter, sans-serif", color: "oklch(0.22 0.015 65)" }}>
               Recent Pipeline Runs
             </h2>
             <span className="text-[10px]" style={{ color: "oklch(0.60 0.015 65)" }}>
@@ -374,7 +374,7 @@ export default function Agents() {
 
         {/* Coverage Map */}
         <div className="rounded-2xl border p-4" style={{ background: "white", borderColor: "oklch(0.90 0.005 65)" }}>
-          <h2 className="text-sm font-bold mb-3" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.22 0.015 65)" }}>
+          <h2 className="text-sm font-bold mb-3" style={{ fontFamily: "Inter, sans-serif", color: "oklch(0.22 0.015 65)" }}>
             Venue Coverage
           </h2>
           <div className="grid grid-cols-2 gap-2">
@@ -388,12 +388,12 @@ export default function Agents() {
                 <div className="text-sm font-bold mb-1" style={{ color: "oklch(0.25 0.015 65)" }}>{r.region}</div>
                 <div className="flex items-center gap-3">
                   <div>
-                    <div className="text-lg font-black" style={{ fontFamily: "Sora, sans-serif", color: `oklch(0.30 0.12 ${r.color})` }}>{r.venues}</div>
-                    <div className="text-[10px]" style={{ color: "oklch(0.55 0.015 65)" }}>venues</div>
+                    <div className="text-lg font-black" style={{ fontFamily: "Inter, sans-serif", color: `oklch(0.30 0.12 ${r.color})` }}>{r.venues}</div>
+                    <div className="text-[10px]" style={{ color: "#8B9AB0" }}>venues</div>
                   </div>
                   <div>
-                    <div className="text-lg font-black" style={{ fontFamily: "Sora, sans-serif", color: `oklch(0.30 0.12 ${r.color})` }}>{r.dishes}</div>
-                    <div className="text-[10px]" style={{ color: "oklch(0.55 0.015 65)" }}>dishes</div>
+                    <div className="text-lg font-black" style={{ fontFamily: "Inter, sans-serif", color: `oklch(0.30 0.12 ${r.color})` }}>{r.dishes}</div>
+                    <div className="text-[10px]" style={{ color: "#8B9AB0" }}>dishes</div>
                   </div>
                 </div>
               </div>

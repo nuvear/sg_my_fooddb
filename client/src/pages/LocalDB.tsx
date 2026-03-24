@@ -71,10 +71,10 @@ export default function LocalDB() {
       <div className="jade-block px-4 md:px-8 py-5">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <h1 className="text-xl font-extrabold mb-1" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.98 0.005 90)" }}>
+            <h1 className="text-xl font-extrabold mb-1" style={{ fontFamily: "Inter, sans-serif", color: "#F7F9FC" }}>
               My Local Database
             </h1>
-            <p className="text-sm opacity-75" style={{ color: "oklch(0.85 0.04 162)", fontFamily: "Nunito Sans, sans-serif" }}>
+            <p className="text-sm opacity-75" style={{ color: "oklch(0.85 0.04 162)", fontFamily: "Inter, sans-serif" }}>
               {records.length} records stored locally · Export as JSON for use with MCP server
             </p>
           </div>
@@ -84,7 +84,7 @@ export default function LocalDB() {
               onClick={handleExport}
               disabled={records.length === 0}
               className="gap-1.5 text-xs font-semibold"
-              style={{ background: "oklch(0.78 0.16 75)", color: "oklch(0.18 0.015 65)", fontFamily: "Sora, sans-serif" }}
+              style={{ background: "#A899F0", color: "#0A1F44", fontFamily: "Inter, sans-serif" }}
             >
               <Download size={12} /> Export
             </Button>
@@ -93,7 +93,7 @@ export default function LocalDB() {
               variant="outline"
               onClick={handleImport}
               className="gap-1.5 text-xs font-semibold border-2"
-              style={{ borderColor: "oklch(0.65 0.06 162)", color: "oklch(0.85 0.04 162)", fontFamily: "Sora, sans-serif" }}
+              style={{ borderColor: "oklch(0.65 0.06 162)", color: "oklch(0.85 0.04 162)", fontFamily: "Inter, sans-serif" }}
             >
               <Upload size={12} /> Import
             </Button>
@@ -103,11 +103,11 @@ export default function LocalDB() {
 
       <div className="flex-1 flex flex-col md:flex-row">
         {/* Left: records list */}
-        <div className="w-full md:w-80 shrink-0 border-r flex flex-col" style={{ borderColor: "oklch(0.88 0.008 90)" }}>
+        <div className="w-full md:w-80 shrink-0 border-r flex flex-col" style={{ borderColor: "#DDE3EE" }}>
           {/* Search */}
-          <div className="p-3 border-b" style={{ borderColor: "oklch(0.88 0.008 90)" }}>
+          <div className="p-3 border-b" style={{ borderColor: "#DDE3EE" }}>
             <div className="relative">
-              <Search size={13} className="absolute left-2.5 top-1/2 -translate-y-1/2 pointer-events-none" style={{ color: "oklch(0.52 0.015 65)" }} />
+              <Search size={13} className="absolute left-2.5 top-1/2 -translate-y-1/2 pointer-events-none" style={{ color: "#4A5568" }} />
               <Input
                 value={search}
                 onChange={e => setSearch(e.target.value)}
@@ -121,21 +121,21 @@ export default function LocalDB() {
           <div className="flex-1 overflow-y-auto">
             {records.length === 0 ? (
               <div className="flex flex-col items-center justify-center py-12 px-4 text-center">
-                <Database size={28} className="mb-3 opacity-30" style={{ color: "oklch(0.52 0.015 65)" }} />
-                <p className="text-sm font-semibold mb-1" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.52 0.015 65)" }}>
+                <Database size={28} className="mb-3 opacity-30" style={{ color: "#4A5568" }} />
+                <p className="text-sm font-semibold mb-1" style={{ fontFamily: "Inter, sans-serif", color: "#4A5568" }}>
                   No records yet
                 </p>
                 <p className="text-xs mb-3" style={{ color: "oklch(0.65 0.01 90)" }}>
                   Import entries from the HPB website
                 </p>
                 <Link href="/import">
-                  <Button size="sm" className="gap-1.5 text-xs" style={{ background: "oklch(0.32 0.10 162)", color: "oklch(0.98 0.005 90)" }}>
+                  <Button size="sm" className="gap-1.5 text-xs" style={{ background: "#6D5BD0", color: "#F7F9FC" }}>
                     <Plus size={12} /> Add Records
                   </Button>
                 </Link>
               </div>
             ) : filtered.length === 0 ? (
-              <div className="p-4 text-center text-xs" style={{ color: "oklch(0.52 0.015 65)" }}>
+              <div className="p-4 text-center text-xs" style={{ color: "#4A5568" }}>
                 No records match "{search}"
               </div>
             ) : (
@@ -150,10 +150,10 @@ export default function LocalDB() {
                   }}
                 >
                   <div className="flex-1 min-w-0">
-                    <div className="font-semibold text-xs truncate" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.18 0.015 65)" }}>
+                    <div className="font-semibold text-xs truncate" style={{ fontFamily: "Inter, sans-serif", color: "#0A1F44" }}>
                       {record.name}
                     </div>
-                    <div className="text-[10px] flex items-center gap-1.5 mt-0.5" style={{ color: "oklch(0.52 0.015 65)" }}>
+                    <div className="text-[10px] flex items-center gap-1.5 mt-0.5" style={{ color: "#4A5568" }}>
                       <span>{record.foodGroup ?? "—"}</span>
                       {record._source === "paste" && (
                         <span className="pill-badge text-[9px] px-1 py-0" style={{ background: "oklch(0.90 0.06 162)", color: "oklch(0.28 0.10 162)" }}>
@@ -173,8 +173,8 @@ export default function LocalDB() {
         <div className="flex-1 overflow-auto">
           {!selected ? (
             <div className="flex flex-col items-center justify-center h-full min-h-64 text-center px-4">
-              <Database size={32} className="mb-3 opacity-20" style={{ color: "oklch(0.52 0.015 65)" }} />
-              <p className="text-sm" style={{ color: "oklch(0.65 0.01 90)", fontFamily: "Nunito Sans, sans-serif" }}>
+              <Database size={32} className="mb-3 opacity-20" style={{ color: "#4A5568" }} />
+              <p className="text-sm" style={{ color: "oklch(0.65 0.01 90)", fontFamily: "Inter, sans-serif" }}>
                 Select a record to view details
               </p>
             </div>
@@ -193,11 +193,11 @@ export default function LocalDB() {
                       </span>
                     )}
                   </div>
-                  <h2 className="text-lg font-extrabold" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.18 0.015 65)" }}>
+                  <h2 className="text-lg font-extrabold" style={{ fontFamily: "Inter, sans-serif", color: "#0A1F44" }}>
                     {selected.name}
                   </h2>
                   {selected.description && (
-                    <p className="text-xs mt-0.5" style={{ color: "oklch(0.52 0.015 65)" }}>
+                    <p className="text-xs mt-0.5" style={{ color: "#4A5568" }}>
                       {selected.description}
                     </p>
                   )}
@@ -208,7 +208,7 @@ export default function LocalDB() {
                 <div className="flex gap-2 shrink-0">
                   <Link href={`/food/${selected.crId}`}>
                     <Button size="sm" variant="outline" className="text-xs gap-1 border-2"
-                      style={{ borderColor: "oklch(0.32 0.10 162)", color: "oklch(0.32 0.10 162)" }}>
+                      style={{ borderColor: "#6D5BD0", color: "#6D5BD0" }}>
                       View <ChevronRight size={11} />
                     </Button>
                   </Link>
@@ -226,7 +226,7 @@ export default function LocalDB() {
 
               {/* Metadata */}
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-4 text-xs p-3 rounded-lg"
-                style={{ background: "oklch(0.96 0.01 162)", color: "oklch(0.40 0.08 162)", fontFamily: "Nunito Sans, sans-serif" }}>
+                style={{ background: "oklch(0.96 0.01 162)", color: "oklch(0.40 0.08 162)", fontFamily: "Inter, sans-serif" }}>
                 {selected.defaultServingSize && <div><strong>Serving:</strong> {selected.defaultServingSize}</div>}
                 {selected.ediblePortion && <div><strong>Edible:</strong> {selected.ediblePortion}%</div>}
                 {selected.sourceOfData && <div><strong>Source:</strong> {selected.sourceOfData}</div>}
@@ -236,7 +236,7 @@ export default function LocalDB() {
 
               {/* Nutrient values */}
               <div>
-                <p className="text-xs font-bold mb-2 uppercase tracking-wider" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.52 0.015 65)" }}>
+                <p className="text-xs font-bold mb-2 uppercase tracking-wider" style={{ fontFamily: "Inter, sans-serif", color: "#4A5568" }}>
                   Nutrients per 100g
                 </p>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5">
@@ -245,9 +245,9 @@ export default function LocalDB() {
                     if (!def) return null;
                     return (
                       <div key={key} className="flex justify-between items-center px-2.5 py-1.5 rounded text-xs"
-                        style={{ background: "oklch(0.98 0.003 90)", border: "1px solid oklch(0.92 0.004 90)" }}>
-                        <span style={{ color: "oklch(0.40 0.015 65)", fontFamily: "Nunito Sans, sans-serif" }}>{def.label}</span>
-                        <span className="nutrient-value font-bold" style={{ color: val !== null ? "oklch(0.22 0.09 162)" : "oklch(0.65 0.01 90)" }}>
+                        style={{ background: "#F7F9FC", border: "1px solid oklch(0.92 0.004 90)" }}>
+                        <span style={{ color: "#2F3A4A", fontFamily: "Inter, sans-serif" }}>{def.label}</span>
+                        <span className="nutrient-value font-bold" style={{ color: val !== null ? "#1C1C2E" : "oklch(0.65 0.01 90)" }}>
                           {val !== null && val !== undefined ? formatNutrientValue(val as number, def.unit) : "—"}
                         </span>
                       </div>
@@ -258,7 +258,7 @@ export default function LocalDB() {
 
               {/* JSON export snippet */}
               <div className="mt-4">
-                <p className="text-xs font-bold mb-2 uppercase tracking-wider" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.52 0.015 65)" }}>
+                <p className="text-xs font-bold mb-2 uppercase tracking-wider" style={{ fontFamily: "Inter, sans-serif", color: "#4A5568" }}>
                   JSON Record (for MCP server)
                 </p>
                 <pre

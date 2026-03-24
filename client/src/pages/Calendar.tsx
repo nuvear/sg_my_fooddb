@@ -82,13 +82,13 @@ function ProgressRing({ value, max, color, size = 64, label, unit }: ProgressRin
             strokeDasharray={`${dash} ${circ}`} />
         </svg>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <span className="text-xs font-bold leading-none" style={{ fontFamily: "Sora, sans-serif", color: over ? "oklch(0.55 0.20 30)" : "oklch(0.20 0.015 65)" }}>
+          <span className="text-xs font-bold leading-none" style={{ fontFamily: "Inter, sans-serif", color: over ? "oklch(0.55 0.20 30)" : "#0A1F44" }}>
             {Math.round(value)}
           </span>
-          <span className="text-[8px]" style={{ color: "oklch(0.55 0.015 65)" }}>{unit}</span>
+          <span className="text-[8px]" style={{ color: "#8B9AB0" }}>{unit}</span>
         </div>
       </div>
-      <span className="text-[10px] font-semibold" style={{ color: "oklch(0.45 0.015 65)", fontFamily: "Nunito Sans, sans-serif" }}>{label}</span>
+      <span className="text-[10px] font-semibold" style={{ color: "#4A5568", fontFamily: "Inter, sans-serif" }}>{label}</span>
       <span className="text-[9px]" style={{ color: "oklch(0.60 0.015 65)" }}>/{max}{unit}</span>
     </div>
   );
@@ -177,28 +177,28 @@ export default function Calendar() {
 
   if (authLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ background: "oklch(0.98 0.003 90)" }}>
-        <Loader2 className="animate-spin" style={{ color: "oklch(0.32 0.10 162)" }} />
+      <div className="min-h-screen flex items-center justify-center" style={{ background: "#F7F9FC" }}>
+        <Loader2 className="animate-spin" style={{ color: "#6D5BD0" }} />
       </div>
     );
   }
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center px-4" style={{ background: "oklch(0.98 0.003 90)" }}>
+      <div className="min-h-screen flex flex-col items-center justify-center px-4" style={{ background: "#F7F9FC" }}>
         <div className="max-w-sm w-full text-center">
           <div className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4"
-            style={{ background: "oklch(0.93 0.04 162)" }}>
-            <CalIcon size={28} style={{ color: "oklch(0.32 0.10 162)" }} />
+            style={{ background: "#EDE9FB" }}>
+            <CalIcon size={28} style={{ color: "#6D5BD0" }} />
           </div>
-          <h1 className="text-2xl font-bold mb-2" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.20 0.015 65)" }}>
+          <h1 className="text-2xl font-bold mb-2" style={{ fontFamily: "Inter, sans-serif", color: "#0A1F44" }}>
             Sign in to plan meals
           </h1>
-          <p className="text-sm mb-6" style={{ color: "oklch(0.50 0.015 65)", fontFamily: "Nunito Sans, sans-serif" }}>
+          <p className="text-sm mb-6" style={{ color: "oklch(0.50 0.015 65)", fontFamily: "Inter, sans-serif" }}>
             Track your food calendar, log meals, and get AI suggestions tailored to your health goals.
           </p>
           <Button onClick={() => window.location.href = getLoginUrl()}
-            className="w-full" style={{ background: "oklch(0.32 0.10 162)", color: "white" }}>
+            className="w-full" style={{ background: "#6D5BD0", color: "white" }}>
             Sign in with Manus
           </Button>
         </div>
@@ -212,10 +212,10 @@ export default function Calendar() {
   }, {} as Record<MealType, typeof dayLogs>);
 
   return (
-    <div className="min-h-screen" style={{ background: "oklch(0.98 0.003 90)" }}>
+    <div className="min-h-screen" style={{ background: "#F7F9FC" }}>
       {/* Header */}
       <div className="sticky top-0 z-20 border-b px-4 md:px-8 py-3"
-        style={{ background: "oklch(0.99 0.002 90)", borderColor: "oklch(0.90 0.006 162)" }}>
+        style={{ background: "#FFFFFF", borderColor: "#DDE3EE" }}>
         <div className="max-w-4xl mx-auto flex items-center justify-between gap-4">
           {/* View mode tabs */}
           <div className="flex gap-1 rounded-lg p-0.5" style={{ background: "oklch(0.92 0.006 162)" }}>
@@ -225,7 +225,7 @@ export default function Calendar() {
                 style={{
                   background: viewMode === mode ? "white" : "transparent",
                   color: viewMode === mode ? "oklch(0.25 0.10 162)" : "oklch(0.50 0.015 65)",
-                  fontFamily: "Nunito Sans, sans-serif",
+                  fontFamily: "Inter, sans-serif",
                   boxShadow: viewMode === mode ? "0 1px 3px oklch(0 0 0 / 0.1)" : "none",
                 }}>
                 {mode.charAt(0).toUpperCase() + mode.slice(1)}
@@ -236,23 +236,23 @@ export default function Calendar() {
           {/* Date navigation */}
           <div className="flex items-center gap-2">
             <button onClick={() => navigateDate(-1)} className="p-1.5 rounded-lg hover:bg-gray-100">
-              <ChevronLeft size={16} style={{ color: "oklch(0.40 0.015 65)" }} />
+              <ChevronLeft size={16} style={{ color: "#2F3A4A" }} />
             </button>
             <span className="text-sm font-semibold min-w-[120px] text-center"
-              style={{ fontFamily: "Nunito Sans, sans-serif", color: "oklch(0.25 0.015 65)" }}>
+              style={{ fontFamily: "Inter, sans-serif", color: "oklch(0.25 0.015 65)" }}>
               {viewMode === "day" ? formatDate(selectedDate) :
                viewMode === "week" ? `${formatDate(weekDays[0]!)} – ${formatDate(weekDays[6]!)}` :
                new Date(selectedDate + "T12:00:00").toLocaleDateString("en-SG", { month: "long", year: "numeric" })}
             </span>
             <button onClick={() => navigateDate(1)} className="p-1.5 rounded-lg hover:bg-gray-100">
-              <ChevronRight size={16} style={{ color: "oklch(0.40 0.015 65)" }} />
+              <ChevronRight size={16} style={{ color: "#2F3A4A" }} />
             </button>
           </div>
 
           {/* Today button */}
           <button onClick={() => setSelectedDate(toDateStr(new Date()))}
             className="text-xs px-3 py-1.5 rounded-lg border font-medium"
-            style={{ borderColor: "oklch(0.88 0.008 90)", color: "oklch(0.40 0.015 65)", fontFamily: "Nunito Sans, sans-serif" }}>
+            style={{ borderColor: "#DDE3EE", color: "#2F3A4A", fontFamily: "Inter, sans-serif" }}>
             Today
           </button>
         </div>
@@ -265,8 +265,8 @@ export default function Calendar() {
           <div className="space-y-4">
             {/* Daily progress rings */}
             {daySummary && (
-              <div className="rounded-2xl border p-4" style={{ background: "white", borderColor: "oklch(0.90 0.006 162)" }}>
-                <h3 className="text-sm font-bold mb-3" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.20 0.015 65)" }}>
+              <div className="rounded-2xl border p-4" style={{ background: "white", borderColor: "#DDE3EE" }}>
+                <h3 className="text-sm font-bold mb-3" style={{ fontFamily: "Inter, sans-serif", color: "#0A1F44" }}>
                   Today's Progress
                 </h3>
                 <div className="flex justify-around">
@@ -284,18 +284,18 @@ export default function Calendar() {
               const isAdding = addingMeal === mt.id;
               return (
                 <div key={mt.id} className="rounded-2xl border overflow-hidden"
-                  style={{ background: "white", borderColor: "oklch(0.90 0.006 162)" }}>
+                  style={{ background: "white", borderColor: "#DDE3EE" }}>
                   {/* Meal header */}
                   <div className="flex items-center justify-between px-4 py-3"
-                    style={{ borderBottom: logs.length > 0 || isAdding ? "1px solid oklch(0.94 0.006 162)" : "none" }}>
+                    style={{ borderBottom: logs.length > 0 || isAdding ? "1px solid #DDE3EE" : "none" }}>
                     <div className="flex items-center gap-2">
                       <span className="text-base">{mt.icon}</span>
-                      <span className="text-sm font-bold" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.20 0.015 65)" }}>
+                      <span className="text-sm font-bold" style={{ fontFamily: "Inter, sans-serif", color: "#0A1F44" }}>
                         {mt.label}
                       </span>
                       {logs.length > 0 && (
                         <span className="text-xs px-1.5 py-0.5 rounded-full font-medium"
-                          style={{ background: "oklch(0.93 0.04 162)", color: "oklch(0.32 0.10 162)" }}>
+                          style={{ background: "#EDE9FB", color: "#6D5BD0" }}>
                           {Math.round(logs.reduce((s, l) => s + (l.kcal ?? 0) * (l.servings ?? 1), 0))} kcal
                         </span>
                       )}
@@ -308,7 +308,7 @@ export default function Calendar() {
                       </button>
                       <button onClick={() => setAddingMeal(isAdding ? null : mt.id)}
                         className="p-1.5 rounded-lg hover:bg-gray-50 transition-colors">
-                        <Plus size={14} style={{ color: "oklch(0.32 0.10 162)" }} />
+                        <Plus size={14} style={{ color: "#6D5BD0" }} />
                       </button>
                     </div>
                   </div>
@@ -318,9 +318,9 @@ export default function Calendar() {
                     <div key={log.id} className="flex items-center justify-between px-4 py-2.5"
                       style={{ borderBottom: "1px solid oklch(0.96 0.003 90)" }}>
                       <div>
-                        <div className="text-sm font-medium" style={{ color: "oklch(0.25 0.015 65)", fontFamily: "Nunito Sans, sans-serif" }}>
+                        <div className="text-sm font-medium" style={{ color: "oklch(0.25 0.015 65)", fontFamily: "Inter, sans-serif" }}>
                           {log.foodName}
-                          {(log.servings ?? 1) !== 1 && <span className="text-xs ml-1" style={{ color: "oklch(0.55 0.015 65)" }}>×{log.servings}</span>}
+                          {(log.servings ?? 1) !== 1 && <span className="text-xs ml-1" style={{ color: "#8B9AB0" }}>×{log.servings}</span>}
                         </div>
                         <div className="flex gap-2 mt-0.5">
                           {log.kcal && <span className="text-[10px]" style={{ color: "oklch(0.55 0.18 30)" }}>{Math.round((log.kcal ?? 0) * (log.servings ?? 1))} kcal</span>}
@@ -339,17 +339,17 @@ export default function Calendar() {
                     <div className="px-4 py-3" style={{ background: "oklch(0.97 0.04 60)", borderTop: "1px solid oklch(0.90 0.008 60)" }}>
                       <div className="flex items-center gap-1.5 mb-2">
                         <Sparkles size={12} style={{ color: "oklch(0.50 0.14 60)" }} />
-                        <span className="text-xs font-semibold" style={{ color: "oklch(0.40 0.14 60)", fontFamily: "Nunito Sans, sans-serif" }}>
+                        <span className="text-xs font-semibold" style={{ color: "oklch(0.40 0.14 60)", fontFamily: "Inter, sans-serif" }}>
                           AI Suggestion
                         </span>
                         {generateAi.isPending && <Loader2 size={10} className="animate-spin ml-1" style={{ color: "oklch(0.50 0.14 60)" }} />}
                       </div>
                       {aiText && (
-                        <div className="text-xs" style={{ color: "oklch(0.30 0.015 65)", fontFamily: "Nunito Sans, sans-serif" }}>
+                        <div className="text-xs" style={{ color: "oklch(0.30 0.015 65)", fontFamily: "Inter, sans-serif" }}>
                           <Streamdown>{aiText}</Streamdown>
                         </div>
                       )}
-                      <button onClick={() => setAiMealType(null)} className="mt-2 text-xs" style={{ color: "oklch(0.55 0.015 65)" }}>
+                      <button onClick={() => setAiMealType(null)} className="mt-2 text-xs" style={{ color: "#8B9AB0" }}>
                         Dismiss
                       </button>
                     </div>
@@ -357,10 +357,10 @@ export default function Calendar() {
 
                   {/* Add meal form */}
                   {isAdding && (
-                    <div className="px-4 py-3 space-y-2" style={{ background: "oklch(0.98 0.003 90)", borderTop: "1px solid oklch(0.94 0.006 162)" }}>
+                    <div className="px-4 py-3 space-y-2" style={{ background: "#F7F9FC", borderTop: "1px solid #DDE3EE" }}>
                       <Input value={newFoodName} onChange={e => setNewFoodName(e.target.value)}
                         placeholder="Food name (e.g. Chicken Rice)" className="h-9 text-sm"
-                        style={{ fontFamily: "Nunito Sans, sans-serif" }} />
+                        style={{ fontFamily: "Inter, sans-serif" }} />
                       <div className="grid grid-cols-3 gap-2">
                         <Input value={newKcal} onChange={e => setNewKcal(e.target.value)}
                           placeholder="kcal" type="number" className="h-9 text-sm" />
@@ -384,7 +384,7 @@ export default function Calendar() {
                         }}
                           disabled={addMeal.isPending}
                           className="flex-1 h-8 text-xs"
-                          style={{ background: "oklch(0.32 0.10 162)", color: "white" }}>
+                          style={{ background: "#6D5BD0", color: "white" }}>
                           {addMeal.isPending ? <Loader2 size={12} className="animate-spin" /> : "Add"}
                         </Button>
                         <Button size="sm" variant="outline" onClick={() => setAddingMeal(null)}
@@ -401,7 +401,7 @@ export default function Calendar() {
               <div className="rounded-2xl border p-4 flex items-center justify-between"
                 style={{ background: "oklch(0.97 0.04 60)", borderColor: "oklch(0.88 0.10 60)" }}>
                 <div>
-                  <p className="text-sm font-semibold" style={{ color: "oklch(0.35 0.14 60)", fontFamily: "Sora, sans-serif" }}>
+                  <p className="text-sm font-semibold" style={{ color: "oklch(0.35 0.14 60)", fontFamily: "Inter, sans-serif" }}>
                     Set up your profile to see targets
                   </p>
                   <p className="text-xs mt-0.5" style={{ color: "oklch(0.50 0.10 60)" }}>
@@ -432,11 +432,11 @@ export default function Calendar() {
                 <button key={day} onClick={() => { setSelectedDate(day); setViewMode("day"); }}
                   className="w-full rounded-xl border p-3 text-left transition-all hover:shadow-sm"
                   style={{
-                    background: isToday ? "oklch(0.93 0.04 162)" : "white",
-                    borderColor: isToday ? "oklch(0.32 0.10 162)" : "oklch(0.90 0.006 162)",
+                    background: isToday ? "#EDE9FB" : "white",
+                    borderColor: isToday ? "#6D5BD0" : "#DDE3EE",
                   }}>
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-sm font-semibold" style={{ fontFamily: "Nunito Sans, sans-serif", color: isToday ? "oklch(0.25 0.10 162)" : "oklch(0.25 0.015 65)" }}>
+                    <span className="text-sm font-semibold" style={{ fontFamily: "Inter, sans-serif", color: isToday ? "oklch(0.25 0.10 162)" : "oklch(0.25 0.015 65)" }}>
                       {formatDate(day)}
                     </span>
                     <span className="text-xs" style={{ color: "oklch(0.50 0.015 65)" }}>
@@ -445,7 +445,7 @@ export default function Calendar() {
                   </div>
                   <div className="h-2 rounded-full overflow-hidden" style={{ background: "oklch(0.92 0.006 162)" }}>
                     <div className="h-full rounded-full transition-all"
-                      style={{ width: `${pct * 100}%`, background: kcal > calorieTarget ? "oklch(0.55 0.20 30)" : "oklch(0.32 0.10 162)" }} />
+                      style={{ width: `${pct * 100}%`, background: kcal > calorieTarget ? "oklch(0.55 0.20 30)" : "#6D5BD0" }} />
                   </div>
                   {summary && (
                     <div className="flex gap-3 mt-1.5">
@@ -467,7 +467,7 @@ export default function Calendar() {
             <div className="grid grid-cols-7 mb-1">
               {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map(d => (
                 <div key={d} className="text-center text-xs font-semibold py-1"
-                  style={{ color: "oklch(0.55 0.015 65)", fontFamily: "Nunito Sans, sans-serif" }}>{d}</div>
+                  style={{ color: "#8B9AB0", fontFamily: "Inter, sans-serif" }}>{d}</div>
               ))}
             </div>
             {/* Calendar grid */}
@@ -489,8 +489,8 @@ export default function Calendar() {
                   <button key={day} onClick={() => { setSelectedDate(day); setViewMode("day"); }}
                     className="aspect-square rounded-lg flex flex-col items-center justify-center transition-all hover:shadow-sm relative overflow-hidden"
                     style={{
-                      background: isSelected ? "oklch(0.32 0.10 162)" : isToday ? "oklch(0.93 0.04 162)" : "white",
-                      border: `1px solid ${isSelected ? "oklch(0.32 0.10 162)" : "oklch(0.90 0.006 162)"}`,
+                      background: isSelected ? "#6D5BD0" : isToday ? "#EDE9FB" : "white",
+                      border: `1px solid ${isSelected ? "#6D5BD0" : "#DDE3EE"}`,
                     }}>
                     {/* Calorie fill bar */}
                     {kcal > 0 && (
@@ -498,7 +498,7 @@ export default function Calendar() {
                         style={{ height: `${pct * 100}%`, background: isSelected ? "oklch(0.25 0.10 162 / 0.3)" : "oklch(0.32 0.10 162 / 0.12)" }} />
                     )}
                     <span className="relative text-xs font-bold z-10"
-                      style={{ color: isSelected ? "white" : isToday ? "oklch(0.25 0.10 162)" : "oklch(0.25 0.015 65)", fontFamily: "Sora, sans-serif" }}>
+                      style={{ color: isSelected ? "white" : isToday ? "oklch(0.25 0.10 162)" : "oklch(0.25 0.015 65)", fontFamily: "Inter, sans-serif" }}>
                       {new Date(day + "T12:00:00").getDate()}
                     </span>
                     {kcal > 0 && (
@@ -511,7 +511,7 @@ export default function Calendar() {
                 );
               })}
             </div>
-            <p className="text-xs mt-3 text-center" style={{ color: "oklch(0.60 0.015 65)", fontFamily: "Nunito Sans, sans-serif" }}>
+            <p className="text-xs mt-3 text-center" style={{ color: "oklch(0.60 0.015 65)", fontFamily: "Inter, sans-serif" }}>
               Numbers show daily kcal. Bar fill = % of {calorieTarget} kcal target. Tap a day to log meals.
             </p>
           </div>

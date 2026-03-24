@@ -47,9 +47,9 @@ function NutrientBar({ label, value, max, color, unit }: { label: string; value:
   const over = value > max;
   return (
     <div className="space-y-1">
-      <div className="flex justify-between text-xs" style={{ fontFamily: "Nunito Sans, sans-serif" }}>
-        <span style={{ color: "oklch(0.40 0.015 65)" }}>{label}</span>
-        <span style={{ color: over ? "oklch(0.55 0.20 30)" : "oklch(0.40 0.015 65)" }}>
+      <div className="flex justify-between text-xs" style={{ fontFamily: "Inter, sans-serif" }}>
+        <span style={{ color: "#2F3A4A" }}>{label}</span>
+        <span style={{ color: over ? "oklch(0.55 0.20 30)" : "#2F3A4A" }}>
           {Math.round(value)} / {max} {unit} {over && "⚠️"}
         </span>
       </div>
@@ -143,25 +143,25 @@ export default function Calculator() {
     : { label: "Obese (Asian)", color: "oklch(0.55 0.20 30)" };
 
   return (
-    <div className="min-h-screen py-6 px-4" style={{ background: "oklch(0.98 0.003 90)" }}>
+    <div className="min-h-screen py-6 px-4" style={{ background: "#F7F9FC" }}>
       <div className="max-w-2xl mx-auto space-y-6">
 
         {/* Page header */}
         <div>
-          <h1 className="text-2xl font-bold" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.20 0.015 65)" }}>
+          <h1 className="text-2xl font-bold" style={{ fontFamily: "Inter, sans-serif", color: "#0A1F44" }}>
             Nutrition Calculators
           </h1>
-          <p className="text-sm mt-1" style={{ color: "oklch(0.50 0.015 65)", fontFamily: "Nunito Sans, sans-serif" }}>
+          <p className="text-sm mt-1" style={{ color: "oklch(0.50 0.015 65)", fontFamily: "Inter, sans-serif" }}>
             Calculate your daily calorie and sodium targets based on your body and goals.
           </p>
         </div>
 
         {/* ── CALORIE CALCULATOR ── */}
-        <div className="rounded-2xl border overflow-hidden" style={{ background: "white", borderColor: "oklch(0.90 0.006 162)" }}>
+        <div className="rounded-2xl border overflow-hidden" style={{ background: "white", borderColor: "#DDE3EE" }}>
           <div className="px-5 py-4 flex items-center gap-2"
-            style={{ borderBottom: "1px solid oklch(0.94 0.006 162)", background: "oklch(0.97 0.04 30)" }}>
+            style={{ borderBottom: "1px solid #DDE3EE", background: "oklch(0.97 0.04 30)" }}>
             <Flame size={18} style={{ color: "oklch(0.55 0.18 30)" }} />
-            <h2 className="text-base font-bold" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.25 0.015 65)" }}>
+            <h2 className="text-base font-bold" style={{ fontFamily: "Inter, sans-serif", color: "oklch(0.25 0.015 65)" }}>
               Calorie Calculator (TDEE)
             </h2>
           </div>
@@ -174,10 +174,10 @@ export default function Calculator() {
                   <button key={g} onClick={() => setGender(g)}
                     className="flex-1 py-2 rounded-lg text-sm font-medium border transition-all"
                     style={{
-                      borderColor: gender === g ? "oklch(0.55 0.18 30)" : "oklch(0.88 0.008 90)",
+                      borderColor: gender === g ? "oklch(0.55 0.18 30)" : "#DDE3EE",
                       background: gender === g ? "oklch(0.97 0.04 30)" : "white",
-                      color: gender === g ? "oklch(0.40 0.18 30)" : "oklch(0.45 0.015 65)",
-                      fontFamily: "Nunito Sans, sans-serif",
+                      color: gender === g ? "oklch(0.40 0.18 30)" : "#4A5568",
+                      fontFamily: "Inter, sans-serif",
                     }}>
                     {g.charAt(0).toUpperCase() + g.slice(1)}
                   </button>
@@ -210,14 +210,14 @@ export default function Calculator() {
             {/* BMI display */}
             {bmi !== null && bmiCategory && (
               <div className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm"
-                style={{ background: "oklch(0.97 0.02 90)", border: "1px solid oklch(0.90 0.006 162)" }}>
-                <span style={{ color: "oklch(0.45 0.015 65)", fontFamily: "Nunito Sans, sans-serif" }}>BMI:</span>
-                <span className="font-bold" style={{ color: bmiCategory.color, fontFamily: "Sora, sans-serif" }}>{bmi.toFixed(1)}</span>
+                style={{ background: "oklch(0.97 0.02 90)", border: "1px solid #DDE3EE" }}>
+                <span style={{ color: "#4A5568", fontFamily: "Inter, sans-serif" }}>BMI:</span>
+                <span className="font-bold" style={{ color: bmiCategory.color, fontFamily: "Inter, sans-serif" }}>{bmi.toFixed(1)}</span>
                 <span className="text-xs px-2 py-0.5 rounded-full font-medium"
                   style={{ background: `${bmiCategory.color}20`, color: bmiCategory.color }}>
                   {bmiCategory.label}
                 </span>
-                <span className="text-xs ml-auto" style={{ color: "oklch(0.55 0.015 65)" }}>Asian cutoffs used</span>
+                <span className="text-xs ml-auto" style={{ color: "#8B9AB0" }}>Asian cutoffs used</span>
               </div>
             )}
 
@@ -228,7 +228,7 @@ export default function Calculator() {
               </Label>
               <select value={activityLevel} onChange={e => setActivityLevel(e.target.value as ActivityLevel)}
                 className="w-full h-9 px-3 rounded-lg border text-sm"
-                style={{ borderColor: "oklch(0.88 0.008 90)", fontFamily: "Nunito Sans, sans-serif", color: "oklch(0.25 0.015 65)" }}>
+                style={{ borderColor: "#DDE3EE", fontFamily: "Inter, sans-serif", color: "oklch(0.25 0.015 65)" }}>
                 {(Object.entries(ACTIVITY_LABELS) as [ActivityLevel, string][]).map(([id, label]) => (
                   <option key={id} value={id}>{label}</option>
                 ))}
@@ -252,10 +252,10 @@ export default function Calculator() {
                     )}
                     className="px-3 py-1.5 rounded-full text-xs font-medium border transition-all"
                     style={{
-                      borderColor: objectives.includes(obj.id) ? "oklch(0.55 0.18 30)" : "oklch(0.88 0.008 90)",
+                      borderColor: objectives.includes(obj.id) ? "oklch(0.55 0.18 30)" : "#DDE3EE",
                       background: objectives.includes(obj.id) ? "oklch(0.97 0.04 30)" : "white",
-                      color: objectives.includes(obj.id) ? "oklch(0.40 0.18 30)" : "oklch(0.45 0.015 65)",
-                      fontFamily: "Nunito Sans, sans-serif",
+                      color: objectives.includes(obj.id) ? "oklch(0.40 0.18 30)" : "#4A5568",
+                      fontFamily: "Inter, sans-serif",
                     }}>
                     {obj.label}
                   </button>
@@ -265,7 +265,7 @@ export default function Calculator() {
 
             <Button onClick={handleCalculate} disabled={calculateTargets.isPending}
               className="w-full h-10 font-semibold"
-              style={{ background: "oklch(0.55 0.18 30)", color: "white", fontFamily: "Nunito Sans, sans-serif" }}>
+              style={{ background: "oklch(0.55 0.18 30)", color: "white", fontFamily: "Inter, sans-serif" }}>
               {calculateTargets.isPending ? <Loader2 size={14} className="animate-spin mr-2" /> : <CalcIcon size={14} className="mr-2" />}
               Calculate My Targets
             </Button>
@@ -275,19 +275,19 @@ export default function Calculator() {
               <div className="space-y-3 pt-2">
                 <div className="grid grid-cols-2 gap-3">
                   <div className="p-3 rounded-xl text-center" style={{ background: "oklch(0.97 0.04 30)", border: "1px solid oklch(0.88 0.12 30)" }}>
-                    <div className="text-xs font-semibold mb-0.5" style={{ color: "oklch(0.45 0.15 30)", fontFamily: "Nunito Sans, sans-serif" }}>BMR</div>
-                    <div className="text-xl font-bold" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.30 0.18 30)" }}>{calorieResult.bmr}</div>
-                    <div className="text-xs" style={{ color: "oklch(0.55 0.015 65)" }}>kcal (at rest)</div>
+                    <div className="text-xs font-semibold mb-0.5" style={{ color: "oklch(0.45 0.15 30)", fontFamily: "Inter, sans-serif" }}>BMR</div>
+                    <div className="text-xl font-bold" style={{ fontFamily: "Inter, sans-serif", color: "oklch(0.30 0.18 30)" }}>{calorieResult.bmr}</div>
+                    <div className="text-xs" style={{ color: "#8B9AB0" }}>kcal (at rest)</div>
                   </div>
                   <div className="p-3 rounded-xl text-center" style={{ background: "oklch(0.97 0.04 30)", border: "1px solid oklch(0.88 0.12 30)" }}>
-                    <div className="text-xs font-semibold mb-0.5" style={{ color: "oklch(0.45 0.15 30)", fontFamily: "Nunito Sans, sans-serif" }}>TDEE</div>
-                    <div className="text-xl font-bold" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.30 0.18 30)" }}>{calorieResult.tdee}</div>
-                    <div className="text-xs" style={{ color: "oklch(0.55 0.015 65)" }}>kcal (maintenance)</div>
+                    <div className="text-xs font-semibold mb-0.5" style={{ color: "oklch(0.45 0.15 30)", fontFamily: "Inter, sans-serif" }}>TDEE</div>
+                    <div className="text-xl font-bold" style={{ fontFamily: "Inter, sans-serif", color: "oklch(0.30 0.18 30)" }}>{calorieResult.tdee}</div>
+                    <div className="text-xs" style={{ color: "#8B9AB0" }}>kcal (maintenance)</div>
                   </div>
                 </div>
 
-                <div className="p-4 rounded-xl space-y-3" style={{ background: "oklch(0.98 0.003 90)", border: "1px solid oklch(0.90 0.006 162)" }}>
-                  <div className="text-sm font-bold" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.20 0.015 65)" }}>
+                <div className="p-4 rounded-xl space-y-3" style={{ background: "#F7F9FC", border: "1px solid #DDE3EE" }}>
+                  <div className="text-sm font-bold" style={{ fontFamily: "Inter, sans-serif", color: "#0A1F44" }}>
                     Daily Targets (Goal: {calorieResult.dailyCalorieTarget} kcal)
                   </div>
                   <NutrientBar label="Calories" value={0} max={calorieResult.dailyCalorieTarget} color="oklch(0.55 0.18 30)" unit="kcal" />
@@ -301,7 +301,7 @@ export default function Calculator() {
                 {isAuthenticated && (
                   <Button onClick={handleSaveToProfile} disabled={saveProfile.isPending}
                     variant="outline" className="w-full h-9 text-sm"
-                    style={{ borderColor: "oklch(0.55 0.18 30)", color: "oklch(0.40 0.18 30)", fontFamily: "Nunito Sans, sans-serif" }}>
+                    style={{ borderColor: "oklch(0.55 0.18 30)", color: "oklch(0.40 0.18 30)", fontFamily: "Inter, sans-serif" }}>
                     {saveProfile.isPending ? <Loader2 size={12} className="animate-spin mr-1" /> : <CheckCircle size={12} className="mr-1" />}
                     Save to My Profile
                   </Button>
@@ -312,11 +312,11 @@ export default function Calculator() {
         </div>
 
         {/* ── SODIUM CALCULATOR ── */}
-        <div className="rounded-2xl border overflow-hidden" style={{ background: "white", borderColor: "oklch(0.90 0.006 162)" }}>
+        <div className="rounded-2xl border overflow-hidden" style={{ background: "white", borderColor: "#DDE3EE" }}>
           <div className="px-5 py-4 flex items-center gap-2"
-            style={{ borderBottom: "1px solid oklch(0.94 0.006 162)", background: "oklch(0.96 0.04 220)" }}>
+            style={{ borderBottom: "1px solid #DDE3EE", background: "oklch(0.96 0.04 220)" }}>
             <Droplets size={18} style={{ color: "oklch(0.40 0.12 220)" }} />
-            <h2 className="text-base font-bold" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.25 0.015 65)" }}>
+            <h2 className="text-base font-bold" style={{ fontFamily: "Inter, sans-serif", color: "oklch(0.25 0.015 65)" }}>
               Sodium Intake Calculator
             </h2>
             <span className="ml-auto text-xs px-2 py-0.5 rounded-full"
@@ -327,10 +327,10 @@ export default function Calculator() {
           <div className="p-5 space-y-4">
             {/* Total display */}
             <div className="text-center py-3">
-              <div className="text-4xl font-bold" style={{ fontFamily: "Sora, sans-serif", color: totalSodium > sodiumTarget ? "oklch(0.55 0.20 30)" : "oklch(0.40 0.12 220)" }}>
+              <div className="text-4xl font-bold" style={{ fontFamily: "Inter, sans-serif", color: totalSodium > sodiumTarget ? "oklch(0.55 0.20 30)" : "oklch(0.40 0.12 220)" }}>
                 {Math.round(totalSodium)}
               </div>
-              <div className="text-sm" style={{ color: "oklch(0.50 0.015 65)", fontFamily: "Nunito Sans, sans-serif" }}>
+              <div className="text-sm" style={{ color: "oklch(0.50 0.015 65)", fontFamily: "Inter, sans-serif" }}>
                 mg sodium consumed / {sodiumTarget} mg target
               </div>
               {totalSodium > sodiumTarget && (
@@ -363,7 +363,7 @@ export default function Calculator() {
                 {sodiumItems.map((item, i) => (
                   <div key={i} className="flex items-center justify-between px-3 py-2 rounded-lg"
                     style={{ background: "oklch(0.97 0.02 220)", border: "1px solid oklch(0.90 0.008 220)" }}>
-                    <span className="text-sm" style={{ color: "oklch(0.30 0.015 65)", fontFamily: "Nunito Sans, sans-serif" }}>{item.name}</span>
+                    <span className="text-sm" style={{ color: "oklch(0.30 0.015 65)", fontFamily: "Inter, sans-serif" }}>{item.name}</span>
                     <div className="flex items-center gap-2">
                       <span className="text-sm font-semibold" style={{ color: "oklch(0.40 0.12 220)" }}>{item.sodium} mg</span>
                       <button onClick={() => setSodiumItems(prev => prev.filter((_, j) => j !== i))}
@@ -372,7 +372,7 @@ export default function Calculator() {
                   </div>
                 ))}
                 <Button variant="outline" size="sm" onClick={() => setSodiumItems([])}
-                  className="w-full h-8 text-xs" style={{ fontFamily: "Nunito Sans, sans-serif" }}>
+                  className="w-full h-8 text-xs" style={{ fontFamily: "Inter, sans-serif" }}>
                   Clear All
                 </Button>
               </div>
@@ -382,7 +382,7 @@ export default function Calculator() {
             <div>
               <button onClick={() => setShowSodiumRef(v => !v)}
                 className="flex items-center gap-1.5 text-sm font-semibold w-full"
-                style={{ color: "oklch(0.40 0.12 220)", fontFamily: "Nunito Sans, sans-serif" }}>
+                style={{ color: "oklch(0.40 0.12 220)", fontFamily: "Inter, sans-serif" }}>
                 <Info size={13} />
                 SG/MY Food Sodium Reference
                 {showSodiumRef ? <ChevronUp size={13} className="ml-auto" /> : <ChevronDown size={13} className="ml-auto" />}
@@ -392,7 +392,7 @@ export default function Calculator() {
                   <table className="w-full text-xs">
                     <thead>
                       <tr style={{ background: "oklch(0.94 0.04 220)" }}>
-                        <th className="text-left px-3 py-2 font-semibold" style={{ color: "oklch(0.30 0.12 220)", fontFamily: "Nunito Sans, sans-serif" }}>Dish</th>
+                        <th className="text-left px-3 py-2 font-semibold" style={{ color: "oklch(0.30 0.12 220)", fontFamily: "Inter, sans-serif" }}>Dish</th>
                         <th className="text-right px-3 py-2 font-semibold" style={{ color: "oklch(0.30 0.12 220)" }}>Na (mg)</th>
                         <th className="text-right px-3 py-2 font-semibold" style={{ color: "oklch(0.30 0.12 220)" }}>kcal</th>
                         <th className="px-2 py-2"></th>
@@ -401,7 +401,7 @@ export default function Calculator() {
                     <tbody>
                       {SG_SODIUM_EXAMPLES.map((item, i) => (
                         <tr key={i} style={{ borderTop: "1px solid oklch(0.94 0.004 220)", background: i % 2 === 0 ? "white" : "oklch(0.98 0.01 220)" }}>
-                          <td className="px-3 py-2" style={{ color: "oklch(0.30 0.015 65)", fontFamily: "Nunito Sans, sans-serif" }}>{item.food}</td>
+                          <td className="px-3 py-2" style={{ color: "oklch(0.30 0.015 65)", fontFamily: "Inter, sans-serif" }}>{item.food}</td>
                           <td className="px-3 py-2 text-right font-semibold"
                             style={{ color: item.sodium > 1000 ? "oklch(0.55 0.20 30)" : item.sodium > 600 ? "oklch(0.50 0.16 60)" : "oklch(0.40 0.12 220)" }}>
                             {item.sodium}
@@ -424,7 +424,7 @@ export default function Calculator() {
 
             {/* WHO note */}
             <div className="p-3 rounded-xl text-xs" style={{ background: "oklch(0.96 0.04 220)", border: "1px solid oklch(0.88 0.08 220)" }}>
-              <p style={{ color: "oklch(0.35 0.12 220)", fontFamily: "Nunito Sans, sans-serif" }}>
+              <p style={{ color: "oklch(0.35 0.12 220)", fontFamily: "Inter, sans-serif" }}>
                 <strong>WHO recommendation:</strong> Less than 2,000 mg sodium per day for adults.
                 Singapore HPB recommends less than 2,000 mg/day. High sodium intake is linked to hypertension,
                 which affects 1 in 3 Singaporeans aged 30–69.

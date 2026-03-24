@@ -102,30 +102,30 @@ export default function Profile() {
 
   if (authLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ background: "oklch(0.98 0.003 90)" }}>
-        <Loader2 className="animate-spin" style={{ color: "oklch(0.32 0.10 162)" }} />
+      <div className="min-h-screen flex items-center justify-center" style={{ background: "#F7F9FC" }}>
+        <Loader2 className="animate-spin" style={{ color: "#6D5BD0" }} />
       </div>
     );
   }
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center px-4" style={{ background: "oklch(0.98 0.003 90)" }}>
+      <div className="min-h-screen flex flex-col items-center justify-center px-4" style={{ background: "#F7F9FC" }}>
         <div className="max-w-sm w-full text-center">
           <div className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4"
-            style={{ background: "oklch(0.93 0.04 162)" }}>
-            <User size={28} style={{ color: "oklch(0.32 0.10 162)" }} />
+            style={{ background: "#EDE9FB" }}>
+            <User size={28} style={{ color: "#6D5BD0" }} />
           </div>
-          <h1 className="text-2xl font-bold mb-2" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.20 0.015 65)" }}>
+          <h1 className="text-2xl font-bold mb-2" style={{ fontFamily: "Inter, sans-serif", color: "#0A1F44" }}>
             Sign in to personalise
           </h1>
-          <p className="text-sm mb-6" style={{ color: "oklch(0.50 0.015 65)", fontFamily: "Nunito Sans, sans-serif" }}>
+          <p className="text-sm mb-6" style={{ color: "oklch(0.50 0.015 65)", fontFamily: "Inter, sans-serif" }}>
             Create your personal food plan — track calories, sodium, and get AI-powered meal suggestions tailored to your goals.
           </p>
           <Button
             onClick={() => window.location.href = getLoginUrl()}
             className="w-full"
-            style={{ background: "oklch(0.32 0.10 162)", color: "white" }}
+            style={{ background: "#6D5BD0", color: "white" }}
           >
             Sign in with Manus
           </Button>
@@ -195,44 +195,44 @@ export default function Profile() {
   };
 
   return (
-    <div className="min-h-screen py-8 px-4" style={{ background: "oklch(0.98 0.003 90)" }}>
+    <div className="min-h-screen py-8 px-4" style={{ background: "#F7F9FC" }}>
       <div className="max-w-lg mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
           <div className="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-3"
-            style={{ background: "oklch(0.32 0.10 162)" }}>
+            style={{ background: "#6D5BD0" }}>
             <Target size={22} className="text-white" />
           </div>
-          <h1 className="text-2xl font-bold" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.20 0.015 65)" }}>
+          <h1 className="text-2xl font-bold" style={{ fontFamily: "Inter, sans-serif", color: "#0A1F44" }}>
             Your Food Profile
           </h1>
-          <p className="text-sm mt-1" style={{ color: "oklch(0.50 0.015 65)", fontFamily: "Nunito Sans, sans-serif" }}>
+          <p className="text-sm mt-1" style={{ color: "oklch(0.50 0.015 65)", fontFamily: "Inter, sans-serif" }}>
             Personalise your nutrition plan in 4 steps
           </p>
         </div>
 
         {/* Progress bar */}
         <div className="mb-6">
-          <div className="flex justify-between text-xs mb-1.5" style={{ color: "oklch(0.55 0.015 65)", fontFamily: "Nunito Sans, sans-serif" }}>
+          <div className="flex justify-between text-xs mb-1.5" style={{ color: "#8B9AB0", fontFamily: "Inter, sans-serif" }}>
             {STEPS.map((s, i) => (
-              <span key={s} className={i <= stepIndex ? "font-semibold" : ""} style={{ color: i <= stepIndex ? "oklch(0.32 0.10 162)" : undefined }}>
+              <span key={s} className={i <= stepIndex ? "font-semibold" : ""} style={{ color: i <= stepIndex ? "#6D5BD0" : undefined }}>
                 {s.charAt(0).toUpperCase() + s.slice(1)}
               </span>
             ))}
           </div>
-          <div className="h-2 rounded-full overflow-hidden" style={{ background: "oklch(0.90 0.006 162)" }}>
+          <div className="h-2 rounded-full overflow-hidden" style={{ background: "#DDE3EE" }}>
             <div className="h-full rounded-full transition-all duration-500"
-              style={{ width: `${progress}%`, background: "oklch(0.32 0.10 162)" }} />
+              style={{ width: `${progress}%`, background: "#6D5BD0" }} />
           </div>
         </div>
 
         {/* Card */}
-        <div className="rounded-2xl border p-6 shadow-sm" style={{ background: "white", borderColor: "oklch(0.90 0.006 162)" }}>
+        <div className="rounded-2xl border p-6 shadow-sm" style={{ background: "white", borderColor: "#DDE3EE" }}>
 
           {/* Step 1: Basics */}
           {step === "basics" && (
             <div className="space-y-5">
-              <h2 className="text-lg font-bold" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.20 0.015 65)" }}>
+              <h2 className="text-lg font-bold" style={{ fontFamily: "Inter, sans-serif", color: "#0A1F44" }}>
                 About You
               </h2>
 
@@ -244,10 +244,10 @@ export default function Profile() {
                     <button key={g} onClick={() => setGender(g)}
                       className="flex-1 py-2 rounded-lg text-sm font-medium border transition-all"
                       style={{
-                        borderColor: gender === g ? "oklch(0.32 0.10 162)" : "oklch(0.88 0.008 90)",
-                        background: gender === g ? "oklch(0.93 0.04 162)" : "white",
-                        color: gender === g ? "oklch(0.25 0.10 162)" : "oklch(0.45 0.015 65)",
-                        fontFamily: "Nunito Sans, sans-serif",
+                        borderColor: gender === g ? "#6D5BD0" : "#DDE3EE",
+                        background: gender === g ? "#EDE9FB" : "white",
+                        color: gender === g ? "oklch(0.25 0.10 162)" : "#4A5568",
+                        fontFamily: "Inter, sans-serif",
                       }}>
                       {g.charAt(0).toUpperCase() + g.slice(1)}
                     </button>
@@ -262,7 +262,7 @@ export default function Profile() {
                 </Label>
                 <Input type="number" value={age} onChange={e => setAge(e.target.value)}
                   placeholder="e.g. 35" min={1} max={120}
-                  className="h-10 text-sm" style={{ fontFamily: "Nunito Sans, sans-serif" }} />
+                  className="h-10 text-sm" style={{ fontFamily: "Inter, sans-serif" }} />
               </div>
 
               {/* Height */}
@@ -272,7 +272,7 @@ export default function Profile() {
                 </Label>
                 <Input type="number" value={heightCm} onChange={e => setHeightCm(e.target.value)}
                   placeholder="e.g. 165" min={50} max={300}
-                  className="h-10 text-sm" style={{ fontFamily: "Nunito Sans, sans-serif" }} />
+                  className="h-10 text-sm" style={{ fontFamily: "Inter, sans-serif" }} />
               </div>
 
               {/* Weight */}
@@ -282,7 +282,7 @@ export default function Profile() {
                 </Label>
                 <Input type="number" value={weightKg} onChange={e => setWeightKg(e.target.value)}
                   placeholder="e.g. 65" min={10} max={500}
-                  className="h-10 text-sm" style={{ fontFamily: "Nunito Sans, sans-serif" }} />
+                  className="h-10 text-sm" style={{ fontFamily: "Inter, sans-serif" }} />
               </div>
 
               {/* Activity Level */}
@@ -295,14 +295,14 @@ export default function Profile() {
                     <button key={level.id} onClick={() => setActivityLevel(level.id as typeof activityLevel)}
                       className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg border text-left transition-all"
                       style={{
-                        borderColor: activityLevel === level.id ? "oklch(0.32 0.10 162)" : "oklch(0.88 0.008 90)",
-                        background: activityLevel === level.id ? "oklch(0.93 0.04 162)" : "white",
+                        borderColor: activityLevel === level.id ? "#6D5BD0" : "#DDE3EE",
+                        background: activityLevel === level.id ? "#EDE9FB" : "white",
                       }}>
                       <div>
-                        <div className="text-sm font-semibold" style={{ color: activityLevel === level.id ? "oklch(0.25 0.10 162)" : "oklch(0.25 0.015 65)", fontFamily: "Nunito Sans, sans-serif" }}>
+                        <div className="text-sm font-semibold" style={{ color: activityLevel === level.id ? "oklch(0.25 0.10 162)" : "oklch(0.25 0.015 65)", fontFamily: "Inter, sans-serif" }}>
                           {level.label}
                         </div>
-                        <div className="text-xs" style={{ color: "oklch(0.55 0.015 65)" }}>{level.desc}</div>
+                        <div className="text-xs" style={{ color: "#8B9AB0" }}>{level.desc}</div>
                       </div>
                       <span className="text-xs font-mono" style={{ color: "oklch(0.45 0.10 162)" }}>{level.multiplier}</span>
                     </button>
@@ -315,10 +315,10 @@ export default function Profile() {
           {/* Step 2: Goals */}
           {step === "goals" && (
             <div className="space-y-4">
-              <h2 className="text-lg font-bold" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.20 0.015 65)" }}>
+              <h2 className="text-lg font-bold" style={{ fontFamily: "Inter, sans-serif", color: "#0A1F44" }}>
                 Health Objectives
               </h2>
-              <p className="text-sm" style={{ color: "oklch(0.50 0.015 65)", fontFamily: "Nunito Sans, sans-serif" }}>
+              <p className="text-sm" style={{ color: "oklch(0.50 0.015 65)", fontFamily: "Inter, sans-serif" }}>
                 Select all that apply. Your calorie and macro targets will be calculated accordingly.
               </p>
               <div className="grid grid-cols-2 gap-2">
@@ -328,14 +328,14 @@ export default function Profile() {
                     <button key={obj.id} onClick={() => toggleObjective(obj.id)}
                       className="p-3 rounded-xl border text-left transition-all"
                       style={{
-                        borderColor: active ? "oklch(0.32 0.10 162)" : "oklch(0.88 0.008 90)",
-                        background: active ? "oklch(0.93 0.04 162)" : "white",
+                        borderColor: active ? "#6D5BD0" : "#DDE3EE",
+                        background: active ? "#EDE9FB" : "white",
                       }}>
                       <div className="text-lg mb-1">{obj.icon}</div>
-                      <div className="text-xs font-bold" style={{ color: active ? "oklch(0.25 0.10 162)" : "oklch(0.25 0.015 65)", fontFamily: "Nunito Sans, sans-serif" }}>
+                      <div className="text-xs font-bold" style={{ color: active ? "oklch(0.25 0.10 162)" : "oklch(0.25 0.015 65)", fontFamily: "Inter, sans-serif" }}>
                         {obj.label}
                       </div>
-                      <div className="text-[10px] mt-0.5" style={{ color: "oklch(0.55 0.015 65)" }}>{obj.desc}</div>
+                      <div className="text-[10px] mt-0.5" style={{ color: "#8B9AB0" }}>{obj.desc}</div>
                     </button>
                   );
                 })}
@@ -346,10 +346,10 @@ export default function Profile() {
           {/* Step 3: Dietary Preferences */}
           {step === "diet" && (
             <div className="space-y-4">
-              <h2 className="text-lg font-bold" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.20 0.015 65)" }}>
+              <h2 className="text-lg font-bold" style={{ fontFamily: "Inter, sans-serif", color: "#0A1F44" }}>
                 Dietary Preferences
               </h2>
-              <p className="text-sm" style={{ color: "oklch(0.50 0.015 65)", fontFamily: "Nunito Sans, sans-serif" }}>
+              <p className="text-sm" style={{ color: "oklch(0.50 0.015 65)", fontFamily: "Inter, sans-serif" }}>
                 Optional — helps the AI suggest appropriate dishes.
               </p>
               <div className="grid grid-cols-3 gap-2">
@@ -359,11 +359,11 @@ export default function Profile() {
                     <button key={pref.id} onClick={() => toggleDietaryPref(pref.id)}
                       className="p-3 rounded-xl border text-center transition-all"
                       style={{
-                        borderColor: active ? "oklch(0.32 0.10 162)" : "oklch(0.88 0.008 90)",
-                        background: active ? "oklch(0.93 0.04 162)" : "white",
+                        borderColor: active ? "#6D5BD0" : "#DDE3EE",
+                        background: active ? "#EDE9FB" : "white",
                       }}>
                       <div className="text-xl mb-1">{pref.icon}</div>
-                      <div className="text-xs font-semibold" style={{ color: active ? "oklch(0.25 0.10 162)" : "oklch(0.35 0.015 65)", fontFamily: "Nunito Sans, sans-serif" }}>
+                      <div className="text-xs font-semibold" style={{ color: active ? "oklch(0.25 0.10 162)" : "oklch(0.35 0.015 65)", fontFamily: "Inter, sans-serif" }}>
                         {pref.label}
                       </div>
                     </button>
@@ -382,10 +382,10 @@ export default function Profile() {
           {/* Step 4: Review */}
           {step === "review" && calculatedTargets && (
             <div className="space-y-4">
-              <h2 className="text-lg font-bold" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.20 0.015 65)" }}>
+              <h2 className="text-lg font-bold" style={{ fontFamily: "Inter, sans-serif", color: "#0A1F44" }}>
                 Your Daily Targets
               </h2>
-              <p className="text-sm" style={{ color: "oklch(0.50 0.015 65)", fontFamily: "Nunito Sans, sans-serif" }}>
+              <p className="text-sm" style={{ color: "oklch(0.50 0.015 65)", fontFamily: "Inter, sans-serif" }}>
                 Based on your profile (BMR: {calculatedTargets.bmr} kcal, TDEE: {calculatedTargets.tdee} kcal)
               </p>
 
@@ -399,21 +399,21 @@ export default function Profile() {
                   { icon: <Leaf size={16} />, label: "Fibre", value: `${calculatedTargets.dailyFibreTargetG}`, unit: "g", color: "oklch(0.40 0.12 162)" },
                 ].map(item => (
                   <div key={item.label} className="p-3 rounded-xl border text-center"
-                    style={{ borderColor: "oklch(0.90 0.006 162)", background: "oklch(0.98 0.003 90)" }}>
+                    style={{ borderColor: "#DDE3EE", background: "#F7F9FC" }}>
                     <div className="flex items-center justify-center gap-1 mb-1" style={{ color: item.color }}>
                       {item.icon}
-                      <span className="text-xs font-semibold" style={{ fontFamily: "Nunito Sans, sans-serif" }}>{item.label}</span>
+                      <span className="text-xs font-semibold" style={{ fontFamily: "Inter, sans-serif" }}>{item.label}</span>
                     </div>
-                    <div className="text-xl font-bold" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.20 0.015 65)" }}>
+                    <div className="text-xl font-bold" style={{ fontFamily: "Inter, sans-serif", color: "#0A1F44" }}>
                       {item.value}
                     </div>
-                    <div className="text-xs" style={{ color: "oklch(0.55 0.015 65)" }}>{item.unit}/day</div>
+                    <div className="text-xs" style={{ color: "#8B9AB0" }}>{item.unit}/day</div>
                   </div>
                 ))}
               </div>
 
-              <div className="p-3 rounded-xl" style={{ background: "oklch(0.93 0.04 162)" }}>
-                <p className="text-xs font-medium" style={{ color: "oklch(0.25 0.10 162)", fontFamily: "Nunito Sans, sans-serif" }}>
+              <div className="p-3 rounded-xl" style={{ background: "#EDE9FB" }}>
+                <p className="text-xs font-medium" style={{ color: "oklch(0.25 0.10 162)", fontFamily: "Inter, sans-serif" }}>
                   <CheckCircle size={12} className="inline mr-1" />
                   Targets calculated using Mifflin-St Jeor equation. You can adjust these anytime from your profile.
                 </p>
@@ -427,14 +427,14 @@ export default function Profile() {
         <div className="flex gap-3 mt-4">
           {stepIndex > 0 && (
             <Button variant="outline" onClick={handleBack} className="flex-1 h-11"
-              style={{ fontFamily: "Nunito Sans, sans-serif", borderColor: "oklch(0.88 0.008 90)" }}>
+              style={{ fontFamily: "Inter, sans-serif", borderColor: "#DDE3EE" }}>
               <ChevronLeft size={16} className="mr-1" />Back
             </Button>
           )}
           <Button onClick={handleNext}
             disabled={saveProfile.isPending || calculateTargets.isPending}
             className="flex-1 h-11 font-semibold"
-            style={{ background: "oklch(0.32 0.10 162)", color: "white", fontFamily: "Nunito Sans, sans-serif" }}>
+            style={{ background: "#6D5BD0", color: "white", fontFamily: "Inter, sans-serif" }}>
             {saveProfile.isPending ? (
               <><Loader2 size={14} className="animate-spin mr-2" />Saving...</>
             ) : step === "review" ? (

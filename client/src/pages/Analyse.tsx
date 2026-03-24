@@ -175,10 +175,10 @@ When shown a food image, identify the dish and respond with ONLY a JSON object i
     <div className="flex flex-col min-h-screen">
       {/* Header */}
       <div className="jade-block px-4 md:px-8 py-5">
-        <h1 className="text-xl font-extrabold mb-1" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.98 0.005 90)" }}>
+        <h1 className="text-xl font-extrabold mb-1" style={{ fontFamily: "Inter, sans-serif", color: "#F7F9FC" }}>
           Analyse Food Photo
         </h1>
-        <p className="text-sm opacity-75" style={{ color: "oklch(0.85 0.04 162)", fontFamily: "Nunito Sans, sans-serif" }}>
+        <p className="text-sm opacity-75" style={{ color: "oklch(0.85 0.04 162)", fontFamily: "Inter, sans-serif" }}>
           Upload a photo of your food — AI will identify it and show nutritional data
         </p>
       </div>
@@ -200,17 +200,17 @@ When shown a food image, identify the dish and respond with ONLY a JSON object i
                 if (file) handleFile(file);
               }}
             >
-              <Camera size={40} className="mx-auto mb-3" style={{ color: "oklch(0.48 0.10 162)" }} />
-              <p className="font-bold text-base mb-1" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.32 0.10 162)" }}>
+              <Camera size={40} className="mx-auto mb-3" style={{ color: "#A899F0" }} />
+              <p className="font-bold text-base mb-1" style={{ fontFamily: "Inter, sans-serif", color: "#6D5BD0" }}>
                 Drop a food photo here
               </p>
-              <p className="text-sm mb-4" style={{ color: "oklch(0.52 0.015 65)" }}>
+              <p className="text-sm mb-4" style={{ color: "#4A5568" }}>
                 or click to browse — JPG, PNG, WEBP
               </p>
               <Button
                 size="sm"
                 className="gap-1.5 font-semibold"
-                style={{ background: "oklch(0.32 0.10 162)", color: "oklch(0.98 0.005 90)", fontFamily: "Sora, sans-serif" }}
+                style={{ background: "#6D5BD0", color: "#F7F9FC", fontFamily: "Inter, sans-serif" }}
               >
                 <Upload size={14} /> Choose Photo
               </Button>
@@ -224,7 +224,7 @@ When shown a food image, identify the dish and respond with ONLY a JSON object i
               onChange={e => { const f = e.target.files?.[0]; if (f) handleFile(f); }}
             />
 
-            <div className="mt-4 p-3 rounded-lg text-xs" style={{ background: "oklch(0.94 0.015 162)", color: "oklch(0.40 0.08 162)", fontFamily: "Nunito Sans, sans-serif" }}>
+            <div className="mt-4 p-3 rounded-lg text-xs" style={{ background: "oklch(0.94 0.015 162)", color: "oklch(0.40 0.08 162)", fontFamily: "Inter, sans-serif" }}>
               <strong>Tip:</strong> Works best with clear, well-lit photos of single dishes. AI identifies Singapore & Malaysia foods and matches them to the HPB SG FoodID database.
             </div>
           </div>
@@ -236,11 +236,11 @@ When shown a food image, identify the dish and respond with ONLY a JSON object i
             {imageUrl && (
               <img src={imageUrl} alt="Food" className="w-48 h-48 object-cover rounded-xl mx-auto mb-6 shadow-lg" />
             )}
-            <Loader2 size={32} className="animate-spin mx-auto mb-3" style={{ color: "oklch(0.32 0.10 162)" }} />
-            <p className="font-bold text-base" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.32 0.10 162)" }}>
+            <Loader2 size={32} className="animate-spin mx-auto mb-3" style={{ color: "#6D5BD0" }} />
+            <p className="font-bold text-base" style={{ fontFamily: "Inter, sans-serif", color: "#6D5BD0" }}>
               Identifying food...
             </p>
-            <p className="text-sm mt-1" style={{ color: "oklch(0.52 0.015 65)" }}>
+            <p className="text-sm mt-1" style={{ color: "#4A5568" }}>
               AI is analysing your photo
             </p>
           </div>
@@ -257,7 +257,7 @@ When shown a food image, identify the dish and respond with ONLY a JSON object i
                 <div className="flex items-center gap-2 mb-1">
                   <span className="pill-badge pill-green text-xs">AI Result</span>
                 </div>
-                <p className="font-bold text-lg" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.18 0.015 65)" }}>
+                <p className="font-bold text-lg" style={{ fontFamily: "Inter, sans-serif", color: "#0A1F44" }}>
                   {aiResult}
                 </p>
                 {error && (
@@ -266,7 +266,7 @@ When shown a food image, identify the dish and respond with ONLY a JSON object i
                   </div>
                 )}
               </div>
-              <button onClick={reset} className="text-xs" style={{ color: "oklch(0.52 0.015 65)" }}>
+              <button onClick={reset} className="text-xs" style={{ color: "#4A5568" }}>
                 <X size={16} />
               </button>
             </div>
@@ -274,7 +274,7 @@ When shown a food image, identify the dish and respond with ONLY a JSON object i
             {/* Candidates */}
             {aiCandidates.length > 0 && (
               <div className="mb-5">
-                <p className="text-xs font-semibold mb-2 uppercase tracking-wider" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.52 0.015 65)" }}>
+                <p className="text-xs font-semibold mb-2 uppercase tracking-wider" style={{ fontFamily: "Inter, sans-serif", color: "#4A5568" }}>
                   Select the matching food:
                 </p>
                 <div className="space-y-2">
@@ -283,14 +283,14 @@ When shown a food image, identify the dish and respond with ONLY a JSON object i
                       key={item.crId}
                       onClick={() => selectCandidate(item)}
                       className="w-full text-left p-3 rounded-lg border-2 transition-all hover:border-[oklch(0.32_0.10_162)] flex items-center justify-between gap-2"
-                      style={{ borderColor: "oklch(0.88 0.008 90)", background: "oklch(1 0 0)" }}
+                      style={{ borderColor: "#DDE3EE", background: "oklch(1 0 0)" }}
                     >
                       <div>
-                        <div className="font-semibold text-sm" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.18 0.015 65)" }}>
+                        <div className="font-semibold text-sm" style={{ fontFamily: "Inter, sans-serif", color: "#0A1F44" }}>
                           {item.name}
                         </div>
                         {item.description && (
-                          <div className="text-xs mt-0.5 line-clamp-1" style={{ color: "oklch(0.52 0.015 65)" }}>
+                          <div className="text-xs mt-0.5 line-clamp-1" style={{ color: "#4A5568" }}>
                             {item.description}
                           </div>
                         )}
@@ -303,8 +303,8 @@ When shown a food image, identify the dish and respond with ONLY a JSON object i
             )}
 
             {/* Manual search fallback */}
-            <div className="border-t pt-4" style={{ borderColor: "oklch(0.88 0.008 90)" }}>
-              <p className="text-xs font-semibold mb-2 uppercase tracking-wider" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.52 0.015 65)" }}>
+            <div className="border-t pt-4" style={{ borderColor: "#DDE3EE" }}>
+              <p className="text-xs font-semibold mb-2 uppercase tracking-wider" style={{ fontFamily: "Inter, sans-serif", color: "#4A5568" }}>
                 Or search manually:
               </p>
               <div className="flex gap-2">
@@ -319,7 +319,7 @@ When shown a food image, identify the dish and respond with ONLY a JSON object i
                   size="sm"
                   onClick={doManualSearch}
                   disabled={searchLoading}
-                  style={{ background: "oklch(0.32 0.10 162)", color: "oklch(0.98 0.005 90)" }}
+                  style={{ background: "#6D5BD0", color: "#F7F9FC" }}
                 >
                   {searchLoading ? <Loader2 size={14} className="animate-spin" /> : <Search size={14} />}
                 </Button>
@@ -331,13 +331,13 @@ When shown a food image, identify the dish and respond with ONLY a JSON object i
                       key={item.crId}
                       onClick={() => selectCandidate(item)}
                       className="w-full text-left p-2.5 rounded-lg border transition-all hover:border-[oklch(0.32_0.10_162)] flex items-center justify-between gap-2"
-                      style={{ borderColor: "oklch(0.88 0.008 90)", background: "oklch(0.99 0 0)" }}
+                      style={{ borderColor: "#DDE3EE", background: "oklch(0.99 0 0)" }}
                     >
                       <div>
-                        <div className="font-semibold text-sm" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.18 0.015 65)" }}>
+                        <div className="font-semibold text-sm" style={{ fontFamily: "Inter, sans-serif", color: "#0A1F44" }}>
                           {item.name}
                         </div>
-                        <div className="text-xs" style={{ color: "oklch(0.52 0.015 65)" }}>
+                        <div className="text-xs" style={{ color: "#4A5568" }}>
                           {item.l1Category} › {item.l2Category}
                         </div>
                       </div>
@@ -359,21 +359,21 @@ When shown a food image, identify the dish and respond with ONLY a JSON object i
                 <img src={imageUrl} alt="Food" className="w-20 h-20 object-cover rounded-lg shadow shrink-0" />
               )}
               <div className="flex-1">
-                <h2 className="font-extrabold text-lg leading-tight" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.18 0.015 65)" }}>
+                <h2 className="font-extrabold text-lg leading-tight" style={{ fontFamily: "Inter, sans-serif", color: "#0A1F44" }}>
                   {selectedFood.name}
                 </h2>
                 {selectedFood.description && (
-                  <p className="text-xs mt-0.5" style={{ color: "oklch(0.52 0.015 65)" }}>
+                  <p className="text-xs mt-0.5" style={{ color: "#4A5568" }}>
                     {selectedFood.description}
                   </p>
                 )}
                 <Link href={`/food/${selectedFood.crId}`}>
-                  <span className="text-xs underline mt-1 inline-block" style={{ color: "oklch(0.32 0.10 162)" }}>
+                  <span className="text-xs underline mt-1 inline-block" style={{ color: "#6D5BD0" }}>
                     View full details →
                   </span>
                 </Link>
               </div>
-              <button onClick={reset} className="text-xs shrink-0" style={{ color: "oklch(0.52 0.015 65)" }}>
+              <button onClick={reset} className="text-xs shrink-0" style={{ color: "#4A5568" }}>
                 <X size={16} />
               </button>
             </div>
@@ -381,9 +381,9 @@ When shown a food image, identify the dish and respond with ONLY a JSON object i
             {/* Quantity input */}
             <div
               className="flex items-center gap-3 p-3 rounded-lg mb-4 border"
-              style={{ background: "oklch(0.96 0.01 162)", borderColor: "oklch(0.88 0.008 90)" }}
+              style={{ background: "oklch(0.96 0.01 162)", borderColor: "#DDE3EE" }}
             >
-              <span className="text-sm font-semibold" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.32 0.10 162)" }}>
+              <span className="text-sm font-semibold" style={{ fontFamily: "Inter, sans-serif", color: "#6D5BD0" }}>
                 Quantity:
               </span>
               <Input
@@ -394,12 +394,12 @@ When shown a food image, identify the dish and respond with ONLY a JSON object i
                 min={1}
                 max={2000}
               />
-              <span className="text-sm" style={{ color: "oklch(0.52 0.015 65)" }}>grams</span>
+              <span className="text-sm" style={{ color: "#4A5568" }}>grams</span>
               {selectedFood.defaultServingSize && (
                 <button
                   onClick={() => setQuantity(String(selectedFood.defaultWeight_g ?? 100))}
                   className="text-xs px-2 py-1 rounded"
-                  style={{ background: "oklch(0.90 0.06 162)", color: "oklch(0.28 0.10 162)", fontFamily: "Nunito Sans, sans-serif" }}
+                  style={{ background: "oklch(0.90 0.06 162)", color: "oklch(0.28 0.10 162)", fontFamily: "Inter, sans-serif" }}
                 >
                   Use default ({selectedFood.defaultServingSize})
                 </button>
@@ -417,10 +417,10 @@ When shown a food image, identify the dish and respond with ONLY a JSON object i
                 const val = scaledNutrients?.[key];
                 return (
                   <div key={key} className="text-center p-2 rounded-lg" style={{ background: "oklch(0.94 0.015 162)" }}>
-                    <div className="nutrient-value text-xl font-bold" style={{ color: "oklch(0.22 0.09 162)" }}>
+                    <div className="nutrient-value text-xl font-bold" style={{ color: "#1C1C2E" }}>
                       {val !== null && val !== undefined ? Math.round(val) : "—"}
                     </div>
-                    <div className="text-[10px]" style={{ color: "oklch(0.52 0.015 65)", fontFamily: "Nunito Sans, sans-serif" }}>
+                    <div className="text-[10px]" style={{ color: "#4A5568", fontFamily: "Inter, sans-serif" }}>
                       {label}
                     </div>
                   </div>
@@ -429,7 +429,7 @@ When shown a food image, identify the dish and respond with ONLY a JSON object i
             </div>
 
             {/* Full nutrient table */}
-            <div className="rounded-xl overflow-hidden border" style={{ borderColor: "oklch(0.88 0.008 90)" }}>
+            <div className="rounded-xl overflow-hidden border" style={{ borderColor: "#DDE3EE" }}>
               <NutrientTable
                 per100g={selectedFood.nutrientsPer100g}
                 customWeight={quantityG}

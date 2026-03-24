@@ -18,15 +18,15 @@ function Accordion({ title, icon, children, defaultOpen = false }: {
 }) {
   const [open, setOpen] = useState(defaultOpen);
   return (
-    <div className="rounded-xl border mb-3 overflow-hidden" style={{ borderColor: "oklch(0.90 0.006 162)" }}>
+    <div className="rounded-xl border mb-3 overflow-hidden" style={{ borderColor: "#DDE3EE" }}>
       <button
         onClick={() => setOpen(v => !v)}
         className="w-full flex items-center justify-between px-5 py-4 text-left transition-colors hover:bg-gray-50"
         style={{ background: open ? "oklch(0.97 0.03 162)" : "white" }}
       >
         <div className="flex items-center gap-2.5">
-          <span style={{ color: "oklch(0.32 0.10 162)" }}>{icon}</span>
-          <span className="font-bold text-sm" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.18 0.015 65)" }}>{title}</span>
+          <span style={{ color: "#6D5BD0" }}>{icon}</span>
+          <span className="font-bold text-sm" style={{ fontFamily: "Inter, sans-serif", color: "#0A1F44" }}>{title}</span>
         </div>
         {open ? <ChevronDown size={16} style={{ color: "oklch(0.50 0.015 65)" }} /> : <ChevronRight size={16} style={{ color: "oklch(0.50 0.015 65)" }} />}
       </button>
@@ -46,7 +46,7 @@ function NutrientRow({ name, unit, low, medium, high, sgContext, color }: {
   return (
     <tr className="border-b" style={{ borderColor: "oklch(0.93 0.004 162)" }}>
       <td className="py-2 pr-3">
-        <span className="font-semibold text-xs" style={{ color: "oklch(0.22 0.015 65)", fontFamily: "Sora, sans-serif" }}>{name}</span>
+        <span className="font-semibold text-xs" style={{ color: "oklch(0.22 0.015 65)", fontFamily: "Inter, sans-serif" }}>{name}</span>
         <span className="text-[10px] ml-1" style={{ color: "oklch(0.60 0.015 65)" }}>({unit})</span>
       </td>
       <td className="py-2 px-2 text-center">
@@ -58,7 +58,7 @@ function NutrientRow({ name, unit, low, medium, high, sgContext, color }: {
       <td className="py-2 pl-2 text-center">
         <span className="text-[10px] px-2 py-0.5 rounded-full font-semibold" style={{ background: "#fee2e2", color: "#991b1b" }}>{high}</span>
       </td>
-      <td className="py-2 pl-3 text-[10px]" style={{ color: "oklch(0.50 0.015 65)", fontFamily: "Nunito Sans, sans-serif" }}>{sgContext}</td>
+      <td className="py-2 pl-3 text-[10px]" style={{ color: "oklch(0.50 0.015 65)", fontFamily: "Inter, sans-serif" }}>{sgContext}</td>
     </tr>
   );
 }
@@ -66,33 +66,33 @@ function NutrientRow({ name, unit, low, medium, high, sgContext, color }: {
 // ── Tip card ─────────────────────────────────────────────────
 function TipCard({ icon, title, body, color }: { icon: React.ReactNode; title: string; body: string; color: string }) {
   return (
-    <div className="rounded-xl border p-4" style={{ borderColor: "oklch(0.90 0.006 162)", background: "white" }}>
+    <div className="rounded-xl border p-4" style={{ borderColor: "#DDE3EE", background: "white" }}>
       <div className="flex items-center gap-2 mb-2">
         <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: color + "20" }}>
           <span style={{ color }}>{icon}</span>
         </div>
-        <span className="font-bold text-sm" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.20 0.015 65)" }}>{title}</span>
+        <span className="font-bold text-sm" style={{ fontFamily: "Inter, sans-serif", color: "#0A1F44" }}>{title}</span>
       </div>
-      <p className="text-xs leading-relaxed" style={{ color: "oklch(0.48 0.015 65)", fontFamily: "Nunito Sans, sans-serif" }}>{body}</p>
+      <p className="text-xs leading-relaxed" style={{ color: "oklch(0.48 0.015 65)", fontFamily: "Inter, sans-serif" }}>{body}</p>
     </div>
   );
 }
 
 export default function Help() {
   return (
-    <div className="min-h-screen" style={{ background: "oklch(0.98 0.003 90)" }}>
+    <div className="min-h-screen" style={{ background: "#F7F9FC" }}>
       {/* ── Header ── */}
-      <div className="border-b px-6 md:px-10 py-5" style={{ borderColor: "oklch(0.90 0.006 162)", background: "white" }}>
+      <div className="border-b px-6 md:px-10 py-5" style={{ borderColor: "#DDE3EE", background: "white" }}>
         <div className="max-w-3xl mx-auto">
           <Link href="/">
-            <button className="flex items-center gap-1.5 text-xs font-semibold mb-3 hover:opacity-70 transition-opacity" style={{ color: "oklch(0.45 0.015 65)" }}>
+            <button className="flex items-center gap-1.5 text-xs font-semibold mb-3 hover:opacity-70 transition-opacity" style={{ color: "#4A5568" }}>
               <ArrowLeft size={13} /> Back to Explore
             </button>
           </Link>
-          <h1 className="text-2xl font-extrabold" style={{ fontFamily: "Sora, sans-serif", color: "oklch(0.18 0.015 65)" }}>
+          <h1 className="text-2xl font-extrabold" style={{ fontFamily: "Inter, sans-serif", color: "#0A1F44" }}>
             Help & Data Guide
           </h1>
-          <p className="text-sm mt-1" style={{ color: "oklch(0.50 0.015 65)", fontFamily: "Nunito Sans, sans-serif" }}>
+          <p className="text-sm mt-1" style={{ color: "oklch(0.50 0.015 65)", fontFamily: "Inter, sans-serif" }}>
             Learn how to read nutritional data, interpret insights, and build healthier eating habits using Singapore and Malaysia food context.
           </p>
         </div>
@@ -112,7 +112,7 @@ export default function Help() {
           ].map(item => (
             <a key={item.label} href={item.href}
               className="px-3 py-1.5 rounded-full text-xs font-semibold border transition-all hover:border-[oklch(0.32_0.10_162)] hover:text-[oklch(0.32_0.10_162)]"
-              style={{ borderColor: "oklch(0.88 0.008 90)", color: "oklch(0.45 0.015 65)", fontFamily: "Nunito Sans, sans-serif" }}>
+              style={{ borderColor: "#DDE3EE", color: "#4A5568", fontFamily: "Inter, sans-serif" }}>
               {item.label}
             </a>
           ))}
@@ -120,7 +120,7 @@ export default function Help() {
 
         {/* ── Getting Started ── */}
         <Accordion title="Getting Started with FoodDB" icon={<BookOpen size={16} />} defaultOpen>
-          <div className="space-y-3 text-xs leading-relaxed" style={{ color: "oklch(0.45 0.015 65)", fontFamily: "Nunito Sans, sans-serif" }}>
+          <div className="space-y-3 text-xs leading-relaxed" style={{ color: "#4A5568", fontFamily: "Inter, sans-serif" }}>
             <p>
               FoodDB is a nutritional database of <strong>2,500+ Singapore and Malaysia foods</strong> covering hawker dishes, restaurant meals, packaged foods, and traditional recipes. Each food entry includes up to 41 nutrient fields drawn from government health databases.
             </p>
@@ -139,18 +139,18 @@ export default function Help() {
         {/* ── Understanding Nutrients ── */}
         <div id="nutrients">
           <Accordion title="Understanding the Nutrient Panel" icon={<Activity size={16} />}>
-            <p className="text-xs mb-4 leading-relaxed" style={{ color: "oklch(0.45 0.015 65)", fontFamily: "Nunito Sans, sans-serif" }}>
+            <p className="text-xs mb-4 leading-relaxed" style={{ color: "#4A5568", fontFamily: "Inter, sans-serif" }}>
               Each food card shows 8 key nutrients. Here's what they mean and what levels to watch for in a typical Singapore/Malaysia diet:
             </p>
             <div className="overflow-x-auto">
               <table className="w-full text-left">
                 <thead>
-                  <tr style={{ borderBottom: "2px solid oklch(0.88 0.008 90)" }}>
-                    <th className="text-[10px] font-bold pb-2 pr-3" style={{ color: "oklch(0.40 0.015 65)" }}>Nutrient</th>
+                  <tr style={{ borderBottom: "2px solid #DDE3EE" }}>
+                    <th className="text-[10px] font-bold pb-2 pr-3" style={{ color: "#2F3A4A" }}>Nutrient</th>
                     <th className="text-[10px] font-bold pb-2 px-2 text-center" style={{ color: "#166534" }}>Low ✓</th>
                     <th className="text-[10px] font-bold pb-2 px-2 text-center" style={{ color: "#854d0e" }}>Medium</th>
                     <th className="text-[10px] font-bold pb-2 pl-2 text-center" style={{ color: "#991b1b" }}>High ⚠</th>
-                    <th className="text-[10px] font-bold pb-2 pl-3" style={{ color: "oklch(0.40 0.015 65)" }}>SG/MY Context</th>
+                    <th className="text-[10px] font-bold pb-2 pl-3" style={{ color: "#2F3A4A" }}>SG/MY Context</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -174,7 +174,7 @@ export default function Help() {
         {/* ── Calories ── */}
         <div id="calories">
           <Accordion title="Calories & Energy Balance" icon={<Zap size={16} />}>
-            <div className="space-y-3 text-xs leading-relaxed" style={{ color: "oklch(0.45 0.015 65)", fontFamily: "Nunito Sans, sans-serif" }}>
+            <div className="space-y-3 text-xs leading-relaxed" style={{ color: "#4A5568", fontFamily: "Inter, sans-serif" }}>
               <p>
                 <strong style={{ color: "oklch(0.25 0.015 65)" }}>What is a calorie?</strong> A kilocalorie (kcal) is the unit of energy in food. Your body needs a certain number of calories per day to maintain weight — this is your Total Daily Energy Expenditure (TDEE).
               </p>
@@ -205,7 +205,7 @@ export default function Help() {
         {/* ── Sodium ── */}
         <div id="sodium">
           <Accordion title="Sodium & Salt — The Hidden Risk" icon={<Droplets size={16} />}>
-            <div className="space-y-3 text-xs leading-relaxed" style={{ color: "oklch(0.45 0.015 65)", fontFamily: "Nunito Sans, sans-serif" }}>
+            <div className="space-y-3 text-xs leading-relaxed" style={{ color: "#4A5568", fontFamily: "Inter, sans-serif" }}>
               <div className="flex gap-3 p-3 rounded-lg border" style={{ borderColor: "oklch(0.80 0.12 30)", background: "oklch(0.97 0.04 30)" }}>
                 <AlertTriangle size={16} className="flex-shrink-0 mt-0.5" style={{ color: "oklch(0.55 0.18 30)" }} />
                 <p style={{ color: "oklch(0.40 0.15 30)" }}>
@@ -256,7 +256,7 @@ export default function Help() {
         {/* ── Glycaemic Index ── */}
         <div id="gi">
           <Accordion title="Glycaemic Index (GI) — Blood Sugar Impact" icon={<TrendingDown size={16} />}>
-            <div className="space-y-3 text-xs leading-relaxed" style={{ color: "oklch(0.45 0.015 65)", fontFamily: "Nunito Sans, sans-serif" }}>
+            <div className="space-y-3 text-xs leading-relaxed" style={{ color: "#4A5568", fontFamily: "Inter, sans-serif" }}>
               <p>
                 The <strong>Glycaemic Index (GI)</strong> measures how quickly a food raises blood glucose levels on a scale of 0–100. This is particularly relevant for Singapore and Malaysia, where diabetes rates are among the highest in Asia (1 in 9 Singaporeans has diabetes).
               </p>
@@ -290,7 +290,7 @@ export default function Help() {
 
         {/* ── Macronutrients ── */}
         <Accordion title="Macronutrients: Protein, Carbs & Fat" icon={<Beef size={16} />}>
-          <div className="space-y-3 text-xs leading-relaxed" style={{ color: "oklch(0.45 0.015 65)", fontFamily: "Nunito Sans, sans-serif" }}>
+          <div className="space-y-3 text-xs leading-relaxed" style={{ color: "#4A5568", fontFamily: "Inter, sans-serif" }}>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               <div className="rounded-lg p-3 border" style={{ borderColor: "oklch(0.85 0.08 140)", background: "oklch(0.97 0.03 140)" }}>
                 <div className="font-bold mb-1" style={{ color: "oklch(0.30 0.12 140)" }}>🥩 Protein (4 kcal/g)</div>
@@ -314,8 +314,8 @@ export default function Help() {
         {/* ── Search Tips ── */}
         <div id="search">
           <Accordion title="Search Tips & Query Examples" icon={<Search size={16} />}>
-            <div className="space-y-3 text-xs" style={{ fontFamily: "Nunito Sans, sans-serif" }}>
-              <p className="leading-relaxed" style={{ color: "oklch(0.45 0.015 65)" }}>
+            <div className="space-y-3 text-xs" style={{ fontFamily: "Inter, sans-serif" }}>
+              <p className="leading-relaxed" style={{ color: "#4A5568" }}>
                 FoodDB's search engine understands natural language, nutrition filters, and cultural dimensions simultaneously.
               </p>
               <div className="space-y-2">
@@ -327,9 +327,9 @@ export default function Help() {
                   { query: "Nyonya dessert", result: "Ethnic=Peranakan AND category=dessert" },
                   { query: "kopitiam breakfast seniors", result: "Occasion=breakfast AND generation=elderly" },
                 ].map(item => (
-                  <div key={item.query} className="rounded-lg p-3 border" style={{ borderColor: "oklch(0.88 0.008 90)", background: "white" }}>
-                    <div className="font-semibold mb-1" style={{ color: "oklch(0.32 0.10 162)" }}>"{item.query}"</div>
-                    <div className="text-[10px]" style={{ color: "oklch(0.55 0.015 65)" }}>→ {item.result}</div>
+                  <div key={item.query} className="rounded-lg p-3 border" style={{ borderColor: "#DDE3EE", background: "white" }}>
+                    <div className="font-semibold mb-1" style={{ color: "#6D5BD0" }}>"{item.query}"</div>
+                    <div className="text-[10px]" style={{ color: "#8B9AB0" }}>→ {item.result}</div>
                   </div>
                 ))}
               </div>
@@ -375,7 +375,7 @@ export default function Help() {
                 icon={<Info size={16} />}
                 title="Use the Calorie Calculator"
                 body="Set your daily calorie and sodium targets in the Calculator page, then use the Food Calendar to log meals and track your intake. The AI suggestion engine will recommend dishes that fit your remaining budget."
-                color="oklch(0.32 0.10 162)"
+                color="#6D5BD0"
               />
             </div>
           </Accordion>
@@ -383,10 +383,10 @@ export default function Help() {
 
         {/* ── Footer note ── */}
         <div className="text-center py-4 mt-2">
-          <p className="text-xs" style={{ color: "oklch(0.65 0.015 65)", fontFamily: "Nunito Sans, sans-serif" }}>
+          <p className="text-xs" style={{ color: "oklch(0.65 0.015 65)", fontFamily: "Inter, sans-serif" }}>
             Need more help? Visit the{" "}
             <Link href="/credits">
-              <span className="underline cursor-pointer" style={{ color: "oklch(0.32 0.10 162)" }}>Credits & Disclaimer</span>
+              <span className="underline cursor-pointer" style={{ color: "#6D5BD0" }}>Credits & Disclaimer</span>
             </Link>{" "}
             page for data sources, or use the AI suggestion engine in the Food Calendar for personalised guidance.
           </p>
