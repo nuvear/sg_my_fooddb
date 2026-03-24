@@ -11,7 +11,7 @@ import {
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 
-const INNUIR_LOGO_CDN = "https://d2xsxph8kpxj0f.cloudfront.net/310519663374102189/gFdMLjqiUpDnmt4U3dovdX/logo_innuir_ace06d38.png";
+const INNUIR_LOGO_CDN = "https://d2xsxph8kpxj0f.cloudfront.net/310519663374102189/gFdMLjqiUpDnmt4U3dovdX/innuir_logo_transparent_bg_1_fa0631ee.png";
 
 // ── Nav structure ─────────────────────────────────────────────
 const MAIN_NAV = [
@@ -121,6 +121,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               src={INNUIR_LOGO_CDN}
               alt="Innuir"
               className="h-8 w-auto object-contain"
+              style={{ mixBlendMode: "screen" }}
             />
           </Link>
           <div className="mt-1.5 text-xs" style={{ color: SB.text, fontFamily: "Inter, sans-serif" }}>
