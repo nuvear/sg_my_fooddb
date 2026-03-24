@@ -47,6 +47,12 @@
 - [x] Admin role-based access control for admin routes
 - [x] Nav restructured: Database / Personal / Info / Admin collapsible sections
 
+## Phase 4 — Bug Fixes & Enhancements
+- [ ] Fix AI photo recognition — improve LLM vision prompt to identify non-SG/MY dishes (e.g. Goya Champuru)
+- [ ] Add nutritional fallback when dish not in FoodDB — estimate from recipe ingredients or URL
+- [ ] Show identified dish name + confidence even when not in database
+- [ ] Logo: transparent background or mix-blend-mode fix for Innuir logo on dark sidebar
+
 ## Phase 4 — Pending
 - [ ] Wire REST endpoints for /api/foods/search and /api/foods/:crId (for MCP/external apps)
 - [ ] Wire /api/mcp/call server endpoint
