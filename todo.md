@@ -61,3 +61,18 @@
 - [ ] Hotel venue data layer (next phase)
 - [ ] Dish detail modal with radar chart
 - [ ] Map view for hawker centre discovery
+
+## Phase 5 — MCP Server for Innuir Health Integration
+- [x] Install @modelcontextprotocol/sdk (v1.27.1)
+- [x] Implement server/mcp.ts with 7 MCP tools:
+  - [x] search_foods — full-text food search with nutrient filters
+  - [x] get_food_detail — full nutrient profile with net_carbs and glycemic_load
+  - [x] decompose_dish — AI decomposition into typed components
+  - [x] estimate_nutrition — structured estimate with confidence intervals
+  - [x] get_meal_log — retrieve user meal log for date range
+  - [x] get_daily_summary — pre-computed daily aggregates
+  - [x] get_glycemic_load — meal-level GL with protein/fat/fibre buffering
+- [x] Mount MCP endpoint at POST /api/mcp in server/_core/index.ts
+- [ ] Write vitest tests for MCP tools
+- [ ] Add MCP endpoint documentation to /api-docs page
+- [ ] Add API key authentication to /api/mcp for production security
