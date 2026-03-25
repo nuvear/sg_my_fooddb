@@ -1,0 +1,60 @@
+CREATE TABLE `food_corrections` (
+	`id` int AUTO_INCREMENT NOT NULL,
+	`userId` int,
+	`foodId` varchar(64) NOT NULL,
+	`foodName` varchar(256) NOT NULL,
+	`field` varchar(64) NOT NULL,
+	`currentValue` text,
+	`suggestedValue` text NOT NULL,
+	`reason` text,
+	`sourceUrl` text,
+	`status` enum('pending','approved','rejected') NOT NULL DEFAULT 'pending',
+	`reviewedBy` int,
+	`reviewNote` text,
+	`reviewedAt` timestamp,
+	`createdAt` timestamp NOT NULL DEFAULT (now()),
+	`updatedAt` timestamp NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP,
+	CONSTRAINT `food_corrections_id` PRIMARY KEY(`id`)
+);
+--> statement-breakpoint
+CREATE TABLE `food_submissions` (
+	`id` int AUTO_INCREMENT NOT NULL,
+	`userId` int,
+	`foodName` varchar(256) NOT NULL,
+	`localNames` text,
+	`category` varchar(128),
+	`country` varchar(64),
+	`cuisine` varchar(64),
+	`description` text,
+	`energyKcal` float,
+	`proteinG` float,
+	`fatG` float,
+	`carbG` float,
+	`sugarG` float,
+	`sodiumMg` float,
+	`fibreG` float,
+	`sourceUrl` text,
+	`sourceNotes` text,
+	`status` enum('pending','approved','rejected','needs_info') NOT NULL DEFAULT 'pending',
+	`reviewedBy` int,
+	`reviewNote` text,
+	`reviewedAt` timestamp,
+	`createdAt` timestamp NOT NULL DEFAULT (now()),
+	`updatedAt` timestamp NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP,
+	CONSTRAINT `food_submissions_id` PRIMARY KEY(`id`)
+);
+--> statement-breakpoint
+CREATE TABLE `user_feedback` (
+	`id` int AUTO_INCREMENT NOT NULL,
+	`userId` int,
+	`type` enum('bug','feature_request','data_quality','general') NOT NULL DEFAULT 'general',
+	`subject` varchar(256) NOT NULL,
+	`message` text NOT NULL,
+	`rating` int,
+	`pageContext` varchar(128),
+	`status` enum('open','acknowledged','resolved','closed') NOT NULL DEFAULT 'open',
+	`adminReply` text,
+	`createdAt` timestamp NOT NULL DEFAULT (now()),
+	`updatedAt` timestamp NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP,
+	CONSTRAINT `user_feedback_id` PRIMARY KEY(`id`)
+);

@@ -6,7 +6,7 @@ import { Link, useLocation } from "wouter";
 import {
   Search, Camera, ClipboardPaste, Database, UploadCloud,
   Activity, CalendarDays, Calculator, User, HelpCircle, BookOpen,
-  Code2, ShieldCheck, ChevronDown, ChevronRight
+  Code2, ShieldCheck, ChevronDown, ChevronRight, PlusCircle, Star
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
@@ -24,9 +24,11 @@ const MAIN_NAV = [
 ];
 
 const PERSONAL_NAV = [
-  { href: "/profile",    label: "My Profile", icon: User,          desc: "Goals & targets" },
-  { href: "/calendar",   label: "Food Plan",  icon: CalendarDays,  desc: "Meal calendar" },
-  { href: "/calculator", label: "Calculator", icon: Calculator,    desc: "Calorie & sodium" },
+  { href: "/profile",          label: "My Profile",     icon: User,        desc: "Goals & targets" },
+  { href: "/calendar",         label: "Food Plan",      icon: CalendarDays, desc: "Meal calendar" },
+  { href: "/calculator",       label: "Calculator",     icon: Calculator,  desc: "Calorie & sodium" },
+  { href: "/contribute",       label: "Contribute",     icon: PlusCircle,  desc: "Submit & correct" },
+  { href: "/my-contributions", label: "My Submissions", icon: Star,        desc: "Track your work" },
 ];
 
 const INFO_NAV = [

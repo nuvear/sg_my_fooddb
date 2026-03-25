@@ -16,7 +16,8 @@ import { getLoginUrl } from "@/const";
 import {
   Users, UtensilsCrossed, ChefHat, BookOpen, Activity,
   CheckCircle2, XCircle, Clock, AlertCircle, RefreshCw,
-  ShieldCheck, Database, Zap, TrendingUp, Eye, ThumbsUp, ThumbsDown
+  ShieldCheck, Database, Zap, TrendingUp, Eye, ThumbsUp, ThumbsDown,
+  PlusCircle, AlertTriangle, MessageSquare, HelpCircle
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -160,6 +161,179 @@ function AgentRunRow({ run }: {
         {run.status}
       </span>
     </div>
+  );
+}
+
+// ── Contribution Status Config ──────────────────────────────
+const CONTRIB_STATUS: Record<string, { label: string; color: string; bg: string }> = {
+  pending:      { label: "Pending",     color: "#92400e", bg: "#fef3c7" },
+  approved:     { label: "Approved",    color: "#166534", bg: "#dcfce7" },
+  rejected:     { label: "Rejected",    color: "#991b1b", bg: "#fee2e2" },
+  needs_info:   { label: "Needs Info",  color: "#1e40af", bg: "#dbeafe" },
+  open:         { label: "Open",        color: "#92400e", bg: "#fef3c7" },
+  acknowledged: { label: "Acknowledged",color: "#1e40af", bg: "#dbeafe" },
+  resolved:     { label: "Resolved",    color: "#166534", bg: "#dcfce7" },
+  closed:       { label: "Closed",      color: "#4A5568", bg: "#f1f5f9" },
+};
+
+function ContribStatusBadge({ status }: { status: string }) {
+  const cfg = CONTRIB_STATUS[status] ?? CONTRIB_STATUS.pending;
+  return (
+    <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full" style={{ background: cfg.bg, color: cfg.color }}>
+      {cfg.label}
+    </span>
+  );
+}
+
+// ── Contributions Panel ───────────────────────────────────────
+function ContributionsPanel() {
+  const [contribTab, setContribTab] = useState<"submissions" | "corrections" | "feedback">("submissions");
+  const [reviewingId, setReviewingId] = useState<number | null>(null);
+  const [reviewNote, setReviewNote] = useState("");
+
+  const { data: contribStats } = trpc.contributions.adminStats.useQuery();
+
+  const { data: contribList, isLoading: contribLoading, refetch: refetchContrib } =
+    trpc.contributions.adminList.useQuery({ type: contribTab, status: "pending", limit: 20, offset: 0 });
+
+  const reviewMut = trpc.contributions.adminReview.useMutation({
+    onSuccess: () => {
+      toast.success("Contribution reviewed");
+      setReviewingId(null);
+      setReviewNote("");
+      refetchContrib();
+    },
+    onError: (e) => toast.error(e.message),
+  });
+
+  const handleReview = (id: number, status: string) => {
+    const type = contribTab === "submissions" ? "submission" : contribTab === "corrections" ? "correction" : "feedback";
+    reviewMut.mutate({ type, id, status, note: reviewNote || undefined });
+  };
+
+  const TABS = [
+    { id: "submissions" as const, label: "Food Submissions", icon: <PlusCircle size={13} />, pending: contribStats?.submissions.pending ?? 0 },
+    { id: "corrections" as const, label: "Corrections",      icon: <AlertTriangle size={13} />, pending: contribStats?.corrections.pending ?? 0 },
+    { id: "feedback"    as const, label: "Feedback",         icon: <MessageSquare size={13} />, pending: contribStats?.feedback.open ?? 0 },
+  ];
+
+  return (
+    <section>
+      <div className="flex items-center gap-2 mb-3">
+        <PlusCircle size={16} style={{ color: "#6D5BD0" }} />
+        <h2 className="text-sm font-bold" style={{ fontFamily: "Inter, sans-serif", color: "oklch(0.30 0.015 65)" }}>
+          User Contributions
+        </h2>
+      </div>
+
+      {/* Tab selector */}
+      <div className="flex gap-2 mb-4 flex-wrap">
+        {TABS.map(t => (
+          <button
+            key={t.id}
+            onClick={() => setContribTab(t.id)}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-xs font-semibold transition-all"
+            style={{
+              background: contribTab === t.id ? "#6D5BD0" : "white",
+              color: contribTab === t.id ? "white" : "#4A5568",
+              borderColor: contribTab === t.id ? "#6D5BD0" : "#DDE3EE",
+            }}
+          >
+            {t.icon} {t.label}
+            {t.pending > 0 && (
+              <span className="ml-1 text-[9px] font-bold px-1.5 py-0.5 rounded-full" style={{ background: contribTab === t.id ? "rgba(255,255,255,0.3)" : "#fee2e2", color: contribTab === t.id ? "white" : "#991b1b" }}>
+                {t.pending}
+              </span>
+            )}
+          </button>
+        ))}
+      </div>
+
+      {/* List */}
+      <div className="space-y-3">
+        {contribLoading ? (
+          Array.from({ length: 3 }).map((_, i) => (
+            <div key={i} className="h-16 rounded-xl animate-pulse" style={{ background: "oklch(0.93 0.004 162)" }} />
+          ))
+        ) : !contribList?.length ? (
+          <div className="text-center py-8 rounded-xl border" style={{ borderColor: "#DDE3EE", background: "white" }}>
+            <CheckCircle2 size={28} className="mx-auto mb-2" style={{ color: "oklch(0.45 0.14 140)" }} />
+            <p className="text-sm font-semibold" style={{ color: "oklch(0.35 0.015 65)" }}>No pending {contribTab}</p>
+          </div>
+        ) : (
+          (contribList as Array<{ id: number; [key: string]: unknown }>).map((item) => {
+            const isReviewing = reviewingId === item.id;
+            const name = (item.foodName ?? item.subject ?? `#${item.id}`) as string;
+            const sub = contribTab === "submissions"
+              ? `${item.category ?? ""} · ${item.country ?? ""}`
+              : contribTab === "corrections"
+              ? `Field: ${item.field} · ${item.currentValue ?? "—"} → ${item.suggestedValue}`
+              : `${(item.type as string).replace("_", " ")} · ${item.message ? (item.message as string).slice(0, 60) + "..." : ""}`;
+
+            return (
+              <div key={item.id} className="border rounded-xl p-4" style={{ borderColor: "#DDE3EE", background: "white" }}>
+                <div className="flex items-start justify-between gap-3">
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 flex-wrap mb-0.5">
+                      <span className="font-bold text-sm" style={{ fontFamily: "Inter, sans-serif", color: "#0A1F44" }}>{name}</span>
+                      <ContribStatusBadge status={item.status as string} />
+                    </div>
+                    <p className="text-xs" style={{ color: "#8B9AB0" }}>{sub}</p>
+                  </div>
+                  <div className="flex gap-2 flex-shrink-0">
+                    <button
+                      onClick={() => { setReviewingId(isReviewing ? null : item.id); setReviewNote(""); }}
+                      className="px-3 py-1.5 rounded-lg text-xs font-semibold transition-all hover:opacity-80"
+                      style={{ background: "#dbeafe", color: "#1e40af" }}
+                    >
+                      {isReviewing ? "Cancel" : "Review"}
+                    </button>
+                  </div>
+                </div>
+
+                {isReviewing && (
+                  <div className="mt-3 space-y-2">
+                    <input
+                      value={reviewNote}
+                      onChange={e => setReviewNote(e.target.value)}
+                      placeholder="Review note (optional)..."
+                      className="w-full text-xs px-3 py-1.5 rounded-lg border outline-none focus:ring-1"
+                      style={{ borderColor: "#DDE3EE" }}
+                    />
+                    <div className="flex gap-2">
+                      {contribTab !== "feedback" ? (
+                        <>
+                          <button onClick={() => handleReview(item.id, "approved")} className="px-3 py-1.5 rounded-lg text-xs font-semibold" style={{ background: "#dcfce7", color: "#166534" }}>
+                            <ThumbsUp size={11} className="inline mr-1" /> Approve
+                          </button>
+                          <button onClick={() => handleReview(item.id, "rejected")} className="px-3 py-1.5 rounded-lg text-xs font-semibold" style={{ background: "#fee2e2", color: "#991b1b" }}>
+                            <ThumbsDown size={11} className="inline mr-1" /> Reject
+                          </button>
+                          {contribTab === "submissions" && (
+                            <button onClick={() => handleReview(item.id, "needs_info")} className="px-3 py-1.5 rounded-lg text-xs font-semibold" style={{ background: "#dbeafe", color: "#1e40af" }}>
+                              <HelpCircle size={11} className="inline mr-1" /> Needs Info
+                            </button>
+                          )}
+                        </>
+                      ) : (
+                        <>
+                          <button onClick={() => handleReview(item.id, "acknowledged")} className="px-3 py-1.5 rounded-lg text-xs font-semibold" style={{ background: "#dbeafe", color: "#1e40af" }}>
+                            Acknowledge
+                          </button>
+                          <button onClick={() => handleReview(item.id, "resolved")} className="px-3 py-1.5 rounded-lg text-xs font-semibold" style={{ background: "#dcfce7", color: "#166534" }}>
+                            Resolve
+                          </button>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
+            );
+          })
+        )}
+      </div>
+    </section>
   );
 }
 
@@ -362,6 +536,9 @@ export default function Admin() {
             </div>
           )}
         </section>
+
+        {/* ── Contributions Review ── */}
+        <ContributionsPanel />
 
         {/* ── Agent Run History ── */}
         <section>

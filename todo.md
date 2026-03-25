@@ -83,3 +83,19 @@
 - [x] Wire mcpAuthMiddleware into POST /api/mcp route in server/_core/index.ts
 - [x] Set MCP_API_KEY secret via webdev_request_secrets
 - [x] Write vitest tests for mcpAuthMiddleware (10 tests, all passing)
+
+## Phase 6 — User Contribution Layer (Completed)
+- [x] Add food_submissions, food_corrections, user_feedback tables to drizzle schema
+- [x] Push migration to database (direct SQL via Node script)
+- [x] Write contributionDb.ts query helpers (createFoodSubmission, createFoodCorrection, createUserFeedback, getUserFoodSubmissions, getUserFoodCorrections, getUserOwnFeedback, getFoodSubmissions, getFoodCorrections, getUserFeedbackList, reviewFoodSubmission, reviewFoodCorrection, replyToFeedback, getContributionStats)
+- [x] Write contributions tRPC router (submitFood, submitCorrection, submitFeedback, mySubmissions, myCorrections, myFeedback, adminList, adminReview, adminStats)
+- [x] Build Contribute page (3 tabs: Submit Food, Report Correction, Send Feedback)
+- [x] Build MyContributions page (user history with status badges)
+- [x] Add Contribute + MyContributions to nav and routes in App.tsx
+- [x] Add ContributionsPanel to Admin.tsx (review queue for submissions, corrections, feedback)
+- [x] Write vitest tests for contribution DB helpers (17 tests, all passing)
+- [x] Build standalone MCP test client (innuir-mcp-test-client/):
+  - [x] cli.mjs — CLI test runner with 14 test cases across all 7 tools
+  - [x] server.mjs — Express dashboard server at http://localhost:4000
+  - [x] README.md — setup and usage guide
+  - [x] .env.example — configuration template

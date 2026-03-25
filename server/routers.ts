@@ -5,6 +5,7 @@ import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, protectedProcedure, router } from "./_core/trpc";
 import { invokeLLM } from "./_core/llm";
+import { contributionsRouter } from "./routers/contributions";
 import {
   getUserProfile, upsertUserProfile,
   getMealLogsForDate, getMealLogsForRange, addMealLog, deleteMealLog,
@@ -15,6 +16,7 @@ import {
 
 export const appRouter = router({
   system: systemRouter,
+  contributions: contributionsRouter,
 
   auth: router({
     me: publicProcedure.query(opts => opts.ctx.user),

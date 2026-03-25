@@ -1,6 +1,7 @@
 // FoodDB — Tropical Bauhaus design system
 // Routes: / (home/search), /food/:crId (detail), /analyse, /import, /db, /agents
 //         /profile, /calendar, /calculator, /credits, /help, /api-docs
+//         /contribute, /my-contributions
 //         /admin (admin only), /admin/restaurants (admin only)
 
 import { Toaster } from "@/components/ui/sonner";
@@ -24,6 +25,8 @@ import Credits from "./pages/Credits";
 import Help from "./pages/Help";
 import McpApi from "./pages/McpApi";
 import Admin from "./pages/Admin";
+import Contribute from "./pages/Contribute";
+import MyContributions from "./pages/MyContributions";
 import NotFound from "./pages/NotFound";
 
 function Router() {
@@ -48,6 +51,10 @@ function Router() {
         <Route path="/help" component={Help} />
         <Route path="/credits" component={Credits} />
         <Route path="/api-docs" component={McpApi} />
+
+        {/* ── Contribution routes ── */}
+        <Route path="/contribute" component={Contribute} />
+        <Route path="/my-contributions" component={MyContributions} />
 
         {/* ── Admin routes (role check inside each page) ── */}
         <Route path="/admin" component={Admin} />

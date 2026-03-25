@@ -185,3 +185,100 @@ export const restaurantDishes = mysqlTable("restaurant_dishes", {
 });
 export type RestaurantDishRecord = typeof restaurantDishes.$inferSelect;
 export type InsertRestaurantDishRecord = typeof restaurantDishes.$inferInsert;
+
+/**
+ * ── User Contribution Layer ───────────────────────────────────────────────────
+ *
+ * Three contribution types:
+ *   1. food_submissions  — users submit new foods missing from the database
+ *   2. food_corrections  — users flag incorrect data on existing foods
+ *   3. user_feedback     — general feedback, bug reports, feature requests
+ */
+
+/**
+ * food_submissions — new food entries submitted by users.
+ * Admin reviews and either approves (adds to FoodDB) or rejects.
+ */
+export const foodSubmissions = mysqlTable("food_submissions", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId"),                                        // null for anonymous
+  // Basic food info
+  foodName: varchar("foodName", { length: 256 }).notNull(),
+  localNames: text("localNames"),                               // comma-separated aliases
+  category: varchar("category", { length: 128 }),
+  country: varchar("country", { length: 64 }),
+  cuisine: varchar("cuisine", { length: 64 }),
+  description: text("description"),
+  // Nutrition (per 100g) — all optional, user fills what they know
+  energyKcal: float("energyKcal"),
+  proteinG: float("proteinG"),
+  fatG: float("fatG"),
+  carbG: float("carbG"),
+  sugarG: float("sugarG"),
+  sodiumMg: float("sodiumMg"),
+  fibreG: float("fibreG"),
+  // Source evidence
+  sourceUrl: text("sourceUrl"),                                 // recipe URL, packaging photo, etc.
+  sourceNotes: text("sourceNotes"),
+  // Review workflow
+  status: mysqlEnum("status", ["pending", "approved", "rejected", "needs_info"])
+    .default("pending").notNull(),
+  reviewedBy: int("reviewedBy"),                                // admin userId
+  reviewNote: text("reviewNote"),
+  reviewedAt: timestamp("reviewedAt"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type FoodSubmission = typeof foodSubmissions.$inferSelect;
+export type InsertFoodSubmission = typeof foodSubmissions.$inferInsert;
+
+/**
+ * food_corrections — users flag incorrect nutrient data on existing foods.
+ */
+export const foodCorrections = mysqlTable("food_corrections", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId"),
+  // Target food
+  foodId: varchar("foodId", { length: 64 }).notNull(),          // crId from FoodDB index
+  foodName: varchar("foodName", { length: 256 }).notNull(),
+  // What is wrong
+  field: varchar("field", { length: 64 }).notNull(),            // e.g. "sodium", "energy", "name"
+  currentValue: text("currentValue"),                           // what the DB currently shows
+  suggestedValue: text("suggestedValue").notNull(),             // what the user believes is correct
+  reason: text("reason"),                                       // free-text explanation
+  sourceUrl: text("sourceUrl"),                                 // supporting evidence
+  // Review workflow
+  status: mysqlEnum("status", ["pending", "approved", "rejected"])
+    .default("pending").notNull(),
+  reviewedBy: int("reviewedBy"),
+  reviewNote: text("reviewNote"),
+  reviewedAt: timestamp("reviewedAt"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type FoodCorrection = typeof foodCorrections.$inferSelect;
+export type InsertFoodCorrection = typeof foodCorrections.$inferInsert;
+
+/**
+ * user_feedback — general feedback, bug reports, and feature requests.
+ */
+export const userFeedback = mysqlTable("user_feedback", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId"),
+  type: mysqlEnum("type", ["bug", "feature_request", "data_quality", "general"])
+    .default("general").notNull(),
+  subject: varchar("subject", { length: 256 }).notNull(),
+  message: text("message").notNull(),
+  rating: int("rating"),                                        // 1-5 star rating (optional)
+  pageContext: varchar("pageContext", { length: 128 }),         // which page they were on
+  status: mysqlEnum("status", ["open", "acknowledged", "resolved", "closed"])
+    .default("open").notNull(),
+  adminReply: text("adminReply"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type UserFeedback = typeof userFeedback.$inferSelect;
+export type InsertUserFeedback = typeof userFeedback.$inferInsert;
