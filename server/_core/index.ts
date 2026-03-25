@@ -8,6 +8,7 @@ import { appRouter } from "../routers";
 import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
 import { handleMcpRequest } from "../mcp";
+import { mcpAuthMiddleware } from "./mcpAuth";
 
 function isPortAvailable(port: number): Promise<boolean> {
   return new Promise(resolve => {
@@ -46,7 +47,8 @@ async function startServer() {
   );
   // MCP server endpoint for Innuir Health and AI agents
   // POST /api/mcp — stateless HTTP Streamable transport
-  app.post("/api/mcp", handleMcpRequest);
+  // Protected by bearer token auth (MCP_API_KEY env var)
+  app.post("/api/mcp", mcpAuthMiddleware, handleMcpRequest);
 
   // development mode uses Vite, production mode uses static files
   if (process.env.NODE_ENV === "development") {

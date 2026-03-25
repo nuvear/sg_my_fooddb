@@ -76,3 +76,10 @@
 - [ ] Write vitest tests for MCP tools
 - [ ] Add MCP endpoint documentation to /api-docs page
 - [ ] Add API key authentication to /api/mcp for production security
+
+## Phase 5 — MCP Auth (Completed)
+- [x] Add MCP_API_KEY to ENV in server/_core/env.ts
+- [x] Implement mcpAuthMiddleware in server/_core/mcpAuth.ts (bearer token, constant-time compare, dev/prod behaviour)
+- [x] Wire mcpAuthMiddleware into POST /api/mcp route in server/_core/index.ts
+- [x] Set MCP_API_KEY secret via webdev_request_secrets
+- [x] Write vitest tests for mcpAuthMiddleware (10 tests, all passing)
