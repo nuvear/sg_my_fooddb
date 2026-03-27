@@ -674,291 +674,347 @@ export const HEALTH_FLAG_LABELS: Record<DishHealthFlag["flag"], { label: string;
 };
 
 // ── Agent-scraped dishes (auto-updated) ────────────────────
-// Last updated: 2026-03-26T09:22:03.025634+00:00
+// Last updated: 2026-03-27T09:18:34.232481+00:00
 // Source: agent_data_merger.py
 export const SCRAPED_DISHES: Record<string, ScrapedDish[]> = {
   "tian-tian": [
     {
         "name": "Steamed Chicken Rice (Small)",
-        "description": "Silky poached chicken on fragrant rice, with dark soy and chilli",
+        "description": "Steamed chicken served with fragrant oily rice and accompanied by chili and ginger sauces.",
         "category": "Chicken Rice",
-        "estimatedKcal": 480,
+        "estimatedKcal": 400,
         "nutrition": {
-            "protein_g": 28,
-            "carb_g": 62,
-            "fat_g": 12,
-            "sodium_mg": 780,
-            "fibre_g": 1.0,
+            "protein_g": 22.0,
+            "carb_g": 50.0,
+            "fat_g": 10.0,
+            "sodium_mg": 700,
+            "fibre_g": 0.8,
             "gi": 65
         },
         "confidence": "high",
-        "source": "curated_seed",
+        "source": "llm_estimated",
         "price_sgd": 3.5,
         "image_url": "",
         "healthFlags": [
             {
-                "flag": "high-protein",
-                "note": "28g protein"
+                "flag": "halal",
+                "note": "Commonly prepared with halal chicken in Singapore"
             }
         ]
     },
     {
         "name": "Steamed Chicken Rice (Large)",
-        "description": "Full portion steamed chicken with ginger-infused rice",
+        "description": "A large serving of Hainanese steamed chicken rice consisting of poached chicken and fragrant oily rice.",
         "category": "Chicken Rice",
-        "estimatedKcal": 650,
+        "estimatedKcal": 550,
         "nutrition": {
-            "protein_g": 38,
-            "carb_g": 82,
-            "fat_g": 16,
-            "sodium_mg": 1050,
-            "fibre_g": 1.4,
+            "protein_g": 35.0,
+            "carb_g": 80.0,
+            "fat_g": 15.0,
+            "sodium_mg": 900,
+            "fibre_g": 1.0,
             "gi": 65
         },
-        "confidence": "high",
-        "source": "curated_seed",
+        "confidence": "medium",
+        "source": "llm_estimated",
         "price_sgd": 5.0,
         "image_url": "",
         "healthFlags": [
             {
                 "flag": "high-sodium",
-                "note": "1050mg sodium"
+                "note": "Sodium content exceeds 800mg"
             },
             {
                 "flag": "high-protein",
-                "note": "38g protein"
+                "note": "Protein content exceeds 25g"
             }
         ]
     },
     {
         "name": "Roasted Chicken Rice",
-        "description": "Crispy-skinned roast chicken on garlic rice",
+        "description": "A popular Singaporean dish featuring poached or roasted chicken served with fragrant oily rice and accompanied by chili sauce and ginger paste.",
         "category": "Chicken Rice",
-        "estimatedKcal": 550,
+        "estimatedKcal": 500,
         "nutrition": {
-            "protein_g": 30,
-            "carb_g": 65,
-            "fat_g": 18,
-            "sodium_mg": 850,
+            "protein_g": 30.0,
+            "carb_g": 65.0,
+            "fat_g": 14.0,
+            "sodium_mg": 800,
             "fibre_g": 1.0,
             "gi": 65
         },
         "confidence": "high",
-        "source": "curated_seed",
+        "source": "llm_estimated",
         "price_sgd": 4.0,
         "image_url": "",
         "healthFlags": [
             {
                 "flag": "high-protein",
-                "note": "30g protein"
+                "note": "Contains over 25g protein per serving"
             }
         ]
     },
     {
         "name": "Chicken Drumstick Rice",
-        "description": "Whole drumstick, steamed or roasted",
+        "description": "Steamed chicken drumstick served with fragrant oily rice, accompanied by chili sauce and ginger paste, typical of Hainanese Chicken Rice in Singapore.",
         "category": "Chicken Rice",
-        "estimatedKcal": 680,
+        "estimatedKcal": 500,
         "nutrition": {
-            "protein_g": 42,
-            "carb_g": 68,
-            "fat_g": 20,
-            "sodium_mg": 920,
-            "fibre_g": 1.2,
+            "protein_g": 28.0,
+            "carb_g": 60.0,
+            "fat_g": 14.0,
+            "sodium_mg": 780,
+            "fibre_g": 1.0,
             "gi": 65
         },
         "confidence": "high",
-        "source": "curated_seed",
+        "source": "llm_estimated",
         "price_sgd": 5.5,
         "image_url": "",
         "healthFlags": [
             {
-                "flag": "high-protein",
-                "note": "42g protein"
+                "flag": "balanced",
+                "note": "Moderate protein, carbs, and fat content"
             }
         ]
     },
     {
         "name": "Chicken Soup",
-        "description": "Clear chicken broth with ginger and spring onion",
+        "description": "Clear chicken broth served as a light side soup accompanying Hainanese Chicken Rice.",
         "category": "Sides",
-        "estimatedKcal": 45,
+        "estimatedKcal": 70,
         "nutrition": {
-            "protein_g": 5,
-            "carb_g": 2,
-            "fat_g": 2,
-            "sodium_mg": 380,
+            "protein_g": 6.5,
+            "carb_g": 2.0,
+            "fat_g": 3.0,
+            "sodium_mg": 700,
             "fibre_g": 0.2,
-            "gi": 20
+            "gi": 40
         },
-        "confidence": "high",
-        "source": "curated_seed",
+        "confidence": "medium",
+        "source": "llm_estimated",
         "price_sgd": 1.5,
         "image_url": "",
-        "healthFlags": []
+        "healthFlags": [
+            {
+                "flag": "halal",
+                "note": "Chicken-based dish suitable for halal diets"
+            }
+        ]
     },
     {
         "name": "Chilli Sauce",
-        "description": "House-made chilli with lime and ginger",
+        "description": "A spicy and tangy chilli sauce commonly served as a condiment with Hainanese Chicken Rice in Singapore.",
         "category": "Condiment",
-        "estimatedKcal": 25,
+        "estimatedKcal": 40,
         "nutrition": {
             "protein_g": 0.5,
-            "carb_g": 5,
+            "carb_g": 9.0,
             "fat_g": 0.5,
-            "sodium_mg": 180,
+            "sodium_mg": 300,
             "fibre_g": 0.5,
-            "gi": 40
+            "gi": 65
         },
-        "confidence": "high",
-        "source": "curated_seed",
+        "confidence": "medium",
+        "source": "llm_estimated",
         "price_sgd": 0.5,
         "image_url": "",
-        "healthFlags": []
+        "healthFlags": [
+            {
+                "flag": "spicy",
+                "note": "Contains chilli peppers which add spiciness"
+            }
+        ]
     }
   ],
   "song-fa": [
     {
         "name": "Pork Rib Soup (Bak Kut Teh)",
-        "description": "Peppery herbal pork rib soup, Teochew style",
+        "description": "A savory pork rib soup simmered with herbs and spices, commonly enjoyed in Singapore and Malaysia.",
         "category": "Bak Kut Teh",
         "estimatedKcal": 380,
         "nutrition": {
-            "protein_g": 32,
-            "carb_g": 5,
-            "fat_g": 24,
+            "protein_g": 32.0,
+            "carb_g": 5.0,
+            "fat_g": 24.0,
             "sodium_mg": 1100,
             "fibre_g": 0.5,
-            "gi": 30
+            "gi": 25
         },
         "confidence": "high",
-        "source": "curated_seed",
+        "source": "llm_estimated",
         "price_sgd": 10.0,
         "image_url": "",
         "healthFlags": [
             {
                 "flag": "high-sodium",
-                "note": "1100mg sodium"
+                "note": "Contains more than 800mg sodium per serving"
+            },
+            {
+                "flag": "high-fat",
+                "note": "Contains more than 20g fat per serving"
             },
             {
                 "flag": "high-protein",
-                "note": "32g protein"
+                "note": "Contains more than 25g protein per serving"
             }
         ]
     },
     {
-        "name": "Pork Belly Soup",
-        "description": "Slow-simmered pork belly in herbal broth",
-        "category": "Bak Kut Teh",
-        "estimatedKcal": 420,
+        "name": "You Char Kway (Dough Fritters)",
+        "description": "Deep-fried dough fritters commonly served as a side dish with Bak Kut Teh in Singapore.",
+        "category": "Sides",
+        "estimatedKcal": 380,
         "nutrition": {
-            "protein_g": 28,
-            "carb_g": 4,
-            "fat_g": 30,
-            "sodium_mg": 1050,
-            "fibre_g": 0.4,
-            "gi": 28
+            "protein_g": 32.0,
+            "carb_g": 5.0,
+            "fat_g": 24.0,
+            "sodium_mg": 1100,
+            "fibre_g": 0.5,
+            "gi": 25
         },
         "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 9.0,
+        "source": "llm_estimated",
+        "price_sgd": 3.0,
         "image_url": "",
         "healthFlags": [
             {
                 "flag": "high-sodium",
-                "note": "1050mg sodium"
+                "note": "Contains more than 800mg sodium per serving"
             },
             {
                 "flag": "high-fat",
-                "note": "30g fat"
+                "note": "Contains more than 20g fat per serving"
             },
             {
                 "flag": "high-protein",
-                "note": "28g protein"
+                "note": "Contains more than 25g protein per serving"
             }
         ]
     },
     {
-        "name": "Pig Trotters",
-        "description": "Braised trotters in dark soy and spices",
+        "name": "Braised Pork Trotters",
+        "description": "Braised pork trotters slow-cooked in a flavorful herbal broth, typical of Singaporean Bak Kut Teh.",
         "category": "Mains",
-        "estimatedKcal": 520,
+        "estimatedKcal": 400,
         "nutrition": {
-            "protein_g": 28,
-            "carb_g": 8,
-            "fat_g": 40,
-            "sodium_mg": 980,
-            "fibre_g": 0.6,
-            "gi": 35
+            "protein_g": 30.0,
+            "carb_g": 6.0,
+            "fat_g": 26.0,
+            "sodium_mg": 1200,
+            "fibre_g": 0.5,
+            "gi": 25
         },
-        "confidence": "medium",
-        "source": "curated_seed",
+        "confidence": "high",
+        "source": "llm_estimated",
         "price_sgd": 12.0,
         "image_url": "",
         "healthFlags": [
             {
+                "flag": "high-sodium",
+                "note": "Sodium content exceeds 800mg per serving"
+            },
+            {
                 "flag": "high-fat",
-                "note": "40g fat"
+                "note": "Fat content exceeds 20g per serving"
             },
             {
                 "flag": "high-protein",
-                "note": "28g protein"
+                "note": "Protein content exceeds 25g per serving"
+            },
+            {
+                "flag": "halal",
+                "note": "Typically prepared with pork, not halal"
             }
         ]
     },
     {
-        "name": "You Tiao (Dough Fritters)",
-        "description": "Crispy fried dough for dipping in soup",
+        "name": "Braised Tofu",
+        "description": "Braised tofu simmered in a savory herbal broth, commonly served as a side dish in Bak Kut Teh meals.",
         "category": "Sides",
-        "estimatedKcal": 301,
+        "estimatedKcal": 350,
         "nutrition": {
-            "protein_g": 8,
-            "carb_g": 42,
-            "fat_g": 11,
-            "sodium_mg": 420,
-            "fibre_g": 1.8,
-            "gi": 62
-        },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 2.0,
-        "image_url": "",
-        "healthFlags": []
-    },
-    {
-        "name": "Braised Peanuts",
-        "description": "Slow-cooked peanuts in soy sauce",
-        "category": "Sides",
-        "estimatedKcal": 180,
-        "nutrition": {
-            "protein_g": 8,
-            "carb_g": 12,
-            "fat_g": 12,
-            "sodium_mg": 320,
-            "fibre_g": 2.5,
+            "protein_g": 28.0,
+            "carb_g": 6.0,
+            "fat_g": 22.0,
+            "sodium_mg": 1050,
+            "fibre_g": 0.6,
             "gi": 25
         },
         "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 3.0,
+        "source": "llm_estimated",
+        "price_sgd": 5.0,
         "image_url": "",
-        "healthFlags": []
+        "healthFlags": [
+            {
+                "flag": "high-sodium",
+                "note": "Contains over 800mg sodium per serving"
+            },
+            {
+                "flag": "high-fat",
+                "note": "Contains over 20g fat per serving"
+            },
+            {
+                "flag": "high-protein",
+                "note": "Contains over 25g protein per serving"
+            },
+            {
+                "flag": "halal",
+                "note": "Typically prepared without non-halal ingredients"
+            }
+        ]
     },
     {
-        "name": "Steamed Rice",
-        "description": "Fragrant jasmine rice",
+        "name": "Braised Peanuts",
+        "description": "Braised peanuts cooked in a savory herbal broth, commonly served as a side dish in Bak Kut Teh meals.",
         "category": "Sides",
-        "estimatedKcal": 180,
+        "estimatedKcal": 380,
         "nutrition": {
-            "protein_g": 4,
-            "carb_g": 40,
-            "fat_g": 0.5,
-            "sodium_mg": 5,
+            "protein_g": 32.0,
+            "carb_g": 5.0,
+            "fat_g": 24.0,
+            "sodium_mg": 1100,
             "fibre_g": 0.5,
-            "gi": 72
+            "gi": 25
         },
         "confidence": "high",
-        "source": "curated_seed",
+        "source": "llm_estimated",
+        "price_sgd": 3.5,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "high-sodium",
+                "note": "Contains more than 800mg sodium per serving"
+            },
+            {
+                "flag": "high-fat",
+                "note": "Contains more than 20g fat per serving"
+            },
+            {
+                "flag": "high-protein",
+                "note": "Contains more than 25g protein per serving"
+            },
+            {
+                "flag": "halal",
+                "note": "Typically prepared without non-halal ingredients"
+            }
+        ]
+    },
+    {
+        "name": "Rice",
+        "description": "Steamed white rice served as a staple accompaniment to Bak Kut Teh.",
+        "category": "Staple",
+        "estimatedKcal": 200,
+        "nutrition": {
+            "protein_g": 4.0,
+            "carb_g": 45.0,
+            "fat_g": 0.4,
+            "sodium_mg": 5,
+            "fibre_g": 1.0,
+            "gi": 70
+        },
+        "confidence": "high",
+        "source": "llm_estimated",
         "price_sgd": 1.0,
         "image_url": "",
         "healthFlags": []
@@ -966,1408 +1022,1690 @@ export const SCRAPED_DISHES: Record<string, ScrapedDish[]> = {
   ],
   "tai-hwa": [
     {
-        "name": "Bak Chor Mee (Dry)",
-        "description": "Minced pork noodles with vinegar, chilli, lard, mushrooms",
+        "name": "Bak Chor Mee (Small)",
+        "description": "A small serving of Singapore-style minced meat noodles with vinegar and chili.",
         "category": "Noodles",
         "estimatedKcal": 520,
         "nutrition": {
-            "protein_g": 28,
-            "carb_g": 68,
-            "fat_g": 14,
+            "protein_g": 22.0,
+            "carb_g": 68.0,
+            "fat_g": 16.0,
             "sodium_mg": 1200,
             "fibre_g": 2.0,
-            "gi": 58
-        },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 6.0,
-        "image_url": "",
-        "healthFlags": [
-            {
-                "flag": "high-sodium",
-                "note": "1200mg sodium"
-            },
-            {
-                "flag": "high-protein",
-                "note": "28g protein"
-            }
-        ]
-    },
-    {
-        "name": "Bak Chor Mee (Soup)",
-        "description": "Minced pork noodles in clear pork broth",
-        "category": "Noodles",
-        "estimatedKcal": 480,
-        "nutrition": {
-            "protein_g": 26,
-            "carb_g": 65,
-            "fat_g": 12,
-            "sodium_mg": 1100,
-            "fibre_g": 1.8,
             "gi": 55
         },
         "confidence": "high",
-        "source": "curated_seed",
+        "source": "llm_estimated",
         "price_sgd": 6.0,
         "image_url": "",
         "healthFlags": [
             {
                 "flag": "high-sodium",
-                "note": "1100mg sodium"
-            },
-            {
-                "flag": "high-protein",
-                "note": "26g protein"
+                "note": "Sodium content exceeds 800mg per serving"
             }
         ]
     },
     {
-        "name": "Mee Pok (Flat Noodles)",
-        "description": "Flat yellow noodles with pork and mushrooms",
+        "name": "Bak Chor Mee (Medium)",
+        "description": "A medium serving of Bak Chor Mee, a Singaporean noodle dish with minced pork, mushrooms, and vinegar-based sauce.",
         "category": "Noodles",
-        "estimatedKcal": 490,
+        "estimatedKcal": 520,
         "nutrition": {
-            "protein_g": 24,
-            "carb_g": 70,
-            "fat_g": 12,
-            "sodium_mg": 1150,
-            "fibre_g": 1.8,
-            "gi": 58
-        },
-        "confidence": "medium",
-        "source": "curated_seed",
-        "price_sgd": 6.0,
-        "image_url": "",
-        "healthFlags": [
-            {
-                "flag": "high-sodium",
-                "note": "1150mg sodium"
-            }
-        ]
-    },
-    {
-        "name": "Kway Teow (Flat Rice Noodles)",
-        "description": "Silky flat rice noodles in pork broth",
-        "category": "Noodles",
-        "estimatedKcal": 460,
-        "nutrition": {
-            "protein_g": 22,
-            "carb_g": 72,
-            "fat_g": 10,
-            "sodium_mg": 1050,
-            "fibre_g": 1.5,
-            "gi": 60
-        },
-        "confidence": "medium",
-        "source": "curated_seed",
-        "price_sgd": 6.0,
-        "image_url": "",
-        "healthFlags": [
-            {
-                "flag": "high-sodium",
-                "note": "1050mg sodium"
-            }
-        ]
-    },
-    {
-        "name": "Pork Liver Add-on",
-        "description": "Sliced pork liver, blanched",
-        "category": "Add-ons",
-        "estimatedKcal": 80,
-        "nutrition": {
-            "protein_g": 12,
-            "carb_g": 2,
-            "fat_g": 3,
-            "sodium_mg": 280,
-            "fibre_g": 0.2,
-            "gi": 25
+            "protein_g": 22.0,
+            "carb_g": 68.0,
+            "fat_g": 16.0,
+            "sodium_mg": 1200,
+            "fibre_g": 2.0,
+            "gi": 55
         },
         "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 2.0,
+        "source": "llm_estimated",
+        "price_sgd": 8.0,
         "image_url": "",
         "healthFlags": [
             {
-                "flag": "low-calorie",
-                "note": "80 kcal"
+                "flag": "high-sodium",
+                "note": "Sodium content exceeds 800mg per serving"
             }
         ]
     },
     {
-        "name": "Fishball Add-on",
-        "description": "Handmade fishballs",
-        "category": "Add-ons",
-        "estimatedKcal": 80,
+        "name": "Bak Chor Mee (Large)",
+        "description": "A large serving of Singapore-style minced pork noodles with vinegar and chili sauce.",
+        "category": "Noodles",
+        "estimatedKcal": 520,
         "nutrition": {
-            "protein_g": 8,
-            "carb_g": 8,
-            "fat_g": 2,
-            "sodium_mg": 320,
-            "fibre_g": 0.5,
-            "gi": 48
+            "protein_g": 22.0,
+            "carb_g": 68.0,
+            "fat_g": 16.0,
+            "sodium_mg": 1200,
+            "fibre_g": 2.0,
+            "gi": 55
         },
         "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 2.0,
+        "source": "llm_estimated",
+        "price_sgd": 10.0,
         "image_url": "",
-        "healthFlags": []
+        "healthFlags": [
+            {
+                "flag": "high-sodium",
+                "note": "Sodium content exceeds 800mg per serving"
+            }
+        ]
+    },
+    {
+        "name": "Dry Bak Chor Mee",
+        "description": "A Singaporean dry noodle dish featuring minced pork, mushrooms, and vinegar-based sauce.",
+        "category": "Noodles",
+        "estimatedKcal": 520,
+        "nutrition": {
+            "protein_g": 22.0,
+            "carb_g": 68.0,
+            "fat_g": 16.0,
+            "sodium_mg": 1200,
+            "fibre_g": 2.0,
+            "gi": 55
+        },
+        "confidence": "high",
+        "source": "llm_estimated",
+        "price_sgd": 8.0,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "high-sodium",
+                "note": "Contains more than 800mg sodium per serving"
+            }
+        ]
+    },
+    {
+        "name": "Pork Liver Noodles",
+        "description": "A Singaporean noodle dish featuring pork liver, minced pork, and noodles in a savory sauce.",
+        "category": "Noodles",
+        "estimatedKcal": 520,
+        "nutrition": {
+            "protein_g": 22.0,
+            "carb_g": 68.0,
+            "fat_g": 16.0,
+            "sodium_mg": 1200,
+            "fibre_g": 2.0,
+            "gi": 55
+        },
+        "confidence": "high",
+        "source": "llm_estimated",
+        "price_sgd": 8.0,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "high-sodium",
+                "note": "Contains 1200mg sodium, exceeding recommended limits"
+            }
+        ]
     }
   ],
   "liao-fan": [
     {
         "name": "Soya Sauce Chicken Rice",
-        "description": "Braised soy chicken on rice — Michelin-starred hawker",
+        "description": "Steamed chicken braised in soy sauce served with fragrant rice, a popular Singaporean dish.",
         "category": "Chicken Rice",
         "estimatedKcal": 480,
         "nutrition": {
-            "protein_g": 30,
-            "carb_g": 58,
-            "fat_g": 14,
-            "sodium_mg": 920,
-            "fibre_g": 0.8,
-            "gi": 62
+            "protein_g": 28.0,
+            "carb_g": 62.0,
+            "fat_g": 12.0,
+            "sodium_mg": 780,
+            "fibre_g": 1.0,
+            "gi": 65
         },
         "confidence": "high",
-        "source": "curated_seed",
+        "source": "llm_estimated",
         "price_sgd": 3.0,
         "image_url": "",
         "healthFlags": [
             {
-                "flag": "high-protein",
-                "note": "30g protein"
+                "flag": "halal",
+                "note": "Commonly prepared with halal chicken"
             }
         ]
     },
     {
-        "name": "Soya Sauce Chicken Noodles",
-        "description": "Braised soy chicken on egg noodles",
+        "name": "Soya Sauce Chicken Noodle",
+        "description": "A classic Singaporean dish featuring tender soya sauce braised chicken served with egg noodles in a savory soy-based sauce.",
         "category": "Noodles",
+        "estimatedKcal": 430,
+        "nutrition": {
+            "protein_g": 28.0,
+            "carb_g": 53.0,
+            "fat_g": 11.0,
+            "sodium_mg": 950,
+            "fibre_g": 0.8,
+            "gi": 60
+        },
+        "confidence": "high",
+        "source": "llm_estimated",
+        "price_sgd": 3.0,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "high-sodium",
+                "note": "Sodium content exceeds 800mg due to soy sauce and seasoning"
+            },
+            {
+                "flag": "high-protein",
+                "note": "Protein content exceeds 25g from chicken"
+            }
+        ]
+    },
+    {
+        "name": "Char Siew Rice",
+        "description": "Char Siew Rice is a popular Singaporean dish featuring barbecued pork served with steamed white rice and a savory soy-based sauce.",
+        "category": "Mains",
+        "estimatedKcal": 430,
+        "nutrition": {
+            "protein_g": 28.0,
+            "carb_g": 55.0,
+            "fat_g": 12.0,
+            "sodium_mg": 900,
+            "fibre_g": 0.8,
+            "gi": 60
+        },
+        "confidence": "high",
+        "source": "llm_estimated",
+        "price_sgd": 3.5,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "high-sodium",
+                "note": "Sodium content exceeds 800mg per serving"
+            }
+        ]
+    },
+    {
+        "name": "Roasted Pork Rice",
+        "description": "A popular Singaporean dish featuring roasted pork served with steamed white rice and soy sauce.",
+        "category": "Mains",
         "estimatedKcal": 450,
         "nutrition": {
-            "protein_g": 28,
-            "carb_g": 55,
-            "fat_g": 13,
+            "protein_g": 28.0,
+            "carb_g": 55.0,
+            "fat_g": 15.0,
             "sodium_mg": 900,
-            "fibre_g": 1.5,
-            "gi": 55
-        },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 3.0,
-        "image_url": "",
-        "healthFlags": [
-            {
-                "flag": "high-protein",
-                "note": "28g protein"
-            }
-        ]
-    },
-    {
-        "name": "Char Siu (BBQ Pork) Rice",
-        "description": "Cantonese-style BBQ pork on rice",
-        "category": "Mains",
-        "estimatedKcal": 520,
-        "nutrition": {
-            "protein_g": 26,
-            "carb_g": 62,
-            "fat_g": 18,
-            "sodium_mg": 980,
             "fibre_g": 0.8,
-            "gi": 62
+            "gi": 60
         },
         "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 4.0,
-        "image_url": "",
-        "healthFlags": [
-            {
-                "flag": "high-protein",
-                "note": "26g protein"
-            }
-        ]
-    },
-    {
-        "name": "Roasted Pork (Sio Bak) Rice",
-        "description": "Crispy roasted pork belly on rice",
-        "category": "Mains",
-        "estimatedKcal": 560,
-        "nutrition": {
-            "protein_g": 28,
-            "carb_g": 60,
-            "fat_g": 22,
-            "sodium_mg": 1020,
-            "fibre_g": 0.8,
-            "gi": 62
-        },
-        "confidence": "high",
-        "source": "curated_seed",
+        "source": "llm_estimated",
         "price_sgd": 4.0,
         "image_url": "",
         "healthFlags": [
             {
                 "flag": "high-sodium",
-                "note": "1020mg sodium"
+                "note": "Sodium content exceeds 800mg"
             },
             {
                 "flag": "high-protein",
-                "note": "28g protein"
+                "note": "Protein content exceeds 25g"
             }
         ]
     },
     {
         "name": "Mixed Meat Rice",
-        "description": "Combination of soy chicken, char siu, and sio bak",
+        "description": "A typical Singaporean mixed meat rice dish featuring soya sauce chicken served with steamed rice and accompanying meats.",
         "category": "Mains",
-        "estimatedKcal": 580,
+        "estimatedKcal": 430,
         "nutrition": {
-            "protein_g": 32,
-            "carb_g": 62,
-            "fat_g": 22,
-            "sodium_mg": 1050,
+            "protein_g": 28.0,
+            "carb_g": 55.0,
+            "fat_g": 12.0,
+            "sodium_mg": 950,
             "fibre_g": 0.8,
-            "gi": 62
+            "gi": 60
         },
-        "confidence": "medium",
-        "source": "curated_seed",
-        "price_sgd": 5.0,
+        "confidence": "high",
+        "source": "llm_estimated",
+        "price_sgd": 4.5,
         "image_url": "",
         "healthFlags": [
             {
                 "flag": "high-sodium",
-                "note": "1050mg sodium"
+                "note": "Sodium content exceeds 800mg per serving"
             },
             {
                 "flag": "high-protein",
-                "note": "32g protein"
+                "note": "Protein content exceeds 25g per serving"
             }
         ]
-    },
-    {
-        "name": "Wonton Soup",
-        "description": "Pork and prawn wontons in clear broth",
-        "category": "Sides",
-        "estimatedKcal": 180,
-        "nutrition": {
-            "protein_g": 10,
-            "carb_g": 22,
-            "fat_g": 6,
-            "sodium_mg": 680,
-            "fibre_g": 1.0,
-            "gi": 52
-        },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 2.5,
-        "image_url": "",
-        "healthFlags": []
     }
   ],
   "roland-restaurant": [
     {
-        "name": "Chilli Crab",
-        "description": "Whole Sri Lankan crab in signature tomato-chilli gravy",
+        "name": "Chilli Crab (Sri Lanka)",
+        "description": "Chilli Crab is a popular Singaporean seafood dish featuring crab cooked in a tangy, spicy tomato and chili-based sauce.",
         "category": "Seafood",
-        "estimatedKcal": 520,
+        "estimatedKcal": 350,
         "nutrition": {
-            "protein_g": 38,
-            "carb_g": 22,
-            "fat_g": 28,
-            "sodium_mg": 1350,
-            "fibre_g": 1.5,
-            "gi": 40
+            "protein_g": 30.0,
+            "carb_g": 15.0,
+            "fat_g": 20.0,
+            "sodium_mg": 1100,
+            "fibre_g": 1.0,
+            "gi": 30
         },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 65.0,
+        "confidence": "medium",
+        "source": "llm_estimated",
+        "price_sgd": 88.0,
         "image_url": "",
         "healthFlags": [
             {
                 "flag": "high-sodium",
-                "note": "1350mg sodium"
+                "note": "Sodium content exceeds 800mg"
             },
             {
                 "flag": "high-fat",
-                "note": "28g fat"
+                "note": "Fat content exceeds 20g"
             },
             {
                 "flag": "high-protein",
-                "note": "38g protein"
+                "note": "Protein content exceeds 25g"
+            },
+            {
+                "flag": "spicy",
+                "note": "Contains chili and spices"
+            },
+            {
+                "flag": "halal",
+                "note": "Typically prepared with halal seafood"
             }
         ]
     },
     {
         "name": "Black Pepper Crab",
-        "description": "Whole crab wok-fried with black pepper butter sauce",
+        "description": "A Singaporean seafood dish featuring crab cooked in a rich black pepper sauce.",
         "category": "Seafood",
-        "estimatedKcal": 480,
+        "estimatedKcal": 330,
         "nutrition": {
-            "protein_g": 36,
-            "carb_g": 12,
-            "fat_g": 28,
-            "sodium_mg": 1280,
-            "fibre_g": 1.0,
-            "gi": 35
+            "protein_g": 29.0,
+            "carb_g": 13.0,
+            "fat_g": 19.0,
+            "sodium_mg": 1000,
+            "fibre_g": 0.5,
+            "gi": 30
         },
         "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 65.0,
+        "source": "llm_estimated",
+        "price_sgd": 88.0,
         "image_url": "",
         "healthFlags": [
             {
                 "flag": "high-sodium",
-                "note": "1280mg sodium"
-            },
-            {
-                "flag": "high-fat",
-                "note": "28g fat"
+                "note": "Sodium content exceeds 800mg per serving"
             },
             {
                 "flag": "high-protein",
-                "note": "36g protein"
+                "note": "Protein content exceeds 25g per serving"
             }
         ]
     },
     {
-        "name": "Sambal Stingray",
-        "description": "Grilled stingray with sambal belacan on banana leaf",
-        "category": "Seafood",
-        "estimatedKcal": 380,
+        "name": "Mantou (Fried Buns)",
+        "description": "Deep-fried Chinese steamed buns commonly served as a side with chilli crab in Singapore.",
+        "category": "Sides",
+        "estimatedKcal": 320,
         "nutrition": {
-            "protein_g": 32,
-            "carb_g": 12,
-            "fat_g": 20,
-            "sodium_mg": 1100,
-            "fibre_g": 1.5,
-            "gi": 38
+            "protein_g": 5.0,
+            "carb_g": 28.0,
+            "fat_g": 18.0,
+            "sodium_mg": 980,
+            "fibre_g": 0.5,
+            "gi": 30
         },
         "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 28.0,
+        "source": "llm_estimated",
+        "price_sgd": 5.0,
         "image_url": "",
         "healthFlags": [
             {
                 "flag": "high-sodium",
-                "note": "1100mg sodium"
+                "note": "Contains 980mg sodium per serving"
             },
             {
-                "flag": "high-protein",
-                "note": "32g protein"
+                "flag": "high-fat",
+                "note": "Contains 18g fat, close to high-fat threshold"
             }
         ]
     },
     {
         "name": "Cereal Prawns",
-        "description": "Tiger prawns fried with oat cereal and curry leaves",
+        "description": "Deep-fried prawns coated in a sweet and savory cereal batter, served with a crispy cereal topping.",
         "category": "Seafood",
-        "estimatedKcal": 420,
+        "estimatedKcal": 340,
         "nutrition": {
-            "protein_g": 28,
-            "carb_g": 28,
-            "fat_g": 22,
-            "sodium_mg": 880,
-            "fibre_g": 2.0,
-            "gi": 45
+            "protein_g": 27.0,
+            "carb_g": 14.0,
+            "fat_g": 20.0,
+            "sodium_mg": 980,
+            "fibre_g": 0.5,
+            "gi": 30
         },
         "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 32.0,
-        "image_url": "",
-        "healthFlags": [
-            {
-                "flag": "high-protein",
-                "note": "28g protein"
-            }
-        ]
-    },
-    {
-        "name": "Fried Mantou",
-        "description": "Deep-fried steamed buns for dipping in crab gravy",
-        "category": "Sides",
-        "estimatedKcal": 220,
-        "nutrition": {
-            "protein_g": 5,
-            "carb_g": 32,
-            "fat_g": 8,
-            "sodium_mg": 280,
-            "fibre_g": 1.0,
-            "gi": 70
-        },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 4.0,
-        "image_url": "",
-        "healthFlags": []
-    },
-    {
-        "name": "Kangkong Belacan",
-        "description": "Water spinach stir-fried with shrimp paste",
-        "category": "Vegetables",
-        "estimatedKcal": 120,
-        "nutrition": {
-            "protein_g": 5,
-            "carb_g": 8,
-            "fat_g": 8,
-            "sodium_mg": 680,
-            "fibre_g": 2.5,
-            "gi": 25
-        },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 12.0,
-        "image_url": "",
-        "healthFlags": []
-    }
-  ],
-  "jumbo-seafood": [
-    {
-        "name": "Chilli Crab + Mantou",
-        "description": "Signature Sri Lankan crab in sweet-savoury chilli sauce",
-        "category": "Seafood",
-        "estimatedKcal": 680,
-        "nutrition": {
-            "protein_g": 40,
-            "carb_g": 45,
-            "fat_g": 30,
-            "sodium_mg": 1450,
-            "fibre_g": 1.5,
-            "gi": 48
-        },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 75.0,
+        "source": "llm_estimated",
+        "price_sgd": 28.0,
         "image_url": "",
         "healthFlags": [
             {
                 "flag": "high-sodium",
-                "note": "1450mg sodium"
+                "note": "Sodium content exceeds 800mg per serving"
             },
             {
                 "flag": "high-fat",
-                "note": "30g fat"
+                "note": "Fat content exceeds 20g per serving"
             },
             {
                 "flag": "high-protein",
-                "note": "40g protein"
+                "note": "Protein content exceeds 25g per serving"
+            }
+        ]
+    },
+    {
+        "name": "Sambal Kangkong",
+        "description": "Stir-fried water spinach in a spicy sambal chili sauce, a popular vegetable dish in Singaporean cuisine.",
+        "category": "Vegetables",
+        "estimatedKcal": 280,
+        "nutrition": {
+            "protein_g": 10.0,
+            "carb_g": 15.0,
+            "fat_g": 20.0,
+            "sodium_mg": 900,
+            "fibre_g": 3.0,
+            "gi": 35
+        },
+        "confidence": "medium",
+        "source": "llm_estimated",
+        "price_sgd": 12.0,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "high-sodium",
+                "note": "Sambal sauce contains significant salt content"
+            },
+            {
+                "flag": "high-fat",
+                "note": "Use of oil in stir-frying increases fat content"
+            },
+            {
+                "flag": "spicy",
+                "note": "Contains chili-based sambal sauce"
+            }
+        ]
+    },
+    {
+        "name": "Steamed Fish",
+        "description": "Steamed fish served with a spicy chilli crab sauce, typical of Singaporean cuisine.",
+        "category": "Seafood",
+        "estimatedKcal": 320,
+        "nutrition": {
+            "protein_g": 28.0,
+            "carb_g": 12.0,
+            "fat_g": 18.0,
+            "sodium_mg": 980,
+            "fibre_g": 0.5,
+            "gi": 30
+        },
+        "confidence": "high",
+        "source": "llm_estimated",
+        "price_sgd": 30.0,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "high-sodium",
+                "note": "Sodium content exceeds 800mg"
+            },
+            {
+                "flag": "spicy",
+                "note": "Contains chilli-based sauce"
+            },
+            {
+                "flag": "high-protein",
+                "note": "Protein content exceeds 25g"
+            }
+        ]
+    }
+  ],
+  "jumbo-seafood": [
+    {
+        "name": "Chilli Crab",
+        "description": "Chilli Crab is a popular Singaporean seafood dish featuring stir-fried crab in a tangy, spicy tomato-based chili sauce.",
+        "category": "Seafood",
+        "estimatedKcal": 350,
+        "nutrition": {
+            "protein_g": 30.0,
+            "carb_g": 15.0,
+            "fat_g": 20.0,
+            "sodium_mg": 1000,
+            "fibre_g": 0.6,
+            "gi": 30
+        },
+        "confidence": "high",
+        "source": "llm_estimated",
+        "price_sgd": 98.0,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "high-sodium",
+                "note": "Sodium content exceeds 800mg"
+            },
+            {
+                "flag": "high-fat",
+                "note": "Fat content is 20g or more"
+            },
+            {
+                "flag": "high-protein",
+                "note": "Protein content exceeds 25g"
+            },
+            {
+                "flag": "spicy",
+                "note": "Contains chili and spices"
+            },
+            {
+                "flag": "halal",
+                "note": "Typically prepared with halal ingredients"
             }
         ]
     },
     {
         "name": "Black Pepper Crab",
-        "description": "Whole crab in aromatic black pepper butter",
+        "description": "A Singaporean seafood dish featuring crab cooked in a rich black pepper sauce.",
         "category": "Seafood",
-        "estimatedKcal": 480,
+        "estimatedKcal": 350,
         "nutrition": {
-            "protein_g": 36,
-            "carb_g": 12,
-            "fat_g": 28,
-            "sodium_mg": 1280,
-            "fibre_g": 1.0,
-            "gi": 35
+            "protein_g": 30.0,
+            "carb_g": 12.0,
+            "fat_g": 22.0,
+            "sodium_mg": 900,
+            "fibre_g": 0.5,
+            "gi": 25
         },
         "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 75.0,
+        "source": "llm_estimated",
+        "price_sgd": 98.0,
         "image_url": "",
         "healthFlags": [
             {
                 "flag": "high-sodium",
-                "note": "1280mg sodium"
+                "note": "Sodium content exceeds 800mg per serving"
             },
             {
                 "flag": "high-fat",
-                "note": "28g fat"
+                "note": "Fat content exceeds 20g per serving"
             },
             {
                 "flag": "high-protein",
-                "note": "36g protein"
+                "note": "Protein content exceeds 25g per serving"
+            },
+            {
+                "flag": "halal",
+                "note": "Typically prepared with halal ingredients"
             }
         ]
     },
     {
         "name": "Salted Egg Yolk Prawns",
-        "description": "Tiger prawns coated in creamy salted egg yolk sauce",
+        "description": "Deep-fried prawns coated in a rich, creamy salted egg yolk sauce, a popular seafood dish in Singapore.",
         "category": "Seafood",
-        "estimatedKcal": 480,
+        "estimatedKcal": 550,
         "nutrition": {
-            "protein_g": 30,
-            "carb_g": 18,
-            "fat_g": 32,
-            "sodium_mg": 1050,
-            "fibre_g": 0.8,
-            "gi": 40
+            "protein_g": 28.5,
+            "carb_g": 18.0,
+            "fat_g": 35.0,
+            "sodium_mg": 950,
+            "fibre_g": 1.5,
+            "gi": 45
         },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 35.0,
+        "confidence": "medium",
+        "source": "llm_estimated",
+        "price_sgd": 32.0,
         "image_url": "",
         "healthFlags": [
             {
                 "flag": "high-sodium",
-                "note": "1050mg sodium"
+                "note": "Contains salted egg yolk and seasoning, leading to high sodium content"
             },
             {
                 "flag": "high-fat",
-                "note": "32g fat"
+                "note": "Deep-fried prawns with creamy salted egg yolk sauce contribute to high fat"
             },
             {
                 "flag": "high-protein",
-                "note": "30g protein"
+                "note": "Prawns provide a significant amount of protein"
+            },
+            {
+                "flag": "halal",
+                "note": "Typically prepared with halal ingredients in Singapore"
             }
         ]
     },
     {
         "name": "Cereal Butter Prawns",
-        "description": "Crispy prawns with oat cereal and curry leaves",
+        "description": "Deep-fried prawns coated in a sweet, buttery, and crunchy cereal batter, commonly served as a seafood appetizer in Singapore.",
         "category": "Seafood",
-        "estimatedKcal": 430,
+        "estimatedKcal": 450,
         "nutrition": {
-            "protein_g": 28,
-            "carb_g": 30,
-            "fat_g": 22,
+            "protein_g": 25.0,
+            "carb_g": 30.0,
+            "fat_g": 22.0,
             "sodium_mg": 900,
             "fibre_g": 2.0,
-            "gi": 45
+            "gi": 55
         },
         "confidence": "medium",
-        "source": "curated_seed",
+        "source": "llm_estimated",
         "price_sgd": 32.0,
         "image_url": "",
         "healthFlags": [
             {
+                "flag": "high-sodium",
+                "note": "Sodium content exceeds 800mg per serving"
+            },
+            {
+                "flag": "high-fat",
+                "note": "Fat content exceeds 20g per serving"
+            },
+            {
                 "flag": "high-protein",
-                "note": "28g protein"
+                "note": "Protein content exceeds 25g per serving"
+            },
+            {
+                "flag": "halal",
+                "note": "Typically prepared with halal prawns and ingredients"
+            }
+        ]
+    },
+    {
+        "name": "Mantou",
+        "description": "Steamed Chinese mantou buns, soft and fluffy, commonly served as a side in Singaporean seafood meals.",
+        "category": "Sides",
+        "estimatedKcal": 150,
+        "nutrition": {
+            "protein_g": 4.5,
+            "carb_g": 30.0,
+            "fat_g": 1.0,
+            "sodium_mg": 200,
+            "fibre_g": 1.0,
+            "gi": 70
+        },
+        "confidence": "high",
+        "source": "llm_estimated",
+        "price_sgd": 5.0,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "low-calorie",
+                "note": "Relatively low in calories for a side dish"
+            },
+            {
+                "flag": "soft-foods",
+                "note": "Soft and easy to chew"
+            },
+            {
+                "flag": "vegetarian",
+                "note": "Contains no animal products"
+            }
+        ]
+    },
+    {
+        "name": "Sambal Kangkong",
+        "description": "Stir-fried water spinach in a spicy, savory sambal chili paste typical of Singaporean cuisine.",
+        "category": "Vegetables",
+        "estimatedKcal": 150,
+        "nutrition": {
+            "protein_g": 3.5,
+            "carb_g": 12.0,
+            "fat_g": 10.0,
+            "sodium_mg": 900,
+            "fibre_g": 3.0,
+            "gi": 40
+        },
+        "confidence": "medium",
+        "source": "llm_estimated",
+        "price_sgd": 14.0,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "high-sodium",
+                "note": "Contains sambal and soy sauce contributing to sodium content"
+            },
+            {
+                "flag": "high-fat",
+                "note": "Cooked with oil and sambal paste"
+            },
+            {
+                "flag": "spicy",
+                "note": "Contains chili-based sambal"
+            },
+            {
+                "flag": "halal",
+                "note": "Typically prepared without non-halal ingredients"
+            },
+            {
+                "flag": "vegetarian",
+                "note": "Contains no meat or seafood"
             }
         ]
     },
     {
         "name": "Fried Carrot Cake",
-        "description": "Pan-fried radish cake with egg and preserved radish",
+        "description": "A savory Singaporean stir-fried radish cake with eggs, preserved radish, and seasonings.",
         "category": "Sides",
-        "estimatedKcal": 350,
+        "estimatedKcal": 320,
         "nutrition": {
-            "protein_g": 8,
-            "carb_g": 45,
-            "fat_g": 12,
-            "sodium_mg": 700,
-            "fibre_g": 2.0,
-            "gi": 70
+            "protein_g": 10.5,
+            "carb_g": 40.0,
+            "fat_g": 12.0,
+            "sodium_mg": 900,
+            "fibre_g": 2.5,
+            "gi": 55
         },
-        "confidence": "low",
+        "confidence": "medium",
         "source": "llm_estimated",
         "price_sgd": 12.0,
         "image_url": "",
-        "healthFlags": []
-    },
-    {
-        "name": "Sambal Kang Kong",
-        "description": "Water spinach with sambal and dried shrimp",
-        "category": "Vegetables",
-        "estimatedKcal": 125,
-        "nutrition": {
-            "protein_g": 5,
-            "carb_g": 9,
-            "fat_g": 8,
-            "sodium_mg": 700,
-            "fibre_g": 2.5,
-            "gi": 25
-        },
-        "confidence": "medium",
-        "source": "curated_seed",
-        "price_sgd": 14.0,
-        "image_url": "",
-        "healthFlags": []
+        "healthFlags": [
+            {
+                "flag": "high-sodium",
+                "note": "Contains over 800mg sodium per serving"
+            },
+            {
+                "flag": "high-fat",
+                "note": "Contains over 20% calories from fat"
+            }
+        ]
     }
   ],
   "ya-kun": [
     {
-        "name": "Kaya Toast Set (2 slices)",
-        "description": "Toasted bread with kaya jam and cold butter",
-        "category": "Toast",
-        "estimatedKcal": 280,
+        "name": "Kaya Toast Set (with Eggs & Coffee)",
+        "description": "Traditional Singaporean breakfast set featuring toasted bread with kaya and butter, soft-boiled eggs, and a cup of kopi.",
+        "category": "Breakfast Set",
+        "estimatedKcal": 350,
         "nutrition": {
-            "protein_g": 6,
-            "carb_g": 38,
-            "fat_g": 12,
-            "sodium_mg": 320,
+            "protein_g": 12.0,
+            "carb_g": 40.0,
+            "fat_g": 15.0,
+            "sodium_mg": 600,
             "fibre_g": 1.5,
-            "gi": 68
+            "gi": 70
         },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 4.5,
-        "image_url": "",
-        "healthFlags": []
-    },
-    {
-        "name": "Soft Boiled Eggs (2 pcs)",
-        "description": "Half-cooked eggs with dark soy and white pepper",
-        "category": "Eggs",
-        "estimatedKcal": 140,
-        "nutrition": {
-            "protein_g": 12,
-            "carb_g": 1,
-            "fat_g": 10,
-            "sodium_mg": 180,
-            "fibre_g": 0.0,
-            "gi": 0
-        },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 2.0,
+        "confidence": "medium",
+        "source": "llm_estimated",
+        "price_sgd": 5.5,
         "image_url": "",
         "healthFlags": [
             {
-                "flag": "low-calorie",
-                "note": "140 kcal"
+                "flag": "halal",
+                "note": "Commonly prepared with halal ingredients in Singapore"
             }
         ]
     },
     {
-        "name": "French Toast",
-        "description": "Deep-fried egg-coated bread with kaya and butter",
-        "category": "Toast",
-        "estimatedKcal": 380,
-        "nutrition": {
-            "protein_g": 8,
-            "carb_g": 48,
-            "fat_g": 18,
-            "sodium_mg": 380,
-            "fibre_g": 1.5,
-            "gi": 72
-        },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 4.5,
-        "image_url": "",
-        "healthFlags": []
-    },
-    {
-        "name": "Kaya Butter Toast (Thick)",
-        "description": "Thick-sliced toasted bread with generous kaya and butter",
+        "name": "Thick Toast with Kaya & Butter",
+        "description": "Thick toasted bread spread with kaya (coconut egg jam) and butter, a popular Singaporean breakfast item.",
         "category": "Toast",
         "estimatedKcal": 320,
         "nutrition": {
-            "protein_g": 7,
-            "carb_g": 42,
-            "fat_g": 14,
+            "protein_g": 6.5,
+            "carb_g": 38.0,
+            "fat_g": 15.0,
             "sodium_mg": 350,
             "fibre_g": 1.5,
             "gi": 70
         },
         "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 3.5,
+        "source": "llm_estimated",
+        "price_sgd": 3.0,
         "image_url": "",
-        "healthFlags": []
+        "healthFlags": [
+            {
+                "flag": "high-fat",
+                "note": "Contains butter and kaya, contributing to high fat content"
+            }
+        ]
     },
     {
-        "name": "Teh (Milk Tea)",
-        "description": "Traditional pulled milk tea",
-        "category": "Beverages",
-        "estimatedKcal": 80,
+        "name": "Soft-Boiled Eggs (2 pcs)",
+        "description": "Two soft-boiled chicken eggs commonly served as a breakfast item in Singapore kopitiams.",
+        "category": "Eggs",
+        "estimatedKcal": 140,
         "nutrition": {
-            "protein_g": 2,
-            "carb_g": 12,
-            "fat_g": 2,
-            "sodium_mg": 30,
-            "fibre_g": 0.0,
-            "gi": 55
+            "protein_g": 12.6,
+            "carb_g": 1.1,
+            "fat_g": 9.5,
+            "sodium_mg": 140,
+            "fibre_g": 0,
+            "gi": 0
         },
         "confidence": "high",
-        "source": "curated_seed",
+        "source": "llm_estimated",
         "price_sgd": 2.0,
         "image_url": "",
-        "healthFlags": []
+        "healthFlags": [
+            {
+                "flag": "high-protein",
+                "note": "Contains over 25g protein per serving"
+            },
+            {
+                "flag": "halal",
+                "note": "Eggs are halal by default"
+            },
+            {
+                "flag": "soft-foods",
+                "note": "Soft-boiled texture suitable for soft food diets"
+            }
+        ]
     },
     {
-        "name": "Kopi (Coffee)",
-        "description": "Traditional Hainanese coffee with condensed milk",
-        "category": "Beverages",
-        "estimatedKcal": 70,
+        "name": "Kaya Toast (Thin)",
+        "description": "Thin kaya toast is a traditional Singaporean breakfast snack consisting of thinly sliced toasted bread spread with kaya and butter.",
+        "category": "Toast",
+        "estimatedKcal": 180,
         "nutrition": {
-            "protein_g": 1,
-            "carb_g": 10,
-            "fat_g": 2,
-            "sodium_mg": 20,
-            "fibre_g": 0.0,
-            "gi": 50
+            "protein_g": 4.0,
+            "carb_g": 28.0,
+            "fat_g": 7.0,
+            "sodium_mg": 220,
+            "fibre_g": 1.0,
+            "gi": 70
         },
         "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 1.8,
+        "source": "llm_estimated",
+        "price_sgd": 2.5,
         "image_url": "",
-        "healthFlags": []
+        "healthFlags": [
+            {
+                "flag": "balanced",
+                "note": "Moderate levels of protein, carbs, and fat"
+            }
+        ]
     },
     {
-        "name": "Milo Dinosaur",
-        "description": "Iced Milo topped with undissolved Milo powder",
-        "category": "Beverages",
-        "estimatedKcal": 220,
+        "name": "Teh (Hot Milk Tea)",
+        "description": "A hot, sweetened milk tea commonly served in Singaporean kopitiams.",
+        "category": "Drinks",
+        "estimatedKcal": 150,
         "nutrition": {
-            "protein_g": 4,
-            "carb_g": 38,
-            "fat_g": 5,
+            "protein_g": 3.0,
+            "carb_g": 20.0,
+            "fat_g": 5.0,
             "sodium_mg": 80,
+            "fibre_g": 0,
+            "gi": 60
+        },
+        "confidence": "medium",
+        "source": "llm_estimated",
+        "price_sgd": 1.8,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "high-sugar",
+                "note": "Contains added sugar typical of teh preparation"
+            }
+        ]
+    },
+    {
+        "name": "Kopi (Black Coffee)",
+        "description": "A traditional strong black coffee served in Singaporean kopitiams, typically brewed from Robusta beans.",
+        "category": "Drinks",
+        "estimatedKcal": 5,
+        "nutrition": {
+            "protein_g": 0.3,
+            "carb_g": 0,
+            "fat_g": 0,
+            "sodium_mg": 5,
+            "fibre_g": 0,
+            "gi": 0
+        },
+        "confidence": "high",
+        "source": "llm_estimated",
+        "price_sgd": 1.5,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "low-calorie",
+                "note": "Very low in calories"
+            },
+            {
+                "flag": "halal",
+                "note": "Suitable for halal diets"
+            },
+            {
+                "flag": "balanced",
+                "note": "Contains negligible macronutrients, no sugar or fat"
+            }
+        ]
+    },
+    {
+        "name": "French Toast",
+        "description": "A sweet and crispy fried bread soaked in egg and milk, commonly served with sugar or condensed milk.",
+        "category": "Toast",
+        "estimatedKcal": 320,
+        "nutrition": {
+            "protein_g": 9.5,
+            "carb_g": 38.0,
+            "fat_g": 14.0,
+            "sodium_mg": 450,
             "fibre_g": 1.5,
             "gi": 65
         },
-        "confidence": "high",
-        "source": "curated_seed",
+        "confidence": "medium",
+        "source": "llm_estimated",
         "price_sgd": 3.5,
         "image_url": "",
-        "healthFlags": []
+        "healthFlags": [
+            {
+                "flag": "high-fat",
+                "note": "Contains significant fat from frying and egg"
+            },
+            {
+                "flag": "high-sugar",
+                "note": "Often served with sugar or condensed milk"
+            },
+            {
+                "flag": "vegetarian",
+                "note": "Contains no meat or fish"
+            }
+        ]
     }
   ],
   "old-chang-kee": [
     {
         "name": "Curry Puff (Original)",
-        "description": "Flaky pastry filled with curried potato and chicken",
-        "category": "Snacks",
-        "estimatedKcal": 280,
-        "nutrition": {
-            "protein_g": 6,
-            "carb_g": 36,
-            "fat_g": 12,
-            "sodium_mg": 420,
-            "fibre_g": 2.0,
-            "gi": 65
-        },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 1.6,
-        "image_url": "",
-        "healthFlags": []
-    },
-    {
-        "name": "Sardine Puff",
-        "description": "Flaky pastry with spiced sardine filling",
-        "category": "Snacks",
-        "estimatedKcal": 260,
-        "nutrition": {
-            "protein_g": 7,
-            "carb_g": 34,
-            "fat_g": 11,
-            "sodium_mg": 380,
-            "fibre_g": 1.8,
-            "gi": 62
-        },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 1.6,
-        "image_url": "",
-        "healthFlags": []
-    },
-    {
-        "name": "Otah Puff",
-        "description": "Pastry filled with spiced fish otah",
-        "category": "Snacks",
-        "estimatedKcal": 270,
-        "nutrition": {
-            "protein_g": 8,
-            "carb_g": 34,
-            "fat_g": 12,
-            "sodium_mg": 400,
-            "fibre_g": 1.8,
-            "gi": 62
-        },
-        "confidence": "medium",
-        "source": "curated_seed",
-        "price_sgd": 1.8,
-        "image_url": "",
-        "healthFlags": []
-    },
-    {
-        "name": "Chicken Wing",
-        "description": "Marinated fried chicken wing",
+        "description": "A flaky pastry filled with curried potatoes and sometimes meat, commonly enjoyed as a snack in Singapore.",
         "category": "Snacks",
         "estimatedKcal": 220,
         "nutrition": {
-            "protein_g": 18,
-            "carb_g": 8,
-            "fat_g": 14,
-            "sodium_mg": 480,
-            "fibre_g": 0.5,
-            "gi": 40
-        },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 2.2,
-        "image_url": "",
-        "healthFlags": [
-            {
-                "flag": "low-calorie",
-                "note": "220 kcal"
-            }
-        ]
-    },
-    {
-        "name": "Sotong Head (Squid)",
-        "description": "Battered and fried squid head on a stick",
-        "category": "Snacks",
-        "estimatedKcal": 180,
-        "nutrition": {
-            "protein_g": 14,
-            "carb_g": 16,
-            "fat_g": 6,
+            "protein_g": 5.0,
+            "carb_g": 28.0,
+            "fat_g": 10.0,
             "sodium_mg": 380,
-            "fibre_g": 0.8,
+            "fibre_g": 2.0,
             "gi": 55
         },
         "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 2.5,
+        "source": "llm_estimated",
+        "price_sgd": 1.5,
         "image_url": "",
         "healthFlags": [
             {
-                "flag": "low-calorie",
-                "note": "180 kcal"
+                "flag": "balanced",
+                "note": "Moderate levels of protein, carbs, and fat"
             }
         ]
     },
     {
-        "name": "Prawn Roll",
-        "description": "Crispy prawn roll in tofu skin",
+        "name": "Curry Puff (Sardine)",
+        "description": "A deep-fried pastry filled with spiced sardine and potato, commonly enjoyed as a snack in Singapore.",
         "category": "Snacks",
-        "estimatedKcal": 200,
+        "estimatedKcal": 240,
         "nutrition": {
-            "protein_g": 10,
-            "carb_g": 22,
-            "fat_g": 8,
-            "sodium_mg": 420,
-            "fibre_g": 1.0,
-            "gi": 58
+            "protein_g": 7.0,
+            "carb_g": 30.0,
+            "fat_g": 12.0,
+            "sodium_mg": 450,
+            "fibre_g": 2.5,
+            "gi": 55
         },
         "confidence": "medium",
-        "source": "curated_seed",
+        "source": "llm_estimated",
+        "price_sgd": 1.5,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "high-fat",
+                "note": "Contains 12g fat from deep-fried pastry"
+            }
+        ]
+    },
+    {
+        "name": "Chicken Wing",
+        "description": "Deep-fried chicken wing commonly served as a snack in Singapore hawker stalls.",
+        "category": "Snacks",
+        "estimatedKcal": 180,
+        "nutrition": {
+            "protein_g": 15.0,
+            "carb_g": 5.0,
+            "fat_g": 12.0,
+            "sodium_mg": 700,
+            "fibre_g": 0,
+            "gi": 50
+        },
+        "confidence": "medium",
+        "source": "llm_estimated",
+        "price_sgd": 1.5,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "high-protein",
+                "note": "Contains over 15g protein per serving"
+            }
+        ]
+    },
+    {
+        "name": "Otah-Otah",
+        "description": "Grilled spicy fish paste wrapped in banana leaf, a popular Southeast Asian snack.",
+        "category": "Snacks",
+        "estimatedKcal": 180,
+        "nutrition": {
+            "protein_g": 12.5,
+            "carb_g": 10.0,
+            "fat_g": 8.0,
+            "sodium_mg": 850,
+            "fibre_g": 1.5,
+            "gi": 45
+        },
+        "confidence": "medium",
+        "source": "llm_estimated",
+        "price_sgd": 1.5,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "high-sodium",
+                "note": "Sodium content exceeds 800mg per serving"
+            },
+            {
+                "flag": "spicy",
+                "note": "Contains chili and spices"
+            },
+            {
+                "flag": "halal",
+                "note": "Typically made with fish and halal ingredients"
+            }
+        ]
+    },
+    {
+        "name": "Fishball on Stick",
+        "description": "A popular Singaporean snack consisting of skewered fishballs, typically boiled or steamed and served with a light sauce.",
+        "category": "Snacks",
+        "estimatedKcal": 150,
+        "nutrition": {
+            "protein_g": 12.0,
+            "carb_g": 10.0,
+            "fat_g": 5.0,
+            "sodium_mg": 900,
+            "fibre_g": 0.5,
+            "gi": 50
+        },
+        "confidence": "medium",
+        "source": "llm_estimated",
+        "price_sgd": 1.2,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "high-sodium",
+                "note": "Contains over 800mg sodium due to fishball processing and sauce"
+            }
+        ]
+    },
+    {
+        "name": "Sotong Head",
+        "description": "Deep-fried squid head snack commonly served in Singaporean hawker stalls.",
+        "category": "Snacks",
+        "estimatedKcal": 220,
+        "nutrition": {
+            "protein_g": 18.5,
+            "carb_g": 10.0,
+            "fat_g": 12.0,
+            "sodium_mg": 750,
+            "fibre_g": 1.2,
+            "gi": 50
+        },
+        "confidence": "medium",
+        "source": "llm_estimated",
         "price_sgd": 2.0,
         "image_url": "",
-        "healthFlags": []
+        "healthFlags": [
+            {
+                "flag": "high-protein",
+                "note": "Contains significant protein from squid"
+            },
+            {
+                "flag": "high-fat",
+                "note": "Deep-fried preparation increases fat content"
+            }
+        ]
     }
   ],
   "bengawan-solo": [
     {
-        "name": "Pandan Chiffon Cake",
-        "description": "Light and fluffy pandan-flavoured chiffon cake",
+        "name": "Pandan Layer Cake",
+        "description": "A traditional Peranakan pandan-flavored layered cake with a soft, sweet, and fragrant texture.",
         "category": "Cakes",
         "estimatedKcal": 320,
         "nutrition": {
-            "protein_g": 6,
-            "carb_g": 52,
-            "fat_g": 10,
-            "sodium_mg": 180,
-            "fibre_g": 0.8,
-            "gi": 68
-        },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 18.0,
-        "image_url": "",
-        "healthFlags": []
-    },
-    {
-        "name": "Kueh Lapis (Layer Cake)",
-        "description": "Steamed layered Peranakan cake with spices",
-        "category": "Kueh",
-        "estimatedKcal": 380,
-        "nutrition": {
-            "protein_g": 5,
-            "carb_g": 58,
-            "fat_g": 14,
-            "sodium_mg": 220,
-            "fibre_g": 0.5,
+            "protein_g": 4.0,
+            "carb_g": 52.0,
+            "fat_g": 10.0,
+            "sodium_mg": 120,
+            "fibre_g": 1.0,
             "gi": 72
         },
         "confidence": "high",
-        "source": "curated_seed",
+        "source": "llm_estimated",
         "price_sgd": 28.0,
         "image_url": "",
-        "healthFlags": []
+        "healthFlags": [
+            {
+                "flag": "high-sugar",
+                "note": "Contains significant sugar content typical of layered cakes"
+            }
+        ]
+    },
+    {
+        "name": "Kueh Lapis",
+        "description": "A traditional Peranakan layered steamed cake made from rice flour, coconut milk, and sugar.",
+        "category": "Kueh",
+        "estimatedKcal": 180,
+        "nutrition": {
+            "protein_g": 2.0,
+            "carb_g": 32.0,
+            "fat_g": 5.0,
+            "sodium_mg": 80,
+            "fibre_g": 0.5,
+            "gi": 70
+        },
+        "confidence": "high",
+        "source": "llm_estimated",
+        "price_sgd": 3.5,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "high-sugar",
+                "note": "Contains significant sugar from coconut milk and added sugar"
+            }
+        ]
     },
     {
         "name": "Ondeh Ondeh",
-        "description": "Glutinous rice balls with palm sugar and coconut",
+        "description": "Ondeh Ondeh is a traditional Peranakan kueh consisting of glutinous rice flour balls filled with palm sugar and coated in grated coconut.",
         "category": "Kueh",
-        "estimatedKcal": 180,
+        "estimatedKcal": 150,
         "nutrition": {
-            "protein_g": 2,
-            "carb_g": 35,
-            "fat_g": 4,
-            "sodium_mg": 80,
+            "protein_g": 2.0,
+            "carb_g": 30.0,
+            "fat_g": 4.5,
+            "sodium_mg": 50,
             "fibre_g": 1.5,
-            "gi": 65
+            "gi": 55
         },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 8.0,
+        "confidence": "medium",
+        "source": "llm_estimated",
+        "price_sgd": 1.5,
         "image_url": "",
-        "healthFlags": []
+        "healthFlags": [
+            {
+                "flag": "high-sugar",
+                "note": "Contains palm sugar filling"
+            },
+            {
+                "flag": "vegetarian",
+                "note": "No animal products used"
+            }
+        ]
     },
     {
-        "name": "Kueh Dadar (Pandan Crepe)",
-        "description": "Pandan crepe filled with sweet coconut",
+        "name": "Kueh Salat",
+        "description": "Kueh Salat is a traditional Peranakan two-layered dessert with a glutinous rice base topped with a sweet pandan-flavored custard.",
         "category": "Kueh",
-        "estimatedKcal": 160,
+        "estimatedKcal": 220,
         "nutrition": {
-            "protein_g": 3,
-            "carb_g": 28,
-            "fat_g": 5,
-            "sodium_mg": 95,
-            "fibre_g": 1.8,
-            "gi": 60
-        },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 6.0,
-        "image_url": "",
-        "healthFlags": []
-    },
-    {
-        "name": "Ang Ku Kueh (Red Tortoise Cake)",
-        "description": "Glutinous rice skin with sweet bean filling",
-        "category": "Kueh",
-        "estimatedKcal": 180,
-        "nutrition": {
-            "protein_g": 4,
-            "carb_g": 36,
-            "fat_g": 3,
-            "sodium_mg": 120,
-            "fibre_g": 2.0,
-            "gi": 62
-        },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 5.0,
-        "image_url": "",
-        "healthFlags": []
-    },
-    {
-        "name": "Pineapple Tart",
-        "description": "Buttery pastry with tangy pineapple jam",
-        "category": "Pastries",
-        "estimatedKcal": 280,
-        "nutrition": {
-            "protein_g": 3,
-            "carb_g": 38,
-            "fat_g": 13,
+            "protein_g": 3.5,
+            "carb_g": 40.0,
+            "fat_g": 5.0,
             "sodium_mg": 150,
-            "fibre_g": 0.8,
-            "gi": 68
+            "fibre_g": 1.0,
+            "gi": 55
         },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 22.0,
+        "confidence": "medium",
+        "source": "llm_estimated",
+        "price_sgd": 3.0,
         "image_url": "",
-        "healthFlags": []
+        "healthFlags": [
+            {
+                "flag": "vegetarian",
+                "note": "Contains no meat or animal gelatin"
+            }
+        ]
+    },
+    {
+        "name": "Pineapple Tarts",
+        "description": "A traditional Peranakan pastry consisting of buttery shortcrust pastry filled with sweet and tangy pineapple jam.",
+        "category": "Pastry",
+        "estimatedKcal": 150,
+        "nutrition": {
+            "protein_g": 1.5,
+            "carb_g": 20.0,
+            "fat_g": 7.5,
+            "sodium_mg": 120,
+            "fibre_g": 1.0,
+            "gi": 55
+        },
+        "confidence": "medium",
+        "source": "llm_estimated",
+        "price_sgd": 18.0,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "high-fat",
+                "note": "Contains buttery pastry contributing to fat content"
+            }
+        ]
     }
   ],
   "lorong-selamat": [
     {
         "name": "Char Koay Teow (Regular)",
-        "description": "Wok-fried flat rice noodles with cockles, egg, and bean sprouts",
+        "description": "A stir-fried flat rice noodle dish with egg, prawns, Chinese sausage, and bean sprouts, typical of Penang style Char Koay Teow.",
         "category": "Noodles",
-        "estimatedKcal": 560,
+        "estimatedKcal": 740,
         "nutrition": {
-            "protein_g": 18,
-            "carb_g": 72,
-            "fat_g": 22,
-            "sodium_mg": 1200,
+            "protein_g": 22.0,
+            "carb_g": 88.0,
+            "fat_g": 32.0,
+            "sodium_mg": 1400,
             "fibre_g": 2.5,
-            "gi": 65
+            "gi": 60
         },
         "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 5.0,
-        "image_url": "",
-        "healthFlags": [
-            {
-                "flag": "high-sodium",
-                "note": "1200mg sodium"
-            }
-        ]
-    },
-    {
-        "name": "Char Koay Teow (Special)",
-        "description": "With extra prawns and cockles",
-        "category": "Noodles",
-        "estimatedKcal": 620,
-        "nutrition": {
-            "protein_g": 22,
-            "carb_g": 74,
-            "fat_g": 24,
-            "sodium_mg": 1280,
-            "fibre_g": 2.5,
-            "gi": 65
-        },
-        "confidence": "high",
-        "source": "curated_seed",
+        "source": "llm_estimated",
         "price_sgd": 7.0,
         "image_url": "",
         "healthFlags": [
             {
                 "flag": "high-sodium",
-                "note": "1280mg sodium"
+                "note": "Sodium content exceeds 800mg"
+            },
+            {
+                "flag": "high-fat",
+                "note": "Fat content exceeds 20g"
+            }
+        ]
+    },
+    {
+        "name": "Char Koay Teow (Special with Extra Cockles)",
+        "description": "A stir-fried flat rice noodle dish with prawns, cockles, egg, Chinese sausage, and bean sprouts, cooked in pork fat and soy sauce.",
+        "category": "Noodles",
+        "estimatedKcal": 780,
+        "nutrition": {
+            "protein_g": 24.0,
+            "carb_g": 90.0,
+            "fat_g": 35.0,
+            "sodium_mg": 1500,
+            "fibre_g": 3.0,
+            "gi": 60
+        },
+        "confidence": "high",
+        "source": "llm_estimated",
+        "price_sgd": 9.0,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "high-sodium",
+                "note": "Sodium content exceeds 800mg"
+            },
+            {
+                "flag": "high-fat",
+                "note": "Fat content exceeds 20g"
             }
         ]
     },
     {
         "name": "Char Koay Teow (No Cockles)",
-        "description": "Without cockles for those who prefer",
+        "description": "Stir-fried flat rice noodles with egg, Chinese sausage, prawns, bean sprouts, and chives, without cockles.",
         "category": "Noodles",
-        "estimatedKcal": 540,
+        "estimatedKcal": 700,
         "nutrition": {
-            "protein_g": 16,
-            "carb_g": 72,
-            "fat_g": 20,
-            "sodium_mg": 1150,
+            "protein_g": 20.0,
+            "carb_g": 85.0,
+            "fat_g": 30.0,
+            "sodium_mg": 1300,
             "fibre_g": 2.5,
-            "gi": 65
+            "gi": 60
         },
         "confidence": "medium",
-        "source": "curated_seed",
-        "price_sgd": 5.0,
+        "source": "llm_estimated",
+        "price_sgd": 7.0,
         "image_url": "",
         "healthFlags": [
             {
                 "flag": "high-sodium",
-                "note": "1150mg sodium"
+                "note": "Sodium content exceeds 800mg per serving"
+            },
+            {
+                "flag": "high-fat",
+                "note": "Fat content exceeds 20g per serving"
             }
         ]
-    },
-    {
-        "name": "Iced Cendol",
-        "description": "Shaved ice with pandan jelly, red beans, and coconut milk",
-        "category": "Desserts",
-        "estimatedKcal": 280,
-        "nutrition": {
-            "protein_g": 3,
-            "carb_g": 55,
-            "fat_g": 8,
-            "sodium_mg": 80,
-            "fibre_g": 2.0,
-            "gi": 72
-        },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 3.0,
-        "image_url": "",
-        "healthFlags": []
     }
   ],
   "air-itam-laksa": [
     {
-        "name": "Assam Laksa (Regular)",
-        "description": "Sour fish broth with rice noodles, cucumber, and mint",
-        "category": "Noodles",
-        "estimatedKcal": 380,
-        "nutrition": {
-            "protein_g": 18,
-            "carb_g": 58,
-            "fat_g": 8,
-            "sodium_mg": 980,
-            "fibre_g": 3.5,
-            "gi": 55
-        },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 4.0,
-        "image_url": "",
-        "healthFlags": []
-    },
-    {
-        "name": "Assam Laksa (Large)",
-        "description": "Large portion with extra fish flakes",
-        "category": "Noodles",
-        "estimatedKcal": 480,
-        "nutrition": {
-            "protein_g": 24,
-            "carb_g": 72,
-            "fat_g": 10,
-            "sodium_mg": 1200,
-            "fibre_g": 4.0,
-            "gi": 55
-        },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 5.5,
-        "image_url": "",
-        "healthFlags": [
-            {
-                "flag": "high-sodium",
-                "note": "1200mg sodium"
-            }
-        ]
-    },
-    {
-        "name": "Prawn Mee",
-        "description": "Spicy prawn broth with noodles and prawns",
+        "name": "Penang Laksa (Regular)",
+        "description": "A tangy and spicy Penang-style fish-based noodle soup with tamarind, herbs, and rice noodles.",
         "category": "Noodles",
         "estimatedKcal": 420,
         "nutrition": {
-            "protein_g": 22,
-            "carb_g": 55,
-            "fat_g": 12,
+            "protein_g": 18.0,
+            "carb_g": 62.0,
+            "fat_g": 12.0,
             "sodium_mg": 1100,
-            "fibre_g": 2.0,
-            "gi": 58
+            "fibre_g": 3.0,
+            "gi": 55
         },
         "confidence": "high",
-        "source": "curated_seed",
+        "source": "llm_estimated",
         "price_sgd": 5.0,
         "image_url": "",
         "healthFlags": [
             {
                 "flag": "high-sodium",
-                "note": "1100mg sodium"
+                "note": "Sodium content exceeds 800mg per serving"
+            }
+        ]
+    },
+    {
+        "name": "Penang Laksa (Large)",
+        "description": "A large bowl of Penang Laksa featuring thick rice noodles in a tangy, spicy fish-based tamarind broth with herbs and vegetables.",
+        "category": "Noodles",
+        "estimatedKcal": 450,
+        "nutrition": {
+            "protein_g": 20.0,
+            "carb_g": 65.0,
+            "fat_g": 14.0,
+            "sodium_mg": 1200,
+            "fibre_g": 3.5,
+            "gi": 55
+        },
+        "confidence": "high",
+        "source": "llm_estimated",
+        "price_sgd": 7.0,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "high-sodium",
+                "note": "Sodium content exceeds 800mg per serving"
+            }
+        ]
+    },
+    {
+        "name": "Penang Laksa with Extra Prawn",
+        "description": "A tangy and spicy Penang Laksa noodle soup with extra prawns, featuring a rich fish-based broth and tamarind flavor.",
+        "category": "Noodles",
+        "estimatedKcal": 500,
+        "nutrition": {
+            "protein_g": 26.0,
+            "carb_g": 62.0,
+            "fat_g": 14.0,
+            "sodium_mg": 1300,
+            "fibre_g": 3.0,
+            "gi": 55
+        },
+        "confidence": "high",
+        "source": "llm_estimated",
+        "price_sgd": 8.0,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "high-sodium",
+                "note": "Sodium content exceeds 800mg per serving"
+            },
+            {
+                "flag": "high-protein",
+                "note": "Protein content exceeds 25g per serving"
+            },
+            {
+                "flag": "spicy",
+                "note": "Contains spicy ingredients typical of Penang Laksa"
             }
         ]
     }
   ],
   "penang-road-teochew": [
     {
-        "name": "Cendol",
-        "description": "Shaved ice with pandan jelly, red beans, gula melaka, and coconut milk",
+        "name": "Cendol (Regular)",
+        "description": "A traditional Penang dessert made with coconut milk, palm sugar syrup, green rice flour jelly, and shaved ice.",
         "category": "Desserts",
         "estimatedKcal": 280,
         "nutrition": {
-            "protein_g": 3,
-            "carb_g": 55,
-            "fat_g": 8,
+            "protein_g": 3.0,
+            "carb_g": 58.0,
+            "fat_g": 6.0,
             "sodium_mg": 80,
-            "fibre_g": 2.0,
-            "gi": 72
+            "fibre_g": 1.5,
+            "gi": 75
         },
         "confidence": "high",
-        "source": "curated_seed",
+        "source": "llm_estimated",
         "price_sgd": 3.5,
         "image_url": "",
-        "healthFlags": []
+        "healthFlags": [
+            {
+                "flag": "high-sugar",
+                "note": "Contains high amounts of palm sugar syrup"
+            },
+            {
+                "flag": "vegetarian",
+                "note": "Contains no meat or animal-derived gelatin"
+            }
+        ]
     },
     {
         "name": "Cendol with Red Bean",
-        "description": "Extra red beans added",
+        "description": "A traditional Penang dessert featuring shaved ice, green rice flour jelly, red beans, coconut milk, and palm sugar syrup.",
         "category": "Desserts",
-        "estimatedKcal": 320,
+        "estimatedKcal": 300,
         "nutrition": {
-            "protein_g": 5,
-            "carb_g": 62,
-            "fat_g": 8,
+            "protein_g": 5.0,
+            "carb_g": 65.0,
+            "fat_g": 7.0,
             "sodium_mg": 90,
-            "fibre_g": 3.5,
-            "gi": 70
+            "fibre_g": 3.0,
+            "gi": 75
         },
-        "confidence": "high",
-        "source": "curated_seed",
+        "confidence": "medium",
+        "source": "llm_estimated",
         "price_sgd": 4.0,
         "image_url": "",
-        "healthFlags": []
+        "healthFlags": [
+            {
+                "flag": "high-sugar",
+                "note": "Contains palm sugar syrup and red beans contributing to high sugar content"
+            }
+        ]
     },
     {
         "name": "Durian Cendol",
-        "description": "Cendol topped with fresh durian flesh",
+        "description": "A Penang-style dessert featuring shaved ice, green rice flour jelly, coconut milk, palm sugar syrup, and durian flesh.",
         "category": "Desserts",
-        "estimatedKcal": 420,
+        "estimatedKcal": 350,
         "nutrition": {
-            "protein_g": 5,
-            "carb_g": 68,
-            "fat_g": 16,
-            "sodium_mg": 85,
-            "fibre_g": 3.0,
-            "gi": 68
+            "protein_g": 4.0,
+            "carb_g": 65.0,
+            "fat_g": 12.0,
+            "sodium_mg": 90,
+            "fibre_g": 2.0,
+            "gi": 75
         },
         "confidence": "medium",
-        "source": "curated_seed",
+        "source": "llm_estimated",
         "price_sgd": 8.0,
         "image_url": "",
-        "healthFlags": []
+        "healthFlags": [
+            {
+                "flag": "high-sugar",
+                "note": "Contains palm sugar syrup and durian, contributing to high sugar content"
+            },
+            {
+                "flag": "high-fat",
+                "note": "Coconut milk and durian increase fat content"
+            },
+            {
+                "flag": "vegetarian",
+                "note": "Contains no meat or animal-derived gelatin"
+            }
+        ]
     },
     {
         "name": "Ais Kacang",
-        "description": "Shaved ice with mixed beans, jelly, and rose syrup",
+        "description": "Ais Kacang is a popular Penang dessert consisting of shaved ice topped with sweet syrups, red beans, corn, grass jelly, and palm seeds.",
         "category": "Desserts",
-        "estimatedKcal": 260,
+        "estimatedKcal": 280,
         "nutrition": {
-            "protein_g": 4,
-            "carb_g": 52,
-            "fat_g": 6,
-            "sodium_mg": 75,
-            "fibre_g": 3.0,
-            "gi": 68
+            "protein_g": 3.0,
+            "carb_g": 58.0,
+            "fat_g": 6.0,
+            "sodium_mg": 80,
+            "fibre_g": 1.5,
+            "gi": 75
         },
         "confidence": "high",
-        "source": "curated_seed",
+        "source": "llm_estimated",
         "price_sgd": 4.0,
         "image_url": "",
-        "healthFlags": []
+        "healthFlags": [
+            {
+                "flag": "high-sugar",
+                "note": "Contains high sugar from syrups and sweet toppings"
+            }
+        ]
     }
   ],
   "nasi-kandar-pelita": [
     {
-        "name": "Nasi Kandar (Mixed Rice)",
-        "description": "Steamed rice with choice of curries and sides",
-        "category": "Rice",
-        "estimatedKcal": 680,
+        "name": "Nasi Kandar (Plain Rice + 2 Lauk)",
+        "description": "A Malaysian dish featuring steamed plain rice served with two types of flavorful curries or side dishes.",
+        "category": "Nasi Kandar",
+        "estimatedKcal": 650,
         "nutrition": {
-            "protein_g": 28,
-            "carb_g": 82,
-            "fat_g": 22,
-            "sodium_mg": 1350,
-            "fibre_g": 3.0,
-            "gi": 65
+            "protein_g": 25.0,
+            "carb_g": 85.0,
+            "fat_g": 22.0,
+            "sodium_mg": 1200,
+            "fibre_g": 5.0,
+            "gi": 70
         },
-        "confidence": "high",
-        "source": "curated_seed",
+        "confidence": "medium",
+        "source": "llm_estimated",
         "price_sgd": 8.0,
         "image_url": "",
         "healthFlags": [
             {
                 "flag": "high-sodium",
-                "note": "1350mg sodium"
+                "note": "Sodium content typically exceeds 800mg due to curry sauces"
+            },
+            {
+                "flag": "high-fat",
+                "note": "Contains rich curry gravies with coconut milk or oil"
             },
             {
                 "flag": "high-protein",
-                "note": "28g protein"
+                "note": "Includes meat or seafood lauk providing substantial protein"
             }
         ]
     },
     {
-        "name": "Roti Canai",
-        "description": "Flaky flatbread served with dhal and curry",
-        "category": "Bread",
-        "estimatedKcal": 300,
+        "name": "Chicken Curry",
+        "description": "A rich and spicy Malaysian chicken curry typically served with rice, featuring tender chicken pieces cooked in a coconut milk and spice blend.",
+        "category": "Curries",
+        "estimatedKcal": 450,
         "nutrition": {
-            "protein_g": 7,
-            "carb_g": 48,
-            "fat_g": 10,
-            "sodium_mg": 380,
-            "fibre_g": 2.0,
-            "gi": 68
-        },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 1.5,
-        "image_url": "",
-        "healthFlags": []
-    },
-    {
-        "name": "Teh Tarik",
-        "description": "Pulled milk tea with frothy top",
-        "category": "Beverages",
-        "estimatedKcal": 90,
-        "nutrition": {
-            "protein_g": 2,
-            "carb_g": 14,
-            "fat_g": 2,
-            "sodium_mg": 35,
-            "fibre_g": 0.0,
-            "gi": 55
-        },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 2.0,
-        "image_url": "",
-        "healthFlags": []
-    },
-    {
-        "name": "Murtabak (Chicken)",
-        "description": "Stuffed flatbread with spiced chicken and egg",
-        "category": "Bread",
-        "estimatedKcal": 580,
-        "nutrition": {
-            "protein_g": 28,
-            "carb_g": 62,
-            "fat_g": 22,
-            "sodium_mg": 980,
+            "protein_g": 28.5,
+            "carb_g": 12.0,
+            "fat_g": 22.0,
+            "sodium_mg": 900,
             "fibre_g": 2.5,
-            "gi": 62
+            "gi": 45
         },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 8.0,
+        "confidence": "medium",
+        "source": "llm_estimated",
+        "price_sgd": 7.0,
         "image_url": "",
         "healthFlags": [
             {
+                "flag": "high-sodium",
+                "note": "Sodium content exceeds 800mg per serving"
+            },
+            {
+                "flag": "high-fat",
+                "note": "Fat content exceeds 20g per serving"
+            },
+            {
                 "flag": "high-protein",
-                "note": "28g protein"
+                "note": "Protein content exceeds 25g per serving"
+            },
+            {
+                "flag": "spicy",
+                "note": "Contains chili and spices typical of Malaysian curry"
+            },
+            {
+                "flag": "halal",
+                "note": "Typically prepared with halal chicken"
             }
         ]
     },
     {
-        "name": "Murtabak (Mutton)",
-        "description": "Stuffed flatbread with spiced mutton and egg",
-        "category": "Bread",
-        "estimatedKcal": 620,
+        "name": "Fish Curry",
+        "description": "A spicy Malaysian fish curry made with fish simmered in a coconut milk and spice-based gravy.",
+        "category": "Curries",
+        "estimatedKcal": 350,
         "nutrition": {
-            "protein_g": 30,
-            "carb_g": 62,
-            "fat_g": 26,
-            "sodium_mg": 1050,
+            "protein_g": 25.0,
+            "carb_g": 10.0,
+            "fat_g": 22.0,
+            "sodium_mg": 900,
             "fibre_g": 2.5,
-            "gi": 62
+            "gi": 40
         },
-        "confidence": "high",
-        "source": "curated_seed",
+        "confidence": "medium",
+        "source": "llm_estimated",
         "price_sgd": 9.0,
         "image_url": "",
         "healthFlags": [
             {
                 "flag": "high-sodium",
-                "note": "1050mg sodium"
+                "note": "Sodium content exceeds 800mg per serving"
             },
             {
                 "flag": "high-fat",
-                "note": "26g fat"
+                "note": "Fat content exceeds 20g per serving"
             },
             {
                 "flag": "high-protein",
-                "note": "30g protein"
-            }
-        ]
-    },
-    {
-        "name": "Ayam Masak Merah",
-        "description": "Chicken in spicy tomato-based sauce",
-        "category": "Mains",
-        "estimatedKcal": 380,
-        "nutrition": {
-            "protein_g": 28,
-            "carb_g": 18,
-            "fat_g": 22,
-            "sodium_mg": 880,
-            "fibre_g": 2.0,
-            "gi": 45
-        },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 7.0,
-        "image_url": "",
-        "healthFlags": [
+                "note": "Protein content exceeds 25g per serving"
+            },
             {
-                "flag": "high-protein",
-                "note": "28g protein"
+                "flag": "spicy",
+                "note": "Contains chili and spices typical of Malaysian fish curry"
+            },
+            {
+                "flag": "halal",
+                "note": "Commonly prepared with halal-certified ingredients"
             }
         ]
     },
     {
         "name": "Dhal Curry",
-        "description": "Lentil curry with spices",
-        "category": "Sides",
-        "estimatedKcal": 180,
+        "description": "A spiced lentil curry commonly served in Malaysian Nasi Kandar, rich in protein and fiber.",
+        "category": "Curries",
+        "estimatedKcal": 220,
         "nutrition": {
-            "protein_g": 9,
-            "carb_g": 28,
-            "fat_g": 4,
-            "sodium_mg": 480,
-            "fibre_g": 6.0,
+            "protein_g": 12.5,
+            "carb_g": 30.0,
+            "fat_g": 7.0,
+            "sodium_mg": 700,
+            "fibre_g": 8.0,
             "gi": 35
         },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 2.0,
+        "confidence": "medium",
+        "source": "llm_estimated",
+        "price_sgd": 4.0,
         "image_url": "",
         "healthFlags": [
             {
-                "flag": "balanced",
-                "note": "6.0g fibre"
+                "flag": "high-protein",
+                "note": "Contains over 25% of calories from protein"
+            },
+            {
+                "flag": "halal",
+                "note": "Commonly prepared in halal-certified establishments"
+            },
+            {
+                "flag": "vegetarian",
+                "note": "Made primarily from lentils and spices"
+            },
+            {
+                "flag": "spicy",
+                "note": "Typically includes chili and spices"
+            }
+        ]
+    },
+    {
+        "name": "Fried Chicken",
+        "description": "Deep-fried chicken typically served as a main protein in Malaysian Nasi Kandar meals.",
+        "category": "Mains",
+        "estimatedKcal": 350,
+        "nutrition": {
+            "protein_g": 28.0,
+            "carb_g": 8.0,
+            "fat_g": 22.0,
+            "sodium_mg": 900,
+            "fibre_g": 0.5,
+            "gi": 50
+        },
+        "confidence": "medium",
+        "source": "llm_estimated",
+        "price_sgd": 6.0,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "high-sodium",
+                "note": "Sodium content exceeds 800mg per serving"
+            },
+            {
+                "flag": "high-fat",
+                "note": "Fat content exceeds 20g per serving"
+            },
+            {
+                "flag": "high-protein",
+                "note": "Protein content exceeds 25g per serving"
+            },
+            {
+                "flag": "halal",
+                "note": "Commonly prepared with halal chicken"
+            }
+        ]
+    },
+    {
+        "name": "Roti Canai",
+        "description": "Flaky, layered flatbread commonly served in Malaysian Nasi Kandar stalls, made from wheat flour, ghee, and water.",
+        "category": "Bread",
+        "estimatedKcal": 320,
+        "nutrition": {
+            "protein_g": 7.0,
+            "carb_g": 44.0,
+            "fat_g": 14.0,
+            "sodium_mg": 500,
+            "fibre_g": 2.0,
+            "gi": 70
+        },
+        "confidence": "high",
+        "source": "llm_estimated",
+        "price_sgd": 1.5,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "high-fat",
+                "note": "Contains 14g fat, mainly from ghee used in preparation"
+            }
+        ]
+    },
+    {
+        "name": "Teh Tarik",
+        "description": "A popular Malaysian hot milk tea beverage made with strong black tea and condensed milk, known for its frothy texture.",
+        "category": "Drinks",
+        "estimatedKcal": 120,
+        "nutrition": {
+            "protein_g": 3.0,
+            "carb_g": 20.0,
+            "fat_g": 3.0,
+            "sodium_mg": 60,
+            "fibre_g": 0,
+            "gi": 65
+        },
+        "confidence": "high",
+        "source": "llm_estimated",
+        "price_sgd": 2.5,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "high-sugar",
+                "note": "Contains condensed milk contributing to high sugar content"
             }
         ]
     }
@@ -2375,424 +2713,545 @@ export const SCRAPED_DISHES: Record<string, ScrapedDish[]> = {
   "village-park": [
     {
         "name": "Nasi Lemak with Fried Chicken",
-        "description": "Coconut rice with crispy fried chicken, sambal, egg, and anchovies",
-        "category": "Rice",
-        "estimatedKcal": 780,
+        "description": "Traditional Malaysian dish of coconut milk rice served with fried chicken, sambal, anchovies, peanuts, and boiled egg.",
+        "category": "Nasi Lemak",
+        "estimatedKcal": 700,
         "nutrition": {
-            "protein_g": 35,
-            "carb_g": 85,
-            "fat_g": 32,
-            "sodium_mg": 1250,
-            "fibre_g": 3.5,
+            "protein_g": 25.0,
+            "carb_g": 70.0,
+            "fat_g": 30.0,
+            "sodium_mg": 900,
+            "fibre_g": 3.0,
             "gi": 65
         },
         "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 9.0,
+        "source": "llm_estimated",
+        "price_sgd": 12.0,
         "image_url": "",
         "healthFlags": [
             {
                 "flag": "high-sodium",
-                "note": "1250mg sodium"
+                "note": "Sodium content exceeds 800mg"
             },
             {
                 "flag": "high-fat",
-                "note": "32g fat"
+                "note": "Fat content exceeds 20g"
             },
             {
                 "flag": "high-protein",
-                "note": "35g protein"
+                "note": "Protein content exceeds 25g"
+            },
+            {
+                "flag": "halal",
+                "note": "Commonly prepared with halal ingredients"
+            },
+            {
+                "flag": "spicy",
+                "note": "Includes spicy sambal"
             }
         ]
     },
     {
         "name": "Nasi Lemak with Rendang",
-        "description": "Coconut rice with beef rendang",
-        "category": "Rice",
-        "estimatedKcal": 820,
+        "description": "A traditional Malaysian dish featuring fragrant coconut rice served with spicy beef rendang and accompaniments.",
+        "category": "Nasi Lemak",
+        "estimatedKcal": 700,
         "nutrition": {
-            "protein_g": 38,
-            "carb_g": 82,
-            "fat_g": 36,
-            "sodium_mg": 1300,
+            "protein_g": 22.0,
+            "carb_g": 70.0,
+            "fat_g": 32.0,
+            "sodium_mg": 900,
             "fibre_g": 3.5,
-            "gi": 60
+            "gi": 65
+        },
+        "confidence": "medium",
+        "source": "llm_estimated",
+        "price_sgd": 14.0,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "high-sodium",
+                "note": "Sodium content exceeds 800mg"
+            },
+            {
+                "flag": "high-fat",
+                "note": "Fat content exceeds 20g"
+            },
+            {
+                "flag": "spicy",
+                "note": "Contains spicy beef rendang"
+            }
+        ]
+    },
+    {
+        "name": "Nasi Lemak (Basic)",
+        "description": "A traditional Malaysian dish featuring coconut milk rice served with sambal, anchovies, peanuts, boiled egg, and cucumber.",
+        "category": "Nasi Lemak",
+        "estimatedKcal": 600,
+        "nutrition": {
+            "protein_g": 18.0,
+            "carb_g": 72.0,
+            "fat_g": 28.0,
+            "sodium_mg": 820,
+            "fibre_g": 3.0,
+            "gi": 65
         },
         "confidence": "high",
-        "source": "curated_seed",
+        "source": "llm_estimated",
+        "price_sgd": 5.0,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "high-sodium",
+                "note": "Sodium content exceeds 800mg per serving"
+            },
+            {
+                "flag": "high-fat",
+                "note": "Fat content exceeds 20g per serving"
+            },
+            {
+                "flag": "balanced",
+                "note": "Contains a balance of macronutrients"
+            },
+            {
+                "flag": "halal",
+                "note": "Commonly prepared according to halal standards"
+            }
+        ]
+    },
+    {
+        "name": "Fried Chicken (Half)",
+        "description": "Half portion of deep-fried crispy chicken, commonly served as a side in Malaysian nasi lemak meals.",
+        "category": "Mains",
+        "estimatedKcal": 450,
+        "nutrition": {
+            "protein_g": 28.0,
+            "carb_g": 5.0,
+            "fat_g": 25.0,
+            "sodium_mg": 900,
+            "fibre_g": 0.5,
+            "gi": 40
+        },
+        "confidence": "medium",
+        "source": "llm_estimated",
         "price_sgd": 10.0,
         "image_url": "",
         "healthFlags": [
             {
                 "flag": "high-sodium",
-                "note": "1300mg sodium"
+                "note": "Sodium content exceeds 800mg"
             },
             {
                 "flag": "high-fat",
-                "note": "36g fat"
+                "note": "Fat content exceeds 20g"
             },
             {
                 "flag": "high-protein",
-                "note": "38g protein"
+                "note": "Protein content exceeds 25g"
+            },
+            {
+                "flag": "halal",
+                "note": "Commonly prepared with halal chicken"
             }
         ]
     },
     {
-        "name": "Nasi Lemak (Plain)",
-        "description": "Coconut rice with sambal, egg, and anchovies",
-        "category": "Rice",
-        "estimatedKcal": 480,
+        "name": "Sambal Sotong",
+        "description": "Spicy stir-fried squid in a chili-based sambal sauce, commonly served as a side dish in Malaysian nasi lemak.",
+        "category": "Sides",
+        "estimatedKcal": 280,
         "nutrition": {
-            "protein_g": 12,
-            "carb_g": 68,
-            "fat_g": 18,
-            "sodium_mg": 680,
-            "fibre_g": 2.5,
-            "gi": 65
-        },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 5.0,
-        "image_url": "",
-        "healthFlags": []
-    },
-    {
-        "name": "Iced Teh Tarik",
-        "description": "Iced pulled milk tea",
-        "category": "Beverages",
-        "estimatedKcal": 95,
-        "nutrition": {
-            "protein_g": 2,
-            "carb_g": 15,
-            "fat_g": 2,
-            "sodium_mg": 35,
-            "fibre_g": 0.0,
+            "protein_g": 22.0,
+            "carb_g": 12.0,
+            "fat_g": 18.0,
+            "sodium_mg": 850,
+            "fibre_g": 2.0,
             "gi": 55
         },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 2.5,
+        "confidence": "medium",
+        "source": "llm_estimated",
+        "price_sgd": 8.0,
         "image_url": "",
-        "healthFlags": []
-    },
-    {
-        "name": "Iced Milo",
-        "description": "Iced Milo drink",
-        "category": "Beverages",
-        "estimatedKcal": 180,
-        "nutrition": {
-            "protein_g": 3,
-            "carb_g": 32,
-            "fat_g": 4,
-            "sodium_mg": 60,
-            "fibre_g": 1.2,
-            "gi": 60
-        },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 2.5,
-        "image_url": "",
-        "healthFlags": []
+        "healthFlags": [
+            {
+                "flag": "high-sodium",
+                "note": "Sodium content exceeds 800mg per serving"
+            },
+            {
+                "flag": "high-fat",
+                "note": "Fat content exceeds 20g per serving"
+            },
+            {
+                "flag": "spicy",
+                "note": "Contains chili-based sambal sauce"
+            },
+            {
+                "flag": "halal",
+                "note": "Typically prepared with halal ingredients"
+            }
+        ]
     }
   ],
   "capitol-satay": [
     {
         "name": "Satay Celup (per stick)",
-        "description": "Skewered meats and vegetables dipped in peanut satay broth",
+        "description": "Satay Celup is a Malaysian dish featuring skewered meat and seafood dipped in a rich, spicy peanut sauce.",
         "category": "Satay",
-        "estimatedKcal": 80,
+        "estimatedKcal": 55,
         "nutrition": {
-            "protein_g": 6,
-            "carb_g": 5,
-            "fat_g": 4,
-            "sodium_mg": 180,
-            "fibre_g": 0.5,
-            "gi": 45
+            "protein_g": 6.0,
+            "carb_g": 2.0,
+            "fat_g": 3.0,
+            "sodium_mg": 120,
+            "fibre_g": 0.2,
+            "gi": 35
         },
         "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 1.0,
-        "image_url": "",
-        "healthFlags": []
-    },
-    {
-        "name": "Satay Celup Set (20 sticks)",
-        "description": "Mixed selection of 20 satay sticks",
-        "category": "Satay",
-        "estimatedKcal": 1600,
-        "nutrition": {
-            "protein_g": 120,
-            "carb_g": 100,
-            "fat_g": 80,
-            "sodium_mg": 3600,
-            "fibre_g": 10.0,
-            "gi": 45
-        },
-        "confidence": "medium",
-        "source": "curated_seed",
-        "price_sgd": 20.0,
+        "source": "llm_estimated",
+        "price_sgd": 0.8,
         "image_url": "",
         "healthFlags": [
             {
-                "flag": "high-sodium",
-                "note": "3600mg sodium"
+                "flag": "spicy",
+                "note": "Contains spicy peanut sauce"
             },
             {
-                "flag": "high-fat",
-                "note": "80g fat"
-            },
-            {
-                "flag": "high-protein",
-                "note": "120g protein"
-            },
-            {
-                "flag": "balanced",
-                "note": "10.0g fibre"
+                "flag": "halal",
+                "note": "Typically prepared with halal meat"
             }
         ]
     },
     {
-        "name": "Prawn Satay",
-        "description": "Whole prawn on skewer",
+        "name": "Satay Celup Pork Intestine",
+        "description": "Malaysian satay celup dish featuring pork intestine dipped in a rich peanut satay sauce.",
+        "category": "Satay",
+        "estimatedKcal": 320,
+        "nutrition": {
+            "protein_g": 18.5,
+            "carb_g": 15.0,
+            "fat_g": 22.0,
+            "sodium_mg": 950,
+            "fibre_g": 2.0,
+            "gi": 40
+        },
+        "confidence": "medium",
+        "source": "llm_estimated",
+        "price_sgd": 1.0,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "high-sodium",
+                "note": "Sodium content exceeds 800mg per serving"
+            },
+            {
+                "flag": "high-fat",
+                "note": "Fat content exceeds 20g per serving"
+            }
+        ]
+    },
+    {
+        "name": "Satay Celup Prawn",
+        "description": "Satay Celup Prawn is a Malaysian dish featuring prawns dipped in a spicy peanut satay sauce.",
+        "category": "Satay",
+        "estimatedKcal": 220,
+        "nutrition": {
+            "protein_g": 18.0,
+            "carb_g": 10.0,
+            "fat_g": 15.0,
+            "sodium_mg": 900,
+            "fibre_g": 1.5,
+            "gi": 40
+        },
+        "confidence": "medium",
+        "source": "llm_estimated",
+        "price_sgd": 1.5,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "high-sodium",
+                "note": "Sodium content exceeds 800mg per serving"
+            },
+            {
+                "flag": "high-fat",
+                "note": "Fat content exceeds 20g per serving"
+            }
+        ]
+    },
+    {
+        "name": "Satay Celup Fish Cake",
+        "description": "Fish cake skewers dipped in a spicy satay peanut sauce, a popular Malaysian satay celup dish.",
         "category": "Satay",
         "estimatedKcal": 90,
         "nutrition": {
-            "protein_g": 8,
-            "carb_g": 3,
-            "fat_g": 5,
-            "sodium_mg": 200,
-            "fibre_g": 0.3,
-            "gi": 40
-        },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 1.5,
-        "image_url": "",
-        "healthFlags": []
-    },
-    {
-        "name": "Fishball Satay",
-        "description": "Handmade fishballs on skewer",
-        "category": "Satay",
-        "estimatedKcal": 70,
-        "nutrition": {
-            "protein_g": 6,
-            "carb_g": 6,
-            "fat_g": 2,
-            "sodium_mg": 250,
+            "protein_g": 7.0,
+            "carb_g": 5.0,
+            "fat_g": 5.0,
+            "sodium_mg": 400,
             "fibre_g": 0.5,
-            "gi": 50
+            "gi": 35
         },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 1.0,
+        "confidence": "medium",
+        "source": "llm_estimated",
+        "price_sgd": 0.8,
         "image_url": "",
-        "healthFlags": []
+        "healthFlags": [
+            {
+                "flag": "spicy",
+                "note": "Contains spicy satay peanut sauce"
+            }
+        ]
     },
     {
-        "name": "Pork Belly Satay",
-        "description": "Marinated pork belly on skewer",
+        "name": "Satay Celup Tofu",
+        "description": "Satay Celup Tofu is a Malaysian dish featuring tofu dipped in a spicy peanut satay sauce.",
         "category": "Satay",
-        "estimatedKcal": 120,
+        "estimatedKcal": 90,
         "nutrition": {
-            "protein_g": 8,
-            "carb_g": 4,
-            "fat_g": 8,
-            "sodium_mg": 220,
-            "fibre_g": 0.3,
-            "gi": 42
+            "protein_g": 7.0,
+            "carb_g": 5.0,
+            "fat_g": 6.0,
+            "sodium_mg": 400,
+            "fibre_g": 1.0,
+            "gi": 35
         },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 1.2,
+        "confidence": "medium",
+        "source": "llm_estimated",
+        "price_sgd": 0.8,
         "image_url": "",
-        "healthFlags": []
+        "healthFlags": [
+            {
+                "flag": "spicy",
+                "note": "Contains spicy satay sauce"
+            },
+            {
+                "flag": "halal",
+                "note": "Commonly prepared with halal ingredients"
+            },
+            {
+                "flag": "vegetarian",
+                "note": "Tofu-based dish without meat"
+            }
+        ]
     },
     {
-        "name": "Quail Egg Satay",
-        "description": "Boiled quail eggs on skewer",
-        "category": "Satay",
+        "name": "Peanut Sauce (pot)",
+        "description": "A rich and creamy peanut sauce commonly served with satay celup in Malaysia.",
+        "category": "Sauce",
         "estimatedKcal": 60,
         "nutrition": {
-            "protein_g": 5,
-            "carb_g": 1,
-            "fat_g": 4,
-            "sodium_mg": 120,
-            "fibre_g": 0.0,
-            "gi": 20
+            "protein_g": 6.0,
+            "carb_g": 3.0,
+            "fat_g": 4.0,
+            "sodium_mg": 150,
+            "fibre_g": 0.3,
+            "gi": 35
         },
         "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 1.0,
+        "source": "llm_estimated",
+        "price_sgd": 3.0,
         "image_url": "",
-        "healthFlags": []
+        "healthFlags": [
+            {
+                "flag": "high-fat",
+                "note": "Contains more than 20% of calories from fat"
+            },
+            {
+                "flag": "halal",
+                "note": "Typically prepared with halal ingredients in Malaysia"
+            }
+        ]
     }
   ],
   "no-signboard": [
     {
         "name": "White Pepper Crab",
-        "description": "Signature white pepper crab — the dish that made them famous",
+        "description": "White Pepper Crab is a Singaporean seafood dish featuring fresh crab stir-fried with a fragrant white pepper sauce.",
         "category": "Seafood",
-        "estimatedKcal": 460,
+        "estimatedKcal": 650,
         "nutrition": {
-            "protein_g": 36,
-            "carb_g": 10,
-            "fat_g": 26,
+            "protein_g": 40.0,
+            "carb_g": 15.0,
+            "fat_g": 30.0,
             "sodium_mg": 1200,
-            "fibre_g": 1.0,
-            "gi": 32
+            "fibre_g": 1.5,
+            "gi": 40
         },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 68.0,
+        "confidence": "medium",
+        "source": "llm_estimated",
+        "price_sgd": 88.0,
         "image_url": "",
         "healthFlags": [
             {
                 "flag": "high-sodium",
-                "note": "1200mg sodium"
+                "note": "Sodium content exceeds 800mg due to seasoning and sauce"
             },
             {
                 "flag": "high-fat",
-                "note": "26g fat"
+                "note": "Contains significant fat from cooking oil and crab roe"
             },
             {
                 "flag": "high-protein",
-                "note": "36g protein"
+                "note": "Rich in protein from crab meat"
             }
         ]
     },
     {
         "name": "Chilli Crab",
-        "description": "Sri Lankan crab in sweet-spicy tomato gravy",
+        "description": "Chilli Crab is a popular Singaporean seafood dish featuring stir-fried crab in a tangy, spicy tomato-based chili sauce.",
         "category": "Seafood",
-        "estimatedKcal": 520,
+        "estimatedKcal": 350,
         "nutrition": {
-            "protein_g": 38,
-            "carb_g": 22,
-            "fat_g": 28,
-            "sodium_mg": 1350,
-            "fibre_g": 1.5,
-            "gi": 40
-        },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 68.0,
-        "image_url": "",
-        "healthFlags": [
-            {
-                "flag": "high-sodium",
-                "note": "1350mg sodium"
-            },
-            {
-                "flag": "high-fat",
-                "note": "28g fat"
-            },
-            {
-                "flag": "high-protein",
-                "note": "38g protein"
-            }
-        ]
-    },
-    {
-        "name": "Salted Egg Crab",
-        "description": "Whole crab in creamy salted egg yolk sauce",
-        "category": "Seafood",
-        "estimatedKcal": 540,
-        "nutrition": {
-            "protein_g": 36,
-            "carb_g": 14,
-            "fat_g": 36,
-            "sodium_mg": 1380,
-            "fibre_g": 0.8,
-            "gi": 38
-        },
-        "confidence": "medium",
-        "source": "curated_seed",
-        "price_sgd": 70.0,
-        "image_url": "",
-        "healthFlags": [
-            {
-                "flag": "high-sodium",
-                "note": "1380mg sodium"
-            },
-            {
-                "flag": "high-fat",
-                "note": "36g fat"
-            },
-            {
-                "flag": "high-protein",
-                "note": "36g protein"
-            }
-        ]
-    },
-    {
-        "name": "Fried Mantou",
-        "description": "Deep-fried steamed buns",
-        "category": "Sides",
-        "estimatedKcal": 220,
-        "nutrition": {
-            "protein_g": 5,
-            "carb_g": 32,
-            "fat_g": 8,
-            "sodium_mg": 280,
-            "fibre_g": 1.0,
-            "gi": 70
-        },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 4.0,
-        "image_url": "",
-        "healthFlags": []
-    },
-    {
-        "name": "Butter Prawns",
-        "description": "Crispy prawns with butter and curry leaves",
-        "category": "Seafood",
-        "estimatedKcal": 380,
-        "nutrition": {
-            "protein_g": 26,
-            "carb_g": 18,
-            "fat_g": 24,
-            "sodium_mg": 820,
-            "fibre_g": 1.0,
-            "gi": 42
-        },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 30.0,
-        "image_url": "",
-        "healthFlags": [
-            {
-                "flag": "high-protein",
-                "note": "26g protein"
-            }
-        ]
-    },
-    {
-        "name": "Steamed Fish (Teochew Style)",
-        "description": "Whole steamed fish with soy, ginger, and spring onion",
-        "category": "Seafood",
-        "estimatedKcal": 280,
-        "nutrition": {
-            "protein_g": 32,
-            "carb_g": 6,
-            "fat_g": 12,
-            "sodium_mg": 980,
+            "protein_g": 30.0,
+            "carb_g": 15.0,
+            "fat_g": 20.0,
+            "sodium_mg": 1000,
             "fibre_g": 0.5,
             "gi": 30
         },
         "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 35.0,
+        "source": "llm_estimated",
+        "price_sgd": 88.0,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "high-sodium",
+                "note": "Sodium content exceeds 800mg"
+            },
+            {
+                "flag": "high-fat",
+                "note": "Fat content exceeds 20g"
+            },
+            {
+                "flag": "high-protein",
+                "note": "Protein content exceeds 25g"
+            },
+            {
+                "flag": "spicy",
+                "note": "Contains chili and spices"
+            },
+            {
+                "flag": "halal",
+                "note": "Typically prepared with halal seafood"
+            }
+        ]
+    },
+    {
+        "name": "Drunken Prawns",
+        "description": "Drunken Prawns is a Singaporean seafood dish featuring live prawns cooked in a flavorful, often alcoholic broth.",
+        "category": "Seafood",
+        "estimatedKcal": 320,
+        "nutrition": {
+            "protein_g": 28.5,
+            "carb_g": 5.0,
+            "fat_g": 12.0,
+            "sodium_mg": 900,
+            "fibre_g": 0.5,
+            "gi": 40
+        },
+        "confidence": "medium",
+        "source": "llm_estimated",
+        "price_sgd": 28.0,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "high-sodium",
+                "note": "Sodium content exceeds 800mg due to broth and sauces"
+            },
+            {
+                "flag": "high-protein",
+                "note": "Rich in protein from prawns"
+            },
+            {
+                "flag": "high-fat",
+                "note": "Contains moderate fat from cooking oils and prawn fat"
+            }
+        ]
+    },
+    {
+        "name": "Fried Carrot Cake",
+        "description": "A savory Singaporean stir-fried dish made from radish cake, eggs, preserved radish, and seasonings.",
+        "category": "Sides",
+        "estimatedKcal": 320,
+        "nutrition": {
+            "protein_g": 12.5,
+            "carb_g": 40.0,
+            "fat_g": 15.0,
+            "sodium_mg": 900,
+            "fibre_g": 2.5,
+            "gi": 55
+        },
+        "confidence": "high",
+        "source": "llm_estimated",
+        "price_sgd": 12.0,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "high-sodium",
+                "note": "Contains soy sauce and preserved radish contributing to high sodium"
+            },
+            {
+                "flag": "high-fat",
+                "note": "Fried with oil and eggs leading to higher fat content"
+            }
+        ]
+    },
+    {
+        "name": "Sambal Kangkong",
+        "description": "Stir-fried water spinach in a spicy sambal chili paste, commonly served as a vegetable side dish in Singaporean cuisine.",
+        "category": "Vegetables",
+        "estimatedKcal": 120,
+        "nutrition": {
+            "protein_g": 3.5,
+            "carb_g": 10.0,
+            "fat_g": 7.0,
+            "sodium_mg": 900,
+            "fibre_g": 3.0,
+            "gi": 40
+        },
+        "confidence": "medium",
+        "source": "llm_estimated",
+        "price_sgd": 12.0,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "high-sodium",
+                "note": "Contains sambal and soy sauce contributing to sodium content"
+            },
+            {
+                "flag": "spicy",
+                "note": "Contains chili-based sambal paste"
+            }
+        ]
+    },
+    {
+        "name": "Mantou",
+        "description": "Steamed Chinese mantou buns, soft and fluffy, typically served as a side in Singaporean seafood meals.",
+        "category": "Sides",
+        "estimatedKcal": 150,
+        "nutrition": {
+            "protein_g": 4.5,
+            "carb_g": 30.0,
+            "fat_g": 1.0,
+            "sodium_mg": 200,
+            "fibre_g": 1.0,
+            "gi": 70
+        },
+        "confidence": "high",
+        "source": "llm_estimated",
+        "price_sgd": 5.0,
         "image_url": "",
         "healthFlags": [
             {
                 "flag": "low-calorie",
-                "note": "280 kcal"
+                "note": "Contains less than 200 kcal per serving"
             },
             {
-                "flag": "high-protein",
-                "note": "32g protein"
+                "flag": "soft-foods",
+                "note": "Soft and easy to chew"
+            },
+            {
+                "flag": "vegetarian",
+                "note": "Contains no animal products"
             }
         ]
     }
@@ -2800,533 +3259,772 @@ export const SCRAPED_DISHES: Record<string, ScrapedDish[]> = {
   "toastbox": [
     {
         "name": "Kaya Butter Toast",
-        "description": "Toasted bread with kaya and butter",
+        "description": "Traditional Singaporean breakfast toast spread with kaya jam and butter, served crispy and sweet.",
         "category": "Toast",
         "estimatedKcal": 280,
         "nutrition": {
-            "protein_g": 6,
-            "carb_g": 38,
-            "fat_g": 12,
-            "sodium_mg": 320,
+            "protein_g": 5.0,
+            "carb_g": 30.0,
+            "fat_g": 15.0,
+            "sodium_mg": 400,
             "fibre_g": 1.5,
-            "gi": 68
+            "gi": 65
         },
         "confidence": "high",
-        "source": "curated_seed",
+        "source": "llm_estimated",
         "price_sgd": 2.5,
-        "image_url": "",
-        "healthFlags": []
-    },
-    {
-        "name": "Soft Boiled Eggs",
-        "description": "Two half-cooked eggs with soy sauce",
-        "category": "Eggs",
-        "estimatedKcal": 140,
-        "nutrition": {
-            "protein_g": 12,
-            "carb_g": 1,
-            "fat_g": 10,
-            "sodium_mg": 180,
-            "fibre_g": 0.0,
-            "gi": 0
-        },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 1.8,
         "image_url": "",
         "healthFlags": [
             {
-                "flag": "low-calorie",
-                "note": "140 kcal"
+                "flag": "high-fat",
+                "note": "Contains significant butter and coconut milk-based kaya"
             }
         ]
     },
     {
-        "name": "Mee Siam",
-        "description": "Spicy rice vermicelli in tangy gravy",
-        "category": "Noodles",
-        "estimatedKcal": 420,
+        "name": "Peanut Butter Toast",
+        "description": "A simple toasted bread slice spread with creamy peanut butter, commonly served in Singapore kopitiams.",
+        "category": "Toast",
+        "estimatedKcal": 320,
         "nutrition": {
-            "protein_g": 14,
-            "carb_g": 68,
-            "fat_g": 10,
-            "sodium_mg": 980,
-            "fibre_g": 3.0,
-            "gi": 62
+            "protein_g": 10.5,
+            "carb_g": 30.0,
+            "fat_g": 18.0,
+            "sodium_mg": 350,
+            "fibre_g": 4.0,
+            "gi": 55
         },
         "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 5.5,
-        "image_url": "",
-        "healthFlags": []
-    },
-    {
-        "name": "Laksa",
-        "description": "Spicy coconut milk noodle soup",
-        "category": "Noodles",
-        "estimatedKcal": 580,
-        "nutrition": {
-            "protein_g": 22,
-            "carb_g": 65,
-            "fat_g": 26,
-            "sodium_mg": 1280,
-            "fibre_g": 3.0,
-            "gi": 58
-        },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 6.5,
+        "source": "llm_estimated",
+        "price_sgd": 2.5,
         "image_url": "",
         "healthFlags": [
             {
-                "flag": "high-sodium",
-                "note": "1280mg sodium"
-            },
-            {
                 "flag": "high-fat",
-                "note": "26g fat"
+                "note": "Contains 18g fat mainly from peanut butter"
+            }
+        ]
+    },
+    {
+        "name": "Soft-Boiled Eggs",
+        "description": "Two soft-boiled chicken eggs typically served with soy sauce and white pepper.",
+        "category": "Eggs",
+        "estimatedKcal": 140,
+        "nutrition": {
+            "protein_g": 12.6,
+            "carb_g": 1.1,
+            "fat_g": 9.5,
+            "sodium_mg": 210,
+            "fibre_g": 0,
+            "gi": 0
+        },
+        "confidence": "high",
+        "source": "llm_estimated",
+        "price_sgd": 1.8,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "high-protein",
+                "note": "Contains over 25g protein per serving"
             }
         ]
     },
     {
         "name": "Nasi Lemak",
-        "description": "Coconut rice with sambal, egg, and anchovies",
-        "category": "Rice",
-        "estimatedKcal": 480,
+        "description": "A traditional Malay fragrant rice dish cooked in coconut milk, served with sambal, fried anchovies, peanuts, boiled egg, and cucumber slices.",
+        "category": "Mains",
+        "estimatedKcal": 600,
         "nutrition": {
-            "protein_g": 12,
-            "carb_g": 68,
-            "fat_g": 18,
-            "sodium_mg": 680,
-            "fibre_g": 2.5,
+            "protein_g": 18.0,
+            "carb_g": 72.0,
+            "fat_g": 28.0,
+            "sodium_mg": 820,
+            "fibre_g": 3.0,
             "gi": 65
         },
         "confidence": "high",
-        "source": "curated_seed",
+        "source": "llm_estimated",
         "price_sgd": 5.5,
-        "image_url": "",
-        "healthFlags": []
-    },
-    {
-        "name": "Teh Tarik",
-        "description": "Pulled milk tea",
-        "category": "Beverages",
-        "estimatedKcal": 90,
-        "nutrition": {
-            "protein_g": 2,
-            "carb_g": 14,
-            "fat_g": 2,
-            "sodium_mg": 35,
-            "fibre_g": 0.0,
-            "gi": 55
-        },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 2.2,
-        "image_url": "",
-        "healthFlags": []
-    },
-    {
-        "name": "Kopi C (Coffee with Evaporated Milk)",
-        "description": "Traditional coffee with evaporated milk",
-        "category": "Beverages",
-        "estimatedKcal": 65,
-        "nutrition": {
-            "protein_g": 2,
-            "carb_g": 9,
-            "fat_g": 2,
-            "sodium_mg": 25,
-            "fibre_g": 0.0,
-            "gi": 48
-        },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 2.0,
-        "image_url": "",
-        "healthFlags": []
-    }
-  ],
-  "baba-charlie": [
-    {
-        "name": "Kueh Lapis (Layer Cake)",
-        "description": "Traditional Nyonya layered steamed cake",
-        "category": "Kueh",
-        "estimatedKcal": 380,
-        "nutrition": {
-            "protein_g": 5,
-            "carb_g": 58,
-            "fat_g": 14,
-            "sodium_mg": 220,
-            "fibre_g": 0.5,
-            "gi": 72
-        },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 25.0,
-        "image_url": "",
-        "healthFlags": []
-    },
-    {
-        "name": "Pulut Tai Tai (Blue Glutinous Rice)",
-        "description": "Blue butterfly pea rice cake with kaya",
-        "category": "Kueh",
-        "estimatedKcal": 280,
-        "nutrition": {
-            "protein_g": 4,
-            "carb_g": 52,
-            "fat_g": 8,
-            "sodium_mg": 120,
-            "fibre_g": 1.5,
-            "gi": 68
-        },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 8.0,
-        "image_url": "",
-        "healthFlags": []
-    },
-    {
-        "name": "Kueh Seri Muka",
-        "description": "Glutinous rice with pandan custard top layer",
-        "category": "Kueh",
-        "estimatedKcal": 260,
-        "nutrition": {
-            "protein_g": 4,
-            "carb_g": 48,
-            "fat_g": 7,
-            "sodium_mg": 110,
-            "fibre_g": 1.5,
-            "gi": 65
-        },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 8.0,
-        "image_url": "",
-        "healthFlags": []
-    },
-    {
-        "name": "Ang Ku Kueh",
-        "description": "Red tortoise cake with sweet filling",
-        "category": "Kueh",
-        "estimatedKcal": 180,
-        "nutrition": {
-            "protein_g": 4,
-            "carb_g": 36,
-            "fat_g": 3,
-            "sodium_mg": 120,
-            "fibre_g": 2.0,
-            "gi": 62
-        },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 5.0,
-        "image_url": "",
-        "healthFlags": []
-    },
-    {
-        "name": "Kueh Talam",
-        "description": "Two-layered coconut and pandan kueh",
-        "category": "Kueh",
-        "estimatedKcal": 220,
-        "nutrition": {
-            "protein_g": 3,
-            "carb_g": 42,
-            "fat_g": 6,
-            "sodium_mg": 95,
-            "fibre_g": 1.5,
-            "gi": 62
-        },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 6.0,
-        "image_url": "",
-        "healthFlags": []
-    }
-  ],
-  "peter-pork-ribs": [
-    {
-        "name": "Bak Kut Teh (Pork Ribs)",
-        "description": "Peppery herbal pork rib soup",
-        "category": "Bak Kut Teh",
-        "estimatedKcal": 380,
-        "nutrition": {
-            "protein_g": 32,
-            "carb_g": 5,
-            "fat_g": 24,
-            "sodium_mg": 1100,
-            "fibre_g": 0.5,
-            "gi": 30
-        },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 10.0,
         "image_url": "",
         "healthFlags": [
             {
                 "flag": "high-sodium",
-                "note": "1100mg sodium"
+                "note": "Sodium content exceeds 800mg"
             },
             {
-                "flag": "high-protein",
-                "note": "32g protein"
+                "flag": "high-fat",
+                "note": "Fat content exceeds 20g"
             }
         ]
     },
     {
-        "name": "Spare Ribs Soup",
-        "description": "Slow-simmered spare ribs in herbal broth",
-        "category": "Bak Kut Teh",
-        "estimatedKcal": 420,
+        "name": "Mee Siam",
+        "description": "Mee Siam is a spicy and tangy rice vermicelli dish commonly served with a flavorful gravy, tofu, egg, and garnished with lime and chives.",
+        "category": "Noodles",
+        "estimatedKcal": 350,
         "nutrition": {
-            "protein_g": 34,
-            "carb_g": 6,
-            "fat_g": 26,
-            "sodium_mg": 1150,
-            "fibre_g": 0.5,
-            "gi": 30
+            "protein_g": 12.5,
+            "carb_g": 50.0,
+            "fat_g": 10.0,
+            "sodium_mg": 900,
+            "fibre_g": 3.0,
+            "gi": 65
         },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 12.0,
+        "confidence": "medium",
+        "source": "llm_estimated",
+        "price_sgd": 5.5,
         "image_url": "",
         "healthFlags": [
             {
                 "flag": "high-sodium",
-                "note": "1150mg sodium"
+                "note": "Sodium content exceeds 800mg due to sauces and condiments"
+            },
+            {
+                "flag": "spicy",
+                "note": "Contains chili and spices typical of Mee Siam"
+            }
+        ]
+    },
+    {
+        "name": "Laksa",
+        "description": "A spicy coconut milk-based noodle soup with rice noodles, prawns, fish cake, and tofu puffs.",
+        "category": "Noodles",
+        "estimatedKcal": 550,
+        "nutrition": {
+            "protein_g": 25.0,
+            "carb_g": 60.0,
+            "fat_g": 22.0,
+            "sodium_mg": 1200,
+            "fibre_g": 4.0,
+            "gi": 55
+        },
+        "confidence": "medium",
+        "source": "llm_estimated",
+        "price_sgd": 6.5,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "high-sodium",
+                "note": "Sodium content exceeds 800mg per serving"
             },
             {
                 "flag": "high-fat",
-                "note": "26g fat"
+                "note": "Fat content exceeds 20g per serving"
             },
             {
                 "flag": "high-protein",
-                "note": "34g protein"
+                "note": "Protein content exceeds 25g per serving"
+            },
+            {
+                "flag": "spicy",
+                "note": "Contains chili and spices"
+            }
+        ]
+    },
+    {
+        "name": "Teh Tarik",
+        "description": "A popular sweet and creamy pulled tea beverage made with black tea, condensed milk, and sugar.",
+        "category": "Drinks",
+        "estimatedKcal": 130,
+        "nutrition": {
+            "protein_g": 3.0,
+            "carb_g": 21.0,
+            "fat_g": 3.5,
+            "sodium_mg": 60,
+            "fibre_g": 0,
+            "gi": 65
+        },
+        "confidence": "high",
+        "source": "llm_estimated",
+        "price_sgd": 2.0,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "high-sugar",
+                "note": "Contains significant added sugar from condensed milk and sugar"
+            }
+        ]
+    },
+    {
+        "name": "Kopi C",
+        "description": "A traditional Singaporean/Malaysian coffee drink made with strong brewed coffee, sweetened condensed milk, and evaporated milk.",
+        "category": "Drinks",
+        "estimatedKcal": 120,
+        "nutrition": {
+            "protein_g": 3.0,
+            "carb_g": 15.0,
+            "fat_g": 5.0,
+            "sodium_mg": 80,
+            "fibre_g": 0,
+            "gi": 45
+        },
+        "confidence": "medium",
+        "source": "llm_estimated",
+        "price_sgd": 1.8,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "high-sugar",
+                "note": "Contains sweetened condensed milk contributing to high sugar content"
+            }
+        ]
+    }
+  ],
+  "baba-charlie": [
+    {
+        "name": "Kueh Lapis (Rainbow)",
+        "description": "A layered steamed cake made from rice flour, coconut milk, sugar, and eggs, typical of Nyonya cuisine.",
+        "category": "Kueh",
+        "estimatedKcal": 180,
+        "nutrition": {
+            "protein_g": 2.0,
+            "carb_g": 32.0,
+            "fat_g": 5.0,
+            "sodium_mg": 80,
+            "fibre_g": 0.5,
+            "gi": 70
+        },
+        "confidence": "high",
+        "source": "llm_estimated",
+        "price_sgd": 2.5,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "high-sugar",
+                "note": "Contains significant sugar content typical of kueh lapis"
+            }
+        ]
+    },
+    {
+        "name": "Ang Ku Kueh",
+        "description": "Ang Ku Kueh is a traditional Nyonya glutinous rice cake filled with sweet mung bean paste, characterized by its soft, chewy texture and red tortoise shell shape.",
+        "category": "Kueh",
+        "estimatedKcal": 150,
+        "nutrition": {
+            "protein_g": 3.0,
+            "carb_g": 30.0,
+            "fat_g": 2.5,
+            "sodium_mg": 150,
+            "fibre_g": 1.5,
+            "gi": 55
+        },
+        "confidence": "medium",
+        "source": "llm_estimated",
+        "price_sgd": 1.5,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "vegetarian",
+                "note": "Contains no meat or animal-derived gelatin"
+            },
+            {
+                "flag": "low-calorie",
+                "note": "Relatively low in calories per serving"
+            }
+        ]
+    },
+    {
+        "name": "Kueh Talam",
+        "description": "Kueh Talam is a traditional Nyonya two-layered steamed cake made from rice flour and coconut milk, featuring a slightly sweet and creamy texture.",
+        "category": "Kueh",
+        "estimatedKcal": 150,
+        "nutrition": {
+            "protein_g": 2.5,
+            "carb_g": 28.0,
+            "fat_g": 5.0,
+            "sodium_mg": 50,
+            "fibre_g": 1.0,
+            "gi": 55
+        },
+        "confidence": "medium",
+        "source": "llm_estimated",
+        "price_sgd": 2.0,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "vegetarian",
+                "note": "Contains no meat or animal-derived gelatin"
+            }
+        ]
+    },
+    {
+        "name": "Pulut Inti",
+        "description": "Pulut Inti is a traditional Nyonya kueh made of glutinous rice topped with sweet grated coconut.",
+        "category": "Kueh",
+        "estimatedKcal": 220,
+        "nutrition": {
+            "protein_g": 3.5,
+            "carb_g": 40.0,
+            "fat_g": 6.0,
+            "sodium_mg": 150,
+            "fibre_g": 2.0,
+            "gi": 55
+        },
+        "confidence": "medium",
+        "source": "llm_estimated",
+        "price_sgd": 2.0,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "vegetarian",
+                "note": "Contains no meat or animal products"
+            }
+        ]
+    },
+    {
+        "name": "Onde Onde",
+        "description": "Onde Onde is a traditional Nyonya kueh consisting of glutinous rice flour balls filled with palm sugar and coated in grated coconut.",
+        "category": "Kueh",
+        "estimatedKcal": 150,
+        "nutrition": {
+            "protein_g": 2.0,
+            "carb_g": 30.0,
+            "fat_g": 4.5,
+            "sodium_mg": 50,
+            "fibre_g": 1.5,
+            "gi": 55
+        },
+        "confidence": "medium",
+        "source": "llm_estimated",
+        "price_sgd": 1.5,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "high-sugar",
+                "note": "Contains palm sugar filling"
+            },
+            {
+                "flag": "vegetarian",
+                "note": "Made from plant-based ingredients"
+            }
+        ]
+    }
+  ],
+  "peter-pork-ribs": [
+    {
+        "name": "Klang Bak Kut Teh (Dark Herbal)",
+        "description": "A rich, dark herbal pork rib soup from Klang, Malaysia, known for its strong herbal flavors and tender meat.",
+        "category": "Bak Kut Teh",
+        "estimatedKcal": 380,
+        "nutrition": {
+            "protein_g": 32.0,
+            "carb_g": 5.0,
+            "fat_g": 24.0,
+            "sodium_mg": 1100,
+            "fibre_g": 0.5,
+            "gi": 25
+        },
+        "confidence": "high",
+        "source": "llm_estimated",
+        "price_sgd": 18.0,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "high-sodium",
+                "note": "Sodium content exceeds 800mg per serving"
+            },
+            {
+                "flag": "high-fat",
+                "note": "Fat content exceeds 20g per serving"
+            },
+            {
+                "flag": "high-protein",
+                "note": "Protein content exceeds 25g per serving"
             }
         ]
     },
     {
         "name": "Dry Bak Kut Teh",
-        "description": "Dry-style with soy sauce and dried chillies",
+        "description": "A Malaysian-style dry Bak Kut Teh featuring tender pork ribs cooked in a rich, herbal, and slightly oily broth with minimal sauce.",
         "category": "Bak Kut Teh",
-        "estimatedKcal": 448,
+        "estimatedKcal": 400,
         "nutrition": {
-            "protein_g": 38,
-            "carb_g": 8,
-            "fat_g": 28,
-            "sodium_mg": 1120,
-            "fibre_g": 0.8,
-            "gi": 35
+            "protein_g": 30.0,
+            "carb_g": 6.0,
+            "fat_g": 26.0,
+            "sodium_mg": 1200,
+            "fibre_g": 0.6,
+            "gi": 25
         },
         "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 14.0,
+        "source": "llm_estimated",
+        "price_sgd": 16.0,
         "image_url": "",
         "healthFlags": [
             {
                 "flag": "high-sodium",
-                "note": "1120mg sodium"
+                "note": "Sodium content exceeds 800mg per serving"
             },
             {
                 "flag": "high-fat",
-                "note": "28g fat"
+                "note": "Fat content exceeds 20g per serving"
             },
             {
                 "flag": "high-protein",
-                "note": "38g protein"
+                "note": "Protein content exceeds 25g per serving"
+            },
+            {
+                "flag": "halal",
+                "note": "Typically prepared with halal-certified ingredients in Malaysia"
             }
         ]
     },
     {
         "name": "Braised Pork Trotters",
-        "description": "Slow-braised trotters in soy and spices",
+        "description": "Braised pork trotters slow-cooked in a savory herbal broth, rich in protein and fat.",
         "category": "Mains",
-        "estimatedKcal": 548,
+        "estimatedKcal": 400,
         "nutrition": {
-            "protein_g": 18,
-            "carb_g": 78,
-            "fat_g": 16,
-            "sodium_mg": 1120,
-            "fibre_g": 2.4,
-            "gi": 70
+            "protein_g": 30.0,
+            "carb_g": 6.0,
+            "fat_g": 26.0,
+            "sodium_mg": 1200,
+            "fibre_g": 0.5,
+            "gi": 25
         },
-        "confidence": "medium",
-        "source": "curated_seed",
-        "price_sgd": 12.0,
+        "confidence": "high",
+        "source": "llm_estimated",
+        "price_sgd": 14.0,
         "image_url": "",
         "healthFlags": [
             {
                 "flag": "high-sodium",
-                "note": "1120mg sodium"
+                "note": "Sodium content exceeds 800mg per serving"
+            },
+            {
+                "flag": "high-fat",
+                "note": "Fat content exceeds 20g per serving"
+            },
+            {
+                "flag": "high-protein",
+                "note": "Protein content exceeds 25g per serving"
+            },
+            {
+                "flag": "halal",
+                "note": "Typically prepared with halal-certified ingredients in Malaysia"
             }
         ]
     },
     {
-        "name": "You Tiao",
-        "description": "Fried dough fritters",
+        "name": "Braised Tofu",
+        "description": "Braised tofu cooked in a savory herbal broth, commonly served as a side dish in Malaysian Bak Kut Teh meals.",
         "category": "Sides",
-        "estimatedKcal": 301,
+        "estimatedKcal": 360,
         "nutrition": {
-            "protein_g": 8,
-            "carb_g": 42,
-            "fat_g": 11,
-            "sodium_mg": 420,
-            "fibre_g": 1.8,
-            "gi": 62
+            "protein_g": 28.0,
+            "carb_g": 6.0,
+            "fat_g": 22.0,
+            "sodium_mg": 1050,
+            "fibre_g": 0.6,
+            "gi": 25
         },
         "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 2.0,
+        "source": "llm_estimated",
+        "price_sgd": 6.0,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "high-sodium",
+                "note": "Sodium content exceeds 800mg"
+            },
+            {
+                "flag": "high-fat",
+                "note": "Fat content exceeds 20g"
+            },
+            {
+                "flag": "high-protein",
+                "note": "Protein content exceeds 25g"
+            },
+            {
+                "flag": "halal",
+                "note": "Typically prepared without pork in Malaysia"
+            },
+            {
+                "flag": "vegetarian",
+                "note": "Main ingredient is tofu, suitable for vegetarians"
+            }
+        ]
+    },
+    {
+        "name": "You Char Kway",
+        "description": "You Char Kway is a deep-fried dough fritter commonly served as a side dish in Malaysian Bak Kut Teh meals.",
+        "category": "Sides",
+        "estimatedKcal": 380,
+        "nutrition": {
+            "protein_g": 32.0,
+            "carb_g": 5.0,
+            "fat_g": 24.0,
+            "sodium_mg": 1100,
+            "fibre_g": 0.5,
+            "gi": 25
+        },
+        "confidence": "high",
+        "source": "llm_estimated",
+        "price_sgd": 3.0,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "high-sodium",
+                "note": "Contains more than 800mg sodium per serving"
+            },
+            {
+                "flag": "high-fat",
+                "note": "Contains more than 20g fat per serving"
+            },
+            {
+                "flag": "high-protein",
+                "note": "Contains more than 25g protein per serving"
+            },
+            {
+                "flag": "halal",
+                "note": "Typically prepared without pork, suitable for halal diets"
+            }
+        ]
+    },
+    {
+        "name": "White Rice",
+        "description": "Steamed white rice served as a staple accompaniment to Bak Kut Teh.",
+        "category": "Staple",
+        "estimatedKcal": 200,
+        "nutrition": {
+            "protein_g": 4.2,
+            "carb_g": 45.0,
+            "fat_g": 0.4,
+            "sodium_mg": 5,
+            "fibre_g": 0.6,
+            "gi": 70
+        },
+        "confidence": "high",
+        "source": "llm_estimated",
+        "price_sgd": 1.0,
         "image_url": "",
         "healthFlags": []
     }
   ],
   "din-tai-fung": [
     {
-        "name": "Xiao Long Bao (Steamed Soup Dumplings)",
-        "description": "Signature pork soup dumplings, 10 pcs",
-        "category": "Dumplings",
+        "name": "Xiao Long Bao (10 pcs)",
+        "description": "Steamed soup dumplings filled with seasoned pork and gelatin broth, served in a set of 10 pieces.",
+        "category": "Dim Sum",
         "estimatedKcal": 380,
         "nutrition": {
-            "protein_g": 18,
-            "carb_g": 42,
-            "fat_g": 14,
+            "protein_g": 18.0,
+            "carb_g": 42.0,
+            "fat_g": 14.0,
             "sodium_mg": 680,
             "fibre_g": 1.5,
             "gi": 55
         },
         "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 12.8,
+        "source": "llm_estimated",
+        "price_sgd": 14.8,
         "image_url": "",
-        "healthFlags": []
+        "healthFlags": [
+            {
+                "flag": "balanced",
+                "note": "Moderate levels of protein, carbs, and fat"
+            },
+            {
+                "flag": "halal",
+                "note": "Typically made with pork, so not halal unless specified"
+            }
+        ]
     },
     {
-        "name": "Truffle Xiao Long Bao",
-        "description": "Truffle-infused soup dumplings, 5 pcs",
-        "category": "Dumplings",
-        "estimatedKcal": 420,
+        "name": "Steamed Shrimp & Pork Dumplings (10 pcs)",
+        "description": "Steamed shrimp and pork dumplings served in a typical Taiwanese dim sum style, commonly found in Singapore.",
+        "category": "Dim Sum",
+        "estimatedKcal": 350,
         "nutrition": {
-            "protein_g": 18,
-            "carb_g": 44,
-            "fat_g": 18,
-            "sodium_mg": 720,
-            "fibre_g": 1.5,
+            "protein_g": 22.5,
+            "carb_g": 30.0,
+            "fat_g": 12.0,
+            "sodium_mg": 900,
+            "fibre_g": 2.0,
             "gi": 55
         },
         "confidence": "medium",
-        "source": "curated_seed",
-        "price_sgd": 18.8,
-        "image_url": "",
-        "healthFlags": []
-    },
-    {
-        "name": "Shrimp & Pork Shao Mai",
-        "description": "Open-top dumplings with shrimp and pork",
-        "category": "Dumplings",
-        "estimatedKcal": 320,
-        "nutrition": {
-            "protein_g": 16,
-            "carb_g": 36,
-            "fat_g": 12,
-            "sodium_mg": 620,
-            "fibre_g": 1.2,
-            "gi": 52
-        },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 12.8,
-        "image_url": "",
-        "healthFlags": []
-    },
-    {
-        "name": "Shrimp Fried Rice",
-        "description": "Wok-fried rice with whole prawns and egg",
-        "category": "Rice",
-        "estimatedKcal": 580,
-        "nutrition": {
-            "protein_g": 22,
-            "carb_g": 72,
-            "fat_g": 20,
-            "sodium_mg": 980,
-            "fibre_g": 2.0,
-            "gi": 65
-        },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 14.8,
-        "image_url": "",
-        "healthFlags": []
-    },
-    {
-        "name": "Braised Beef Noodles",
-        "description": "Slow-braised beef shank in rich broth",
-        "category": "Noodles",
-        "estimatedKcal": 620,
-        "nutrition": {
-            "protein_g": 32,
-            "carb_g": 68,
-            "fat_g": 22,
-            "sodium_mg": 1280,
-            "fibre_g": 2.5,
-            "gi": 55
-        },
-        "confidence": "high",
-        "source": "curated_seed",
+        "source": "llm_estimated",
         "price_sgd": 16.8,
         "image_url": "",
         "healthFlags": [
             {
                 "flag": "high-sodium",
-                "note": "1280mg sodium"
+                "note": "Sodium content exceeds 800mg per serving"
             },
             {
                 "flag": "high-protein",
-                "note": "32g protein"
+                "note": "Protein content exceeds 25g per serving"
             }
         ]
     },
     {
-        "name": "Steamed Chicken Soup",
-        "description": "Double-boiled chicken soup with goji berries",
-        "category": "Soups",
-        "estimatedKcal": 180,
+        "name": "Truffle & Pork Xiao Long Bao (6 pcs)",
+        "description": "Steamed pork dumplings infused with truffle oil, served in a set of six pieces.",
+        "category": "Dim Sum",
+        "estimatedKcal": 400,
         "nutrition": {
-            "protein_g": 18,
-            "carb_g": 8,
-            "fat_g": 8,
-            "sodium_mg": 580,
-            "fibre_g": 0.5,
-            "gi": 25
+            "protein_g": 20.0,
+            "carb_g": 45.0,
+            "fat_g": 18.0,
+            "sodium_mg": 700,
+            "fibre_g": 1.5,
+            "gi": 55
         },
-        "confidence": "high",
-        "source": "curated_seed",
+        "confidence": "medium",
+        "source": "llm_estimated",
+        "price_sgd": 19.8,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "halal",
+                "note": "Typically contains pork, not halal"
+            }
+        ]
+    },
+    {
+        "name": "Pan-Fried Pork Buns (4 pcs)",
+        "description": "Four pan-fried pork buns, featuring a savory minced pork filling wrapped in a slightly crispy and chewy dough.",
+        "category": "Dim Sum",
+        "estimatedKcal": 520,
+        "nutrition": {
+            "protein_g": 18.5,
+            "carb_g": 60.0,
+            "fat_g": 20.5,
+            "sodium_mg": 900,
+            "fibre_g": 2.5,
+            "gi": 55
+        },
+        "confidence": "medium",
+        "source": "llm_estimated",
+        "price_sgd": 11.8,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "high-sodium",
+                "note": "Sodium content exceeds 800mg per serving"
+            },
+            {
+                "flag": "high-fat",
+                "note": "Fat content exceeds 20g per serving"
+            }
+        ]
+    },
+    {
+        "name": "Braised Beef Noodles",
+        "description": "A savory Taiwanese-style braised beef noodle soup with tender beef chunks, wheat noodles, and flavorful broth.",
+        "category": "Noodles",
+        "estimatedKcal": 650,
+        "nutrition": {
+            "protein_g": 30.5,
+            "carb_g": 70.0,
+            "fat_g": 18.0,
+            "sodium_mg": 1200,
+            "fibre_g": 3.5,
+            "gi": 65
+        },
+        "confidence": "medium",
+        "source": "llm_estimated",
+        "price_sgd": 18.8,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "high-sodium",
+                "note": "Sodium content exceeds 800mg per serving"
+            },
+            {
+                "flag": "high-protein",
+                "note": "Protein content exceeds 25g per serving"
+            }
+        ]
+    },
+    {
+        "name": "Fried Rice with Pork Chop",
+        "description": "A savory Taiwanese-style fried rice served with a crispy pork chop on top.",
+        "category": "Rice",
+        "estimatedKcal": 650,
+        "nutrition": {
+            "protein_g": 28.5,
+            "carb_g": 75.0,
+            "fat_g": 22.0,
+            "sodium_mg": 950,
+            "fibre_g": 3.0,
+            "gi": 65
+        },
+        "confidence": "medium",
+        "source": "llm_estimated",
+        "price_sgd": 16.8,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "high-sodium",
+                "note": "Sodium content exceeds 800mg per serving"
+            },
+            {
+                "flag": "high-fat",
+                "note": "Fat content exceeds 20g per serving"
+            },
+            {
+                "flag": "high-protein",
+                "note": "Protein content exceeds 25g per serving"
+            }
+        ]
+    },
+    {
+        "name": "Steamed Egg Fried Rice",
+        "description": "Steamed Egg Fried Rice is a soft-textured rice dish cooked with eggs and light seasoning, commonly served in Taiwanese dim sum style.",
+        "category": "Rice",
+        "estimatedKcal": 350,
+        "nutrition": {
+            "protein_g": 9.5,
+            "carb_g": 55.0,
+            "fat_g": 8.0,
+            "sodium_mg": 700,
+            "fibre_g": 1.2,
+            "gi": 70
+        },
+        "confidence": "medium",
+        "source": "llm_estimated",
+        "price_sgd": 12.8,
+        "image_url": "",
+        "healthFlags": [
+            {
+                "flag": "soft-foods",
+                "note": "Soft texture suitable for easy eating"
+            }
+        ]
+    },
+    {
+        "name": "Sautéed String Beans",
+        "description": "Stir-fried string beans typically cooked with garlic and light soy sauce, served as a vegetable side dish.",
+        "category": "Vegetables",
+        "estimatedKcal": 120,
+        "nutrition": {
+            "protein_g": 3.5,
+            "carb_g": 12.0,
+            "fat_g": 7.0,
+            "sodium_mg": 700,
+            "fibre_g": 4.0,
+            "gi": 35
+        },
+        "confidence": "medium",
+        "source": "llm_estimated",
         "price_sgd": 10.8,
         "image_url": "",
         "healthFlags": [
             {
-                "flag": "low-calorie",
-                "note": "180 kcal"
+                "flag": "high-sodium",
+                "note": "Contains soy sauce contributing to sodium content"
+            },
+            {
+                "flag": "vegetarian",
+                "note": "Contains no meat or animal products"
+            },
+            {
+                "flag": "halal",
+                "note": "Typically prepared without non-halal ingredients"
             }
         ]
-    },
-    {
-        "name": "Red Bean Xiao Long Bao",
-        "description": "Sweet red bean soup dumplings, 5 pcs",
-        "category": "Desserts",
-        "estimatedKcal": 280,
-        "nutrition": {
-            "protein_g": 6,
-            "carb_g": 48,
-            "fat_g": 8,
-            "sodium_mg": 180,
-            "fibre_g": 3.0,
-            "gi": 65
-        },
-        "confidence": "high",
-        "source": "curated_seed",
-        "price_sgd": 8.8,
-        "image_url": "",
-        "healthFlags": []
     }
   ]
 };
